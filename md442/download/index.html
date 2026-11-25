@@ -20,7 +20,7 @@
   .wrap { max-width: 1100px; margin: 0 auto; padding: clamp(24px, 4vw, 48px) clamp(16px, 3vw, 40px); display: flex; flex-direction: column; gap: clamp(28px, 4vw, 48px); }
   .back { text-decoration: none; color: #a3a3a3; align-self: flex-start; padding: 10px 0; }
   .back:hover { color: #f2f2f2; }
-  h1 { margin: 0; font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: 'wdth' 150; font-size: clamp(52px, 11vw, 150px); line-height: .82; letter-spacing: -.04em; }
+  h1 { margin: 0; font-family: 'Anybody', sans-serif; font-weight: 900; font-variation-settings: 'wdth' 150; font-size: clamp(36px, 10.6vw, 150px); line-height: .82; overflow-wrap: anywhere; letter-spacing: -.04em; }
   h1 span { color: var(--g); }
   .tag { margin: 18px 0 0; max-width: 760px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: clamp(20px, 2.4vw, 30px); line-height: 1.25; color: #c8c8c8; }
   h2 { margin: 0 0 14px; font-weight: 400; color: var(--g); }
@@ -50,6 +50,14 @@
   td b { font-weight: 400; color: var(--g); }
   .tw { overflow-x: auto; border: 1px solid #262626; border-radius: 12px; padding: 4px 12px; }
   .fine { font-size: 11px !important; color: #8a8a8a !important; }
+  .show { display: grid; grid-template-columns: minmax(0, 3.2fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px; align-items: start; margin: 0; }
+  .show figure { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .show img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid #262626; background: #161616; }
+  .show figcaption { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: #8a8a8a; }
+  .feat { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px 24px; margin: 0; padding: 0; list-style: none; font-size: 13px; line-height: 1.6; color: #d6d6d6; }
+  .feat li { margin: 0; padding-left: 16px; position: relative; }
+  .feat li::before { content: ''; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--g); box-shadow: 0 0 6px var(--g); }
+  @media (max-width: 760px) { .show { grid-template-columns: 1fr 1fr; } .show .wide { grid-column: 1 / -1; } }
 </style>
 </head>
 <body>
@@ -59,6 +67,21 @@
     <h1>Download <span>MD|442</span></h1>
     <p class="tag">A free drum machine, developed by Mathew. No sign-up, nothing to pay. Take it with you as an app on your Mac or PC, on your phone, or as firmware that runs on the keyboard itself.</p>
   </div>
+  <section class="sec" id="look" aria-label="What MD|442 looks like">
+    <div class="show">
+      <figure class="wide"><img src="img/md442-desktop.webp" width="2000" height="1207" alt="The MD|442 desktop console: a knob section for each drum, Mathew's patterns, scenes, master and effects, and 16 lit step keys" loading="eager" decoding="async"><figcaption>Desktop app and browser</figcaption></figure>
+      <figure><img src="img/md442-phone.webp" width="780" height="1328" alt="The MD|442 phone app: knobs for the chosen drum, the drum keys and 16 step keys" loading="lazy" decoding="async"><figcaption>Phone app</figcaption></figure>
+      <figure><img src="img/md442-phone2.webp" width="780" height="1328" alt="The phone app showing the whole pattern, every drum on its own row" loading="lazy" decoding="async"><figcaption>Whole pattern</figcaption></figure>
+    </div>
+    <ul class="feat">
+      <li>13 analogue-style drums and an accent, an acid bass and dub stab chords</li>
+      <li>16 steps, 8 scenes that each keep their own mutes and mix, and chain mode</li>
+      <li>Mixer, reverb, dub echo, filter, drive, kills and hold repeat</li>
+      <li>Plays with your MIDI keyboard, Ableton and Maschine, and records WAV</li>
+      <li>Beats move between the browser, the apps and the DAW plugin</li>
+      <li>Free. No sign-up, no ads</li>
+    </ul>
+  </section>
   <nav class="jump"><a class="pill mono" href="#desktop">Desktop app</a><a class="pill mono" href="#plugin">DAW plugin</a><a class="pill mono" href="#phone">Phone app</a><a class="pill mono" href="#firmware">Firmware</a><a class="pill mono" href="#hardware">Hardware</a><a class="pill mono" href="#guides">Guides</a></nav>
 
   <section class="sec" id="desktop">

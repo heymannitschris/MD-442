@@ -110,14 +110,15 @@
   function mkPlayer(autoplay) {
     if (dockEl) return;
     const inPage = document.querySelector('iframe[title="Mixcloud"]'); let feed = FEED; try { feed = new URL(inPage.src).searchParams.get('feed') || FEED; } catch (_) {}
-    dockEl = document.createElement('div'); dockEl.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:55;height:calc(60px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:#111;border-top:1px solid #2a2a2a';
+    dockEl = document.createElement('div'); dockEl.style.cssText = 'position:fixed;left:0;right:0;bottom:0;z-index:55;height:calc(60px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);display:flex;align-items:center;background:#111;border-top:1px solid #2a2a2a';
     const f = document.createElement('iframe'); f.id = 'mc-dock'; f.title = 'Full Moon Radio player'; f.setAttribute('allow', 'autoplay; encrypted-media; fullscreen; idle-detection; speaker-selection; web-share'); f.setAttribute('frameborder', '0');
-    f.style.cssText = 'display:block;width:100%;height:60px;border:0'; f.src = 'https://player-widget.mixcloud.com/widget/iframe/?mini=1&hide_cover=1&light=0' + (autoplay ? '&autoplay=1' : '') + '&feed=' + encodeURIComponent(feed);
+    f.style.cssText = 'display:block;flex:1 1 0;min-width:0;height:60px;border:0'; f.src = 'https://player-widget.mixcloud.com/widget/iframe/?mini=1&hide_cover=1&light=0' + (autoplay ? '&autoplay=1' : '') + '&feed=' + encodeURIComponent(feed);
     hintEl = document.createElement('div'); hintEl.hidden = true; hintEl.textContent = 'Tap ▶ below to start Full Moon Radio'; hintEl.setAttribute('role', 'status');
     hintEl.style.cssText = "position:absolute;left:12px;bottom:calc(100% + 8px);padding:9px 14px;border-radius:999px;background:#3dff7a;color:#0a0a0a;font-family:'Martian Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;box-shadow:0 0 18px rgba(61,255,122,.5)";
     dockEl.append(hintEl, f); document.body.append(dockEl);
     document.documentElement.style.scrollPaddingBottom = '72px'; document.body.style.paddingBottom = 'calc(60px + env(safe-area-inset-bottom))';
-    if (dock) dock.style.bottom = 'calc(72px + env(safe-area-inset-bottom))';
+    // the strobe switch moves into the player bar, to the right of the player, so nothing floats over the page or the play button
+    const sd = mkDock(); sd.style.cssText = 'position:static;flex:none;display:flex;align-items:center;padding:0 10px 0 6px'; const sb = sd.querySelector('button'); if (sb) { sb.style.padding = '10px 12px'; sb.style.gap = '8px'; sb.style.minHeight = '44px'; } dockEl.append(sd);
     setTimeout(() => { hintOn = true; draw(); }, 3500);      // only shown if the mix has not started by then
     scan();
   }
