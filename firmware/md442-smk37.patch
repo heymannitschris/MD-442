@@ -239,7 +239,7 @@ index b5e411e..4914d7c 100644
  
  /* each object is read straight into its place in proj: a load copies only a valid payload */
 diff --git a/firmware/src/app/ui.c b/firmware/src/app/ui.c
-index baf2cbf..25a07f2 100644
+index baf2cbf..1687dec 100644
 --- a/firmware/src/app/ui.c
 +++ b/firmware/src/app/ui.c
 @@ -208,7 +208,7 @@ static const x0x_param_t SEQ_P[NSQ] = {
@@ -262,7 +262,18 @@ index baf2cbf..25a07f2 100644
      if (ui.view == V_SONG) {
          list_add(PR(R_SLEN, 0, 0, 0));
          list_add(PR(R_ACT, ACT_SONG_INS, 0, 0));
-@@ -1421,6 +1423,10 @@ static void perf_restore(void)
+@@ -1105,6 +1107,10 @@ static int help_lines(int b, const char *l[HELP_LINES])
+ {
+     int n = 0, gen = ui.view == V_GEN, kbd = is_303() && ui.rec;
+ #define L(s) (l[n++] = (s))
++#if !BOARD_SMK37
++    if (1)                                            /* MD|442 on the FM-1: no on-screen button help (flash room for */
++        return 0;                                     /* receiving patterns from MD|442); the manual has it */
++#endif
+     switch (b) {
+     case B_FX: L("THE EFFECTS: REVERB, DELAY,"); L("TAPE AND KIT DRIVE"); L("AGAIN: THE NEXT PAGE"); break;
+     case B_SEL: L("THIS SCREEN AS A LIST"); L("IN A LIST: RUN THE ACTION"); L("IN A QUESTION: YES"); break;
+@@ -1421,6 +1427,10 @@ static void perf_restore(void)
  static void perf_test_start(void)
  {
      int p;
@@ -273,7 +284,7 @@ index baf2cbf..25a07f2 100644
      if (perf.test >= 0 && perf.phase != 4)
          return;
      perf.pat = seq.pat;
-@@ -1531,7 +1537,7 @@ static void set_view(int v);
+@@ -1531,7 +1541,7 @@ static void set_view(int v);
  
  static void run_action(int act, int arg)
  {
@@ -282,7 +293,7 @@ index baf2cbf..25a07f2 100644
      switch (act) {
      case ACT_SAVE: save_project(); break;
      case ACT_CLEAR_PART:
-@@ -1604,7 +1610,7 @@ static void run_action(int act, int arg)
+@@ -1604,7 +1614,7 @@ static void run_action(int act, int arg)
          say("PERF TEST: 15 SECONDS", 0);
          break;
      case ACT_ABOUT:
