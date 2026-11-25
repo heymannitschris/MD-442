@@ -38,17 +38,12 @@
   const DOT = 'width:8px;height:8px;border-radius:50%;border:1px solid #3dff7a;flex:none';
   const lit = (dot, on) => { dot.style.background = on ? '#3dff7a' : '#0a0a0a'; dot.style.boxShadow = on ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none'; };
   let dock = null;
-  // the strobe switch: always there, bottom left. Off by default for visitors who ask their device for reduced motion.
+  // bottom-left dock for the mix pill. The strobe has no switch: it is always on.
   function mkDock() {
     if (dock) return dock;
     const S = window.MDStrobe = window.MDStrobe || {};
-    let saved = null; try { saved = localStorage.getItem('strobe-off'); } catch (_) {}
-    S.off = saved != null ? saved === '1' : !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+    S.off = false;   // the strobe is always on: the only control on the page is the music
     dock = document.createElement('div'); dock.style.cssText = 'position:fixed;left:16px;bottom:16px;z-index:60;display:flex;flex-direction:column;align-items:flex-start;gap:8px';
-    const b = document.createElement('button'), dot = document.createElement('span'), tx = document.createElement('span'); b.type = 'button'; b.style.cssText = PILL; dot.style.cssText = DOT; b.append(dot, tx);
-    const show = () => { lit(dot, !S.off); tx.textContent = S.off ? 'Strobe off' : 'Strobe on'; b.setAttribute('aria-pressed', S.off ? 'false' : 'true'); b.setAttribute('aria-label', S.off ? 'Turn the strobe lights on' : 'Turn the strobe lights off'); };
-    b.addEventListener('click', e => { e.stopPropagation(); S.off = !S.off; try { localStorage.setItem('strobe-off', S.off ? '1' : '0'); } catch (_) {} show(); });
-    show(); dock.append(b);
     const st = document.createElement('style'); st.textContent = '[hidden]{display:none!important}'; document.head.append(st);
     document.body.append(dock); return dock;
   }
@@ -117,8 +112,6 @@
     hintEl.style.cssText = "position:absolute;left:12px;bottom:calc(100% + 8px);padding:9px 14px;border-radius:999px;background:#3dff7a;color:#0a0a0a;font-family:'Martian Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;pointer-events:none;box-shadow:0 0 18px rgba(61,255,122,.5)";
     dockEl.append(hintEl, f); document.body.append(dockEl);
     document.documentElement.style.scrollPaddingBottom = '72px'; document.body.style.paddingBottom = 'calc(60px + env(safe-area-inset-bottom))';
-    // the strobe switch moves into the player bar, to the right of the player, so nothing floats over the page or the play button
-    const sd = mkDock(); sd.style.cssText = 'position:static;flex:none;display:flex;align-items:center;padding:0 10px 0 6px'; const sb = sd.querySelector('button'); if (sb) { sb.style.padding = '10px 12px'; sb.style.gap = '8px'; sb.style.minHeight = '44px'; } dockEl.append(sd);
     setTimeout(() => { hintOn = true; draw(); }, 3500);      // only shown if the mix has not started by then
     scan();
   }
