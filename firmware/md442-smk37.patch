@@ -1,0 +1,203 @@
+diff --git a/firmware/src/app/engine.c b/firmware/src/app/engine.c
+index c895b7e..baf5e5d 100644
+--- a/firmware/src/app/engine.c
++++ b/firmware/src/app/engine.c
+@@ -252,7 +252,7 @@ void engine_sound_defaults(sound_t *s)
+      * under it, the 303 screams through its RAT; the master squeezes and pumps. Each engine's
+      * own voicing (its pot defaults) is left as its original; only these are X0X's. */
+     s->v[T_MIX][PART_909][MX_LEVEL] = 75;            /* 9W9's kit is hot (it drives its own glue): -5 dB */
+-    s->v[T_909][DR_BD][3] = 61;                      /* its kick under the break, its clap and hats over */
++    s->v[T_909][DR_BD][3] = 54;                      /* MD|442: the kick sits lower still (never hot in headphones) */
+     s->v[T_909][DR_BD][2] = 80;                      /* the kick: a little shorter, and driven. Its Attack */
+     s->v[T_909][DR_BD][6] = 30;                      /* stays 9W9's 13: at 50 its tick was 12 dB louder, a click on every kick */
+     s->v[T_909][DR_OH][1] = 60;
+diff --git a/firmware/src/app/main_fm1.c b/firmware/src/app/main_fm1.c
+index e0a3705..d61c9c8 100644
+--- a/firmware/src/app/main_fm1.c
++++ b/firmware/src/app/main_fm1.c
+@@ -442,7 +442,7 @@ static void safe_main(void)
+         if ((fm1_in.buttons & play) && fm1_ms - t0 > 500u) {
+             bootguard.failed = 0;                   /* try X0X again, from scratch */
+             bootguard.pending = 0;
+-            draw_text_box(0, 172, 240, &FONT_S, "STARTING X0X...", C_HI, 1);
++            draw_text_box(0, 172, 240, &FONT_S, "STARTING MD|442...", C_HI, 1);
+             usb_detach();
+             fm1_delay_ms(30);
+             fm1_reboot();
+@@ -478,9 +478,10 @@ static void fm1_main(void)
+         }
+     }
+     lcd_init();
+-    palette_set(1);
+-    draw_text_box(0, 96, 240, &FONT_M, "X0X", C_HI, 1);
+-    draw_text_box(0, 134, 240, &FONT_S, "909 808 303 303 BREAK", C_GRAY, 1);
++    palette_set(0);
++    draw_text_box(0, 96, 240, &FONT_B, "MD|442", C_HI, 1);
++    draw_text_box(0, 134, 240, &FONT_S, "BY MATHEW  NEST GROUP", C_GRAY, 1);
++    draw_text_box(0, 154, 240, &FONT_XS, "ON X0X (GPL-3.0)", C_DIM, 1);
+     if (x0x_dbg.magic != DBG_MAGIC) {
+         memset(&x0x_dbg, 0, sizeof x0x_dbg);
+         x0x_dbg.magic = DBG_MAGIC;
+diff --git a/firmware/src/app/md442_presets.h b/firmware/src/app/md442_presets.h
+new file mode 100644
+index 0000000..ba7ae5d
+--- /dev/null
++++ b/firmware/src/app/md442_presets.h
+@@ -0,0 +1,56 @@
++/* SPDX-License-Identifier: GPL-3.0-only */
++/* MD|442: Mathew's patterns from the MD|442 drum machine (music.nestgroup.space/md442), loaded as
++ * the factory patterns 1-7. Rows: BD SD CP CH OH TOM BASS, as in MD|442's v1 data. The tom row
++ * plays the hi or the mid tom by step, as MD|442 does. The bass row plays 303 A on MD|442's notes,
++ * from its root. MD|442's dub stab (a chord) has no engine here: its row is not loaded. */
++#pragma once
++#include "../seq/pattern.h"
++#include "../dsp/drum909.h"
++
++typedef struct {
++    uint8_t bpm, swing, root_midi, acid;   /* acid 0..100: MD|442's acid amount -> accents */
++    const char *g[7];
++    int8_t notes[16];
++} md442_preset_t;
++
++/* root_midi: MD|442's root in Hz as a MIDI note (41.2 = E1 28, 43.65 = F1 29, 46.25 = F#1 30,
++ * 49 = G1 31, 55 = A1 33), one octave up for the 303 (its range starts at C1) */
++static const md442_preset_t MD442_PRESETS[] = {
++    {142, 0, 40, 55, {"x...x...x...x...", "................", "....x.......x...", "xxxxxxxxxxxxxxxx", "..x...x...x...x.", "...........x..x.", ".xx..xx..xx..xx."}, {0, 0, 12, 0, 0, 0, 12, 0, 0, 0, 15, 0, 0, 12, 0, 7}},   /* Peak Warehouse */
++    {133, 4, 41, 25, {"x...x...x...x...", "............x...", "................", "x.xxx.xxx.xxx.xx", "..x...x...x...x.", "..x.....x.x.....", ".x.x.x.x.x.x.x.x"}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0}},    /* Berlin Roll */
++    {124, 6, 43, 50, {"x...x...x...x...", "....x.......x...", "....x.......x...", "..xx..xx..xx..xx", "..x...x...x...x.", "................", "x.xx.x..x.xx.xx."}, {0, 0, 0, 12, 0, 10, 0, 0, 0, 0, 0, 12, 0, 7, 10, 0}},  /* Electro */
++    {126, 8, 45, 90, {"x...x...x...x...", "................", "....x.......x...", "x.x.x.x.x.x.x.xx", "..x...x...x...x.", "................", "x.xxx.xx.xx.xxx."}, {0, 0, 12, 0, 3, 0, 0, 12, 0, 7, 0, 0, 10, 12, 0, 0}},  /* Acid Jack */
++    {122, 18, 41, 0, {"x...x...x...x...", "................", "....x.......x...", "x..xx..xx..xx..x", "..x...x...x...x.", "......x......x..", "x..x...x..x....."}, {0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 7, 0, 0, 0, 0, 0}},     /* Deep House */
++    {134, 24, 41, 0, {"x......x..x.....", ".........x.....x", "....x.......x...", "x.x.x.xxx.x.x.x.", "..x.......x.....", "...x.....x..x...", "x..x......x..x.."}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 7, 0, 0}},      /* Breakbeat */
++    {118, 12, 42, 0, {"x...x...x...x...", "................", "................", "..x..xx...x..xx.", "......x.........", "....x.......x..x", "x.....x...x....."}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},      /* Dub Techno */
++};
++#define MD442_NPRESETS ((int)(sizeof MD442_PRESETS / sizeof MD442_PRESETS[0]))
++
++static int md442_bongo_hi(int i) { return i % 2 == 0 && i != 0 && i != 6 && i != 10; }   /* MD|442 bongoHi: not 0, 3, 6, 10, 13; even */
++
++static void md442_load_preset(pattern_t *p, const md442_preset_t *m)
++{
++    static const uint8_t ROW[5] = {DR_BD, DR_SD, DR_CP, DR_CH, DR_OH};
++    dpart_t *d = &p->drum[0];
++    bpart_t *b = &p->bass[0];
++    int r, i;
++    for (r = 0; r < 5; r++)
++        for (i = 0; i < 16; i++)
++            if (m->g[r][i] == 'x')
++                sm_set(d->hit[ROW[r]], i);
++    for (i = 0; i < 16; i++)
++        if (m->g[5][i] == 'x')
++            sm_set(d->hit[md442_bongo_hi(i) ? DR_HT : DR_MT], i);
++    for (i = 0; i < 16; i++) {
++        b->step[i].note = (uint8_t)(m->root_midi + m->notes[i]);
++        b->step[i].flags = G_REST;
++        if (m->g[6][i] == 'x') {
++            b->step[i].flags = G_NOTE;
++            if (m->acid >= 50 && m->notes[i] != 0)        /* MD|442's acid: the moving notes bite */
++                b->step[i].flags |= BS_ACCENT;
++            if (m->acid >= 85 && i + 1 < 16 && m->g[6][i + 1] == 'x' && m->notes[i + 1] != m->notes[i])
++                b->step[i].flags |= BS_SLIDE;
++        }
++    }
++    p->swing = (uint8_t)(m->swing * 132 / 100 > 100 ? 100 : m->swing * 132 / 100);   /* MD|442 shuffle 50 + swing * .33 % */
++}
+diff --git a/firmware/src/app/project.c b/firmware/src/app/project.c
+index b5e411e..4914d7c 100644
+--- a/firmware/src/app/project.c
++++ b/firmware/src/app/project.c
+@@ -16,6 +16,7 @@
+ #include "../dsp/drum909.h"            /* DR_SD (the sound's revisions) */
+ #include "../dsp/master.h"             /* MST_* (the sound's revisions) */
+ #include "lz.c"
++#include "md442_presets.h"        /* MD|442: the factory patterns */
+ 
+ project_t proj;
+ 
+@@ -30,6 +31,12 @@ typedef char raw_fits[(RAW_LEN < 0xFFFFu) ? 1 : -1];
+ typedef char raw_contiguous[(__builtin_offsetof(project_t, arr) == RAW_OFF + sizeof proj.pat) ? 1 : -1];
+ 
+ static void arrange_defaults(void);
++static void md442_patterns(void)
++{
++    int i;
++    for (i = 0; i < MD442_NPRESETS && i < NPAT; i++)
++        md442_load_preset(&proj.pat[i], &MD442_PRESETS[i]);
++}
+ static uint32_t packed_len;             /* the last save's (or load's) packed stream, bytes */
+ 
+ void project_defaults(void)
+@@ -37,13 +44,13 @@ void project_defaults(void)
+     int i;
+     proj.set.magic = PROJ_MAGIC;
+     proj.set.format = PROJ_FORMAT;
+-    proj.set.palette = 1;                /* amber */
++    proj.set.palette = 0;                /* MD|442: green */
+     proj.set.keyled = 1;
+     proj.set.keysound = 0;
+     proj.set.autosave_off = 0;
+     proj.set.clk_out = 1;
+     proj.set.notes_out = 0;
+-    proj.set.bpm_x10 = 1250;
++    proj.set.bpm_x10 = 1420;            /* MD|442: Peak Warehouse */
+     proj.set.accent_q7 = 88;
+     proj.set.stereo = PROJ_STEREO;
+     proj.set.snd_rev = PROJ_SND_REV;
+@@ -52,6 +59,7 @@ void project_defaults(void)
+     /* the 303 lines start empty, like the drums: OCT+ on TB-3PO (or keyboard mode) writes one */
+     for (i = 0; i < NPAT; i++)
+         pattern_init(&proj.pat[i], 0x3B0u + (uint32_t)i * 977u, 0x5A1u + (uint32_t)i * 613u);
++    md442_patterns();
+ }
+ 
+ /* how full the stream's room is, in % (GLO > ABOUT) */
+@@ -423,6 +431,7 @@ static void patterns_defaults(void)
+     int i;
+     for (i = 0; i < NPAT; i++)
+         pattern_init(&proj.pat[i], 0x3B0u + (uint32_t)i * 977u, 0x5A1u + (uint32_t)i * 613u);
++    md442_patterns();
+ }
+ 
+ /* each object is read straight into its place in proj: a load copies only a valid payload */
+diff --git a/firmware/src/app/ui.c b/firmware/src/app/ui.c
+index baf2cbf..7f96acf 100644
+--- a/firmware/src/app/ui.c
++++ b/firmware/src/app/ui.c
+@@ -208,7 +208,7 @@ static const x0x_param_t SEQ_P[NSQ] = {
+ };
+ static const x0x_param_t ACT_P[] = {
+     {"", 0, 0, 0}, {"SAVE PROJECT", 0, 0, 0}, {"CLEAR THIS PART", 0, 0, 0}, {"CLEAR PATTERN", 0, 0, 0},
+-    {"COPY PATTERN", 0, 0, 0}, {"FACTORY RESET", 0, 0, 0}, {"ABOUT X0X", 0, 0, 0}, {"INSERT BAR", 0, 0, 0},
++    {"COPY PATTERN", 0, 0, 0}, {"FACTORY RESET", 0, 0, 0}, {"ABOUT MD|442", 0, 0, 0}, {"INSERT BAR", 0, 0, 0},
+     {"DELETE BAR", 0, 0, 0}, {"CLEAR SONG", 0, 0, 0}, {"PERFORMANCE", 0, 0, 0}, {"RUN PERF TEST", 0, 0, 0},
+ };
+ static const x0x_param_t STALLS_P = {"STALLS", 1, 0, ONOFF_N};
+@@ -1531,7 +1531,7 @@ static void set_view(int v);
+ 
+ static void run_action(int act, int arg)
+ {
+-    char t[28], *q;
++    char t[40], *q;                                   /* MD|442: room for the longer name in ABOUT */
+     switch (act) {
+     case ACT_SAVE: save_project(); break;
+     case ACT_CLEAR_PART:
+@@ -1604,7 +1604,7 @@ static void run_action(int act, int arg)
+         say("PERF TEST: 15 SECONDS", 0);
+         break;
+     case ACT_ABOUT:
+-        q = put_s(t, "X0X " X0X_VERSION "  MEM ");
++        q = put_s(t, "MD|442 " X0X_VERSION "  MEM ");
+         q = put_s(put_i(q, project_mem_pct()), "%  CPU ");
+         put_s(put_i(q, (int)plat_cpu_pct()), "%");
+         say(t, 0);
+diff --git a/firmware/src/gfx.c b/firmware/src/gfx.c
+index daf9cb2..bf45dc0 100644
+--- a/firmware/src/gfx.c
++++ b/firmware/src/gfx.c
+@@ -33,7 +33,7 @@ typedef struct {
+  * screen then means something: a part, a value, an alarm. */
+ #define NEUTRALS RGB(34, 34, 40), RGB(74, 74, 82), RGB(150, 150, 158)
+ static const palette_t PALETTES[] = {
+-    {"GREEN", {NEUTRALS, RGB(80, 220, 120), RGB(150, 255, 175)}},
++    {"GREEN", {NEUTRALS, RGB(61, 255, 122), RGB(170, 255, 195)}}   /* MD|442 green */,
+     {"AMBER", {NEUTRALS, RGB(232, 136, 30), RGB(255, 184, 70)}},
+     {"CYAN", {NEUTRALS, RGB(60, 180, 235), RGB(150, 225, 255)}},
+     {"RED", {NEUTRALS, RGB(232, 76, 60), RGB(255, 132, 112)}},
