@@ -117,6 +117,13 @@ void StepGrid::mouseDown(const juce::MouseEvent& m) {
     { const juce::ScopedLock l(ed.proc.lock); auto& s = e.scene(); paintVal = !s.g[(size_t)k][(size_t)i]; s.g[(size_t)k][(size_t)i] = paintVal; }
     painting = k; lastCell = i; repaint();
 }
+// double-click a drum's key mutes it, as on the web and phone apps (a single click selects and plays it)
+void StepGrid::mouseDoubleClick(const juce::MouseEvent& m) {
+    if (m.x >= nameW) return;
+    int k = rowAt((float)m.y); const juce::ScopedLock l(ed.proc.lock);
+    if (auto* p = ed.proc.muteParam[k]) p->setValueNotifyingHost(ed.proc.engine.mute[(size_t)k] ? 0.f : 1.f);
+    repaint();
+}
 void StepGrid::mouseDrag(const juce::MouseEvent& m) {
     if (painting < 0) return; int i = stepAt((float)m.x); if (i < 0 || i == lastCell) return;
     { const juce::ScopedLock l(ed.proc.lock); ed.proc.engine.scene().g[(size_t)painting][(size_t)i] = paintVal; }
@@ -235,7 +242,7 @@ void MD442Editor::refreshTop() {
     for (int i = 0; i < 8; ++i) { sceneBtns[i]->setVisible(i < n); sceneBtns[i]->setToggleState(i == sc, juce::dontSendNotification); sceneBtns[i]->setColour(juce::TextButton::buttonColourId, i == pend ? ui::on.darker(.4f) : ui::cell); }
     chainBtn.setToggleState(chain, juce::dontSendNotification); lenBox.setSelectedId(last, juce::dontSendNotification);
     playBtn.setToggleState(playing || proc.hostPlaying(), juce::dontSendNotification);
-    playBtn.setButtonText(proc.hostPlaying() ? "SYNCED" : playing ? "STOP" : "PLAY");
+    playBtn.setButtonText(proc.hostPlaying() ? "SYNCED" : juce::String::fromUTF8(playing ? "\xe2\x96\xa0 STOP" : "\xe2\x96\xb6 PLAY"));
     presetBtn.setButtonText(proc.beatName + "  v");
 }
 

@@ -35,6 +35,7 @@ public:
     void mouseDown(const juce::MouseEvent&) override;
     void mouseDrag(const juce::MouseEvent&) override;
     void mouseUp(const juce::MouseEvent&) override { painting = -1; }
+    void mouseDoubleClick(const juce::MouseEvent&) override;
     int head = -1; uint32_t flash = 0;
 private:
     MD442Editor& ed; int painting = -1; bool paintVal = false; int lastCell = -1;

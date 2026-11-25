@@ -22,6 +22,7 @@ Mac: VST3 and Audio Unit (AU), Apple Silicon and Intel. Windows: VST3, 64-bit. B
 - **The pattern plays along with your DAW** at the DAW's tempo whenever the DAW plays. Turn **PATTERN** off to play MD-442 only from pads, keys or clips.
 - **Pads and keys**: notes from C1 (36) up to C2 (48) play Kick, Snare, Clap, Rim, Low tom, Mid tom, Hi tom, Closed hat, Open hat, Crash, Ride, Bass, Stab, the same layout as an Ableton Drum Rack. C3 (60) upward plays them too, for Maschine's keyboard mode. Hit hard (velocity above 100) for the accent.
 - **MIDI channel 2** plays the bass at the note's pitch, **channel 3** plays the dub stab chord on that root.
+- **Mute** a drum with the M key or by double-clicking its name. One click selects and plays it.
 - **Knobs on your controller** (SMK-37, Mikro MK3, anything): right-click a knob on screen, choose **MIDI learn**, turn a knob on the controller. Every knob is also a normal DAW parameter, so Maschine's encoders and Ableton's MIDI map work too. In Maschine the parameter pages are laid out 8 at a time: Master, Effects, then one page per drum.
 - **DRAG MIDI** drags the beat onto a track as a MIDI clip (drums on channel 1, bass on 2, stab on 3). Turn PATTERN off when you play the clip, so it does not play twice.
 - **IMPORT / EXPORT** read and write MD|442 beat files (.md442.json). Beats saved in Documents/MD-442/Beats show up in the preset menu.
