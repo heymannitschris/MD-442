@@ -51,7 +51,7 @@ D('bs.cutoff', 60, 8000, 500, 'Bass cutoff', 'hz', { exp: 1 }); D('bs.reso', 0, 
 D('st.tone', 300, 12000, 2500, 'Stab tone', 'hz', { exp: 1 }); D('st.decay', 80, 1700, 400, 'Stab decay', 'ms', { exp: 1 }); D('st.chord', 0, 6, 1, 'Chord', 'chord'); D('st.echo', 0, 100, 0, 'Stab echo', 'pc'); D('st.verb', 0, 100, 0, 'Stab verb', 'pc');
 D('fx.filter', -100, 100, 0, 'Filter', 'filter'); D('fx.verb', 0, 100, 0, 'Reverb', 'pc'); D('fx.space', 0, 100, 0, 'Space', 'pc'); D('fx.drive', 0, 100, 0, 'Drive', 'pc');
 D('fx.vdec', .3, 4, 1.6, 'Reverb decay', 'ms', { exp: 1 }); D('fx.etime', 0, 5, 3, 'Echo time', 'etime'); D('fx.efb', 0, 95, 50, 'Echo feedback', 'pc');
-const LEVEL = { BD: 0, SD: -3, CP: -4, RS: -8, LT: -6, MT: -6, HT: -6, CH: -3, OH: -4, CR: -6, RD: -8, BS: -7, ST: -6 };
+const LEVEL = { BD: 0, SD: -3, CP: -4, RS: -8, LT: -6, MT: -6, HT: -6, CH: -3, OH: -4, CR: -6, RD: -8, BS: -5.5, ST: -6 };
 SOUND.forEach(k => D('lvl.' + k, -40, 6, LEVEL[k], NAME[k] + ' level', 'db'));
 // channel tools, the same five on every drum: where it sits, its own filter and drive, and how much goes to the reverb and the echo
 const PAN = { RS: -12, LT: -30, HT: 30, CH: 18, OH: -18, CR: -24, RD: 26 };
@@ -174,7 +174,7 @@ const S = { preset: FIRST, dirty: false, scenes: [emptyScene()], sc: 0, chain: f
 let presetVals = {};                              // what double-click resets a knob to
 const scene = () => S.scenes[S.sc];
 // SCENE MIX: every scene keeps its own mutes, kills, filter, effects, mixer and sound knobs. The master volume and the tempo stay as they are.
-const MIXK = () => Object.keys(DEF).filter(k => k !== 'vol' && k !== 'bpm');
+const MIXK = () => Object.keys(DEF).filter(k => k !== 'vol' && k !== 'bpm' && k !== 'fx.filter');   // the DJ filter is played live, so a scene never moves it
 function storeMix(sc) { sc = sc || scene(); if (!sc) return; const p = {}; MIXK().forEach(k => { p[k] = P[k]; }); sc.x = { P: p, mute: Object.assign({}, S.mute), kill: Object.assign({}, S.kill) }; }
 function loadMix(sc) { sc = sc || scene(); if (!sc || !sc.x || !sc.x.P) return false; const x = sc.x; MIXK().forEach(k => { if (typeof x.P[k] === 'number') P[k] = clamp(x.P[k], DEF[k].mn, DEF[k].mx); }); S.mute = Object.assign({}, x.mute || {}); S.kill = Object.assign({ LOW: false, MID: false, HI: false }, x.kill || {}); return true; }
 function goScene(n) { storeMix(); S.sc = clamp(n, 0, S.scenes.length - 1); if (loadMix()) { apply(); refreshKnobs(); } }
@@ -197,6 +197,7 @@ function restore() {
     const d = JSON.parse(localStorage.getItem(LS) || 'null'); if (!d || !d.S || !Array.isArray(d.S.scenes) || !d.S.scenes.length || !d.S.scenes.every(okScene)) return false;
     Object.keys(DEF).forEach(k => { if (typeof d.P[k] === 'number') P[k] = clamp(d.P[k], DEF[k].mn, DEF[k].mx); });
     const S0 = JSON.parse(JSON.stringify(S)); Object.assign(S, d.S); ['mute', 'kill', 'rep', 'mem'].forEach(k => { if (!S[k] || typeof S[k] !== 'object') S[k] = S0[k]; }); if (typeof S.rep.len !== 'number') S.rep = S0.rep; S.scenes = S.scenes.slice(0, 8); S.sc = clamp(S.sc | 0, 0, S.scenes.length - 1); S.rep.on = false; S.last = clamp(Math.round(+S.last) || 16, 1, 16); if (!['one', 'all'].includes(S.view)) S.view = 'one'; S.keys = Object.assign({ open: false, target: 'BS', mode: 0, rate: 1, oct: 1, hold: false, rec: false }, S.keys || {}); S.keys.rec = false; if (!KEYS.includes(S.sel)) S.sel = 'BD';
+    P['fx.filter'] = 0;   // always open at centre: no filter
     presetVals = d.presetVals || {}; return true;
   } catch (_) { return false; }
 }
@@ -206,13 +207,16 @@ const keepBeats = () => { try { localStorage.setItem(LSB, JSON.stringify(beats))
 /* ---------- 3. sound engine ---------- */
 /* Drums are made the way the classic analogue machines make them: ringing resonators hit by a pulse,
    banks of six square waves for the metal, filtered noise for snap and clap. Works on a live or an offline context. */
-const BUS = .4, CLIPIN = .34, OUT = .79, DUCK = .75;   // into the soft clip gently (peaks lose about 2.5 dB, not 4), and the ceiling sits at -1 dBFS: tanh(3.5) / tanh(1.4) × .79
-const PTRIM = { 'Peak Warehouse': .5, 'Berlin Roll': -1.2, 'Electro': 1.4, 'Acid Jack': 1.7, 'Deep House': 2.6, 'Breakbeat': 2.4, 'Dub Techno': 0 };   // dB per pattern, so they all play at the same loudness   // headroom into the master chain, output trim after the limiter, how far the kick dips the rest
+const BUS = .4, CLIPIN = .56, OUT = .79, DUCK = .75, BDUCK = .72;   // louder into the soft clip (patterns land near -13 LUFS with peaks around -3 dBFS, so the kick keeps its punch); the ceiling stays at -1 dBFS: tanh(3.5) / tanh(1.4) × .79
+const PTRIM = { 'Peak Warehouse': .5, 'Berlin Roll': -1, 'Electro': 1.6, 'Acid Jack': 1.9, 'Deep House': 2.6, 'Breakbeat': 1.8, 'Dub Techno': 1 };   // dB per pattern, so they all play at the same loudness   // headroom into the master chain, output trim after the limiter, how far the kick dips the rest
 const trimOf = () => { const b = beats.find(x => x.name === S.preset); return b ? +b.trim || 0 : PTRIM[S.preset] || 0; };
 const HAT_F = [205.3, 304.4, 369.6, 522.7, 540, 800], RIDE_F = [263, 400, 421, 474, 587, 845];
 const curves = {};
+const CDA = { BD: .9, BS: .6, LT: .5, MT: .5, HT: .45, SD: .45, CP: .45 };   // where each channel's drive starts to bite: about where that drum peaks
 const setCurve = (ws, c) => { if (ws._c !== c) { ws._c = c; ws.curve = c; } };   // a new curve is only handed over when it changed: Chrome drops a block of audio while it swaps one in, which is crackle when it happens on every knob move
 function shape(k, comp) { const id = k.toFixed(2) + '|' + comp.toFixed(2); if (curves[id]) return curves[id]; const c = new Float32Array(2049), n = Math.tanh(k); for (let i = 0; i < 2049; i++) c[i] = Math.tanh(k * (i / 1024 - 1)) / n * comp; /* odd length: silence in gives silence out */ return (curves[id] = c); }
+// drive that adds grit without jumping in level: a signal peaking at A is rounded off, and the quiet parts only come up a little (about 3 dB at full drive)
+function soft(amt, A) { const id = 's' + amt.toFixed(2) + '|' + A; if (curves[id]) return curves[id]; const kA = .05 + amt * 3, k = kA / A, m = Math.pow(Math.tanh(kA) / kA, .5), c = new Float32Array(2049); for (let i = 0; i < 2049; i++) c[i] = A * Math.tanh(k * (i / 1024 - 1)) / Math.tanh(kA) * m; return (curves[id] = c); }
 function mkEngine(ac, live) {
   const g = (v = 1) => { const n = ac.createGain(); n.gain.value = v; return n; };
   const bq = (type, f, q, gn) => { const n = ac.createBiquadFilter(); n.type = type; n.frequency.value = f; if (q != null) n.Q.value = q; if (gn != null) n.gain.value = gn; return n; };
@@ -228,7 +232,7 @@ function mkEngine(ac, live) {
   X.lo = bq('lowshelf', 300, null, 0); X.mid = bq('peaking', 1000, .7, 0); X.hi = bq('highshelf', 4000, null, 0);
   X.lp1 = bq('lowpass', 22000, -3); X.lp2 = bq('lowpass', 22000, -3); X.hp1 = bq('highpass', 18, -3); X.hp2 = bq('highpass', 10, -3);   // parked outside the audio band until the Filter knob moves
   X.mst = g(.7); X.drv = ac.createWaveShaper(); X.drv.oversample = '2x';
-  const comp = ac.createDynamicsCompressor(); comp.threshold.value = -12; comp.knee.value = 12; comp.ratio.value = 2; comp.attack.value = .03; comp.release.value = .2;   // glue, not squash
+  const comp = ac.createDynamicsCompressor(); comp.threshold.value = -12; comp.knee.value = 12; comp.ratio.value = 2.5; comp.attack.value = .03; comp.release.value = .12;   // glue, not squash: the attack lets the kick through, the release breathes in time with a techno groove
   // output limiter: the same soft curve as before, but it now keeps bending smoothly for peaks up to 2.5× full scale instead of chopping them flat,
   // and it is not oversampled (an oversampled last stage overshoots past full scale, and the sound card turns that into crackle)
   const clip = ac.createWaveShaper(); { const c = new Float32Array(4096), n = Math.tanh(1.4); for (let i = 0; i < 4096; i++) c[i] = Math.tanh(1.4 * 2.5 * (i / 2047.5 - 1)) / n; clip.curve = c; } clip.oversample = 'none';
@@ -249,7 +253,7 @@ function mkEngine(ac, live) {
     const c = X.ch[k] = g(1), bus = k === 'BD' ? X.mix : X.duck;
     X.cdrv[k] = ac.createWaveShaper(); X.clp[k] = bq('lowpass', 22000, -3); X.chp[k] = bq('highpass', 10, -3);
     X.pan[k] = ac.createStereoPanner ? ac.createStereoPanner() : g(1);
-    chain(X.cdrv[k], X.clp[k], X.chp[k], c, X.pan[k], bus); X.in[k] = X.pre[k] = X.cdrv[k];
+    if (k === 'BS') { X.bduck = g(); chain(X.cdrv[k], X.clp[k], X.chp[k], c, X.pan[k], X.bduck, bus); } else chain(X.cdrv[k], X.clp[k], X.chp[k], c, X.pan[k], bus); X.in[k] = X.pre[k] = X.cdrv[k];
     X.sv[k] = g(0); c.connect(X.sv[k]); X.sv[k].connect(X.revIn);
     X.sd[k] = g(0); c.connect(X.sd[k]); X.sd[k].connect(X.dlyIn);
     if (live) { const a = ac.createAnalyser(); a.fftSize = 256; c.connect(a); X.chAn[k] = a; }       // feeds the mixer's channel meter
@@ -258,6 +262,11 @@ function mkEngine(ac, live) {
   X.rum = g(0); chain(X.ch.BD, X.rum, bq('lowpass', 130, .7), X.revIn);                                         // low rumble into the room
   X.in.BS = g(); X.bSh = ac.createWaveShaper(); X.bSh.oversample = '2x'; chain(X.in.BS, X.bSh, X.pre.BS);      // bass drive
   X.in.ST = g(); chain(X.in.ST, bq('highpass', 170, .7), X.pre.ST);                                              // keep the stab out of the low end
+  // switching Reverb or Echo off empties what is still ringing, so nothing hangs on after the switch
+  X.flushVerb = () => { if (!X.live) return; const now = ac.currentTime; hold(X.revRet.gain, now); X.revRet.gain.setTargetAtTime(0, now, .012);
+    setTimeout(() => { const n = ac.currentTime; X.cvs.forEach(c => { if (c.buffer) { c.buffer = null; c.buffer = mkIR(ac, X.irSecs); } }); hold(X.revRet.gain, n); X.revRet.gain.setTargetAtTime(11, n + .02, .02); }, 90); };
+  X.flushEcho = () => { if (!X.live) return; const now = ac.currentTime, wait = X.dl.delayTime.value + .12; X.echoHold = now + wait; [X.fb.gain, X.dlyRet.gain].forEach(p => { hold(p, now); p.setTargetAtTime(0, now, .01); });
+    setTimeout(() => { const n = ac.currentTime; X.echoHold = 0; hold(X.dlyRet.gain, n); X.dlyRet.gain.setTargetAtTime(1.6, n, .02); hold(X.fb.gain, n); X.fb.gain.setTargetAtTime(P['fx.efb'] / 100 * .9, n, .02); }, wait * 1000); };
   return X;
 }
 const hold = (param, t) => { if (param.cancelAndHoldAtTime) param.cancelAndHoldAtTime(t); else param.cancelScheduledValues(t); };   // freeze an automation where it is, without a jump
@@ -295,11 +304,11 @@ function apply(X) {
     // the stab's and the bass's own sends work by themselves; the drums' sends are scaled by the master Reverb and Space knobs
     const v = k === 'ST' ? P['st.verb'] / 100 * .5 : P['rev.' + k] / 100 * (k === 'BS' ? .4 : va), d = k === 'BS' ? P['bs.echo'] / 100 * .8 : k === 'ST' ? P['st.echo'] / 100 * 1.1 : P['ech.' + k] / 100 * sa;
     const pv = P['pan.' + k] / 100; if (X.pan[k].pan) T(X.pan[k].pan, pv, .02);
-    const cd = P['drv.' + k] / 100; setCurve(X.cdrv[k], cd > .01 ? shape(1 + cd * 12, 1 - cd * .4) : null);
+    const cd = P['drv.' + k] / 100; setCurve(X.cdrv[k], cd > .01 ? soft(cd, CDA[k] || .35) : null);
     filt(X.clp[k], X.chp[k], P['flt.' + k], T);
     T(X.sv[k].gain, v, .04); T(X.sd[k].gain, d, .04);
   });
-  T(X.fb.gain, P['fx.efb'] / 100 * .9, .05); T(X.dl.delayTime, Math.min(1.95, 60 / P.bpm / 4 * ETIMES[P['fx.etime']][1]), .08);
+  if (!(X.echoHold > t)) T(X.fb.gain, P['fx.efb'] / 100 * .9, .05); T(X.dl.delayTime, Math.min(1.95, 60 / P.bpm / 4 * ETIMES[P['fx.etime']][1]), .08);
   const v = P['fx.filter'], lo = v < -4, hi = v > 4;                      // 24 dB per octave either way
   [X.lp1, X.lp2].forEach((n, j) => { T(n.frequency, lo ? lpHz(v) : 22000, .03); T(n.Q, lo ? (j ? 1 + (-v / 100) * 4.5 : -3) : -3, .03); });
   T(X.hp1.frequency, hi ? hpHz(v) : 18, .03); T(X.hp2.frequency, hi ? hpHz(v) : 10, .03); T(X.hp2.Q, hi ? 1 + (v / 100) * 4.5 : -3, .03);
@@ -307,7 +316,7 @@ function apply(X) {
   setCurve(X.kSh, shape(1 + pun + rmb * .4, .95));
   T(X.rum.gain, (.02 + rmb * (.1 + depth * .07)) / 9, .05);   // the reverb return is 11× hotter than it was, so the rumble send is trimmed to match
   const dr = P['bs.drive'] / 100; setCurve(X.bSh, shape(1 + dr * 18, 1 - dr * .32));
-  const da = P['fx.drive'] / 100; setCurve(X.drv, da > .01 ? shape(1 + da * 14, 1 - da * .35) : null);
+  const da = P['fx.drive'] / 100; setCurve(X.drv, da > .01 ? soft(da, .5) : null);
   const cr = Math.pow(2, P['cr.tune'] / 12), rd = Math.pow(2, P['rd.tune'] / 12);
   X.crBank.os.forEach((o, i) => T(o.frequency, HAT_F[i] * 1.12 * cr, .01)); X.rdBank.os.forEach((o, i) => T(o.frequency, RIDE_F[i] * 1.5 * rd, .01));
 }
@@ -333,9 +342,11 @@ function voice(X, k, t, i, vel, note) {
   };
   if (k === 'BD') {
     const f = P['bd.tune'], tau = P['bd.decay'] / 3300, pu = P['bd.punch'] / 100, at = P['bd.attack'] / 100;
-    ring(f, tau, .8, 1.9 + pu * 4.2, .007 + (1 - pu) * .022, .955); ring(f * 2, tau * .28, .1 + pu * .12, 1.5, .006);   // a little second harmonic for weight on small speakers
-    if (at > .02) click(at * .55, 600 + at * 3400);
+    ring(f, tau, .8, 1.9 + pu * 4.2, .007 + (1 - pu) * .022, .955); ring(f * 2, tau * .28, .16 + pu * .2, 1.5, .006);   // a little second harmonic for weight on small speakers
+    if (at > .02) { click(at * .55, 600 + at * 3400); hiss(at * .5 + pu * .2, .0042, [flt('bandpass', 3300 + at * 1400, 1.5)], .0004); }   // the beater: a tick you hear on headphones and small speakers
+    ring(f * 3.1, .014 + pu * .008, .08 + pu * .14, 1.3, .004);   // knock: the short mid punch of a hard kick, gone before the bass comes back
     const g2 = X.duck.gain; hold(g2, t); g2.setTargetAtTime(DUCK, t, .004); g2.setTargetAtTime(1, t + .06, .06);   // everything else dips for a moment
+    const g3 = X.bduck.gain; hold(g3, t); g3.setTargetAtTime(BDUCK, t, .003); g3.setTargetAtTime(1, t + .07, .045);   // and the bass a bit further, so kick and bass never fight
   } else if (k === 'SD') {
     const f = 238 * Math.pow(2, P['sd.tune'] / 12), sn = P['sd.snappy'] / 100, tn = P['sd.tone'] / 100 - .5;
     ring(f, .055, .75, 1.7, .008); ring(f * 2, .032, .4, 1.4, .006);
@@ -652,7 +663,11 @@ function loadBeat(j) {
 }
 function delBeat(j) { const b = beats[j]; if (!b) return; beats.splice(j, 1); keepBeats(); drawAll(); toast(b.name + ' deleted'); }
 const fxOn = k => (k === 'fx.filter' ? Math.abs(P[k]) >= 4 : P[k] !== 0);
-function fxToggle(k) { if (fxOn(k)) { S.mem[k] = P[k]; set(k, 0); } else set(k, S.mem[k] || (k === 'fx.filter' ? -45 : 35)); }   // off puts the knob at zero; turning the knob switches it back on
+function fxToggle(k) {   // off puts the knob at zero (the filter at centre) and empties the reverb or echo tail; turning the knob switches it back on
+  if (fxOn(k)) { S.mem[k] = P[k]; set(k, 0); if (E) { if (k === 'fx.verb') E.flushVerb(); if (k === 'fx.space') E.flushEcho(); } }
+  else if (k === 'fx.filter') { if (S.mem[k]) set(k, S.mem[k]); else lcdFlash('Filter', 'Left LP, right HP'); }
+  else set(k, S.mem[k] || 35);
+}
 function toggleKill(b) { S.kill[b] = !S.kill[b]; apply(); drawAll(); persist(); }
 function fxKnob(k, label) { const box = mkKnob(k, label), sw = key('', () => fxToggle(k), 'sw'); box.append(sw); live(sw, () => { const on = fxOn(k); sw.textContent = on ? 'ON' : 'OFF'; sw.classList.toggle('on', on); box.classList.toggle('off', !on); sw.setAttribute('aria-label', DEF[k].lb + (on ? ' on' : ' off')); }, true); return box; }
 function holdKey() {
@@ -1297,5 +1312,5 @@ function frame() {
 requestAnimationFrame(frame);
 root.addEventListener('pointerdown', boot, { capture: true, once: true });
 ['touchend', 'click'].forEach(ev => root.addEventListener(ev, () => { if (!ac || ac.state !== 'running') boot(); }, { capture: true, passive: true }));   // iOS only starts sound from a touch that ends, so make sure that one counts too      // build the sound engine on the first touch, before the finger lifts
-window.MD442 = { P, S, DEF, KEYS, PRESETS, set, select, setStep, setPlaying, pickPreset, render, renderLR, install, toggleTheme, askSignup, midi, onMidi, fit: fitDesk, get playing() { return playing; }, get beats() { return beats; }, get ac() { return ac; } };
+window.MD442 = { P, S, DEF, KEYS, PRESETS, set, select, setStep, setPlaying, pickPreset, render, renderLR, install, toggleTheme, askSignup, midi, onMidi, fit: fitDesk, get playing() { return playing; }, get beats() { return beats; }, get ac() { return ac; }, get E() { return E; } };
 })();
