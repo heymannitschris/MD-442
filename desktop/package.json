@@ -18,23 +18,53 @@
   "build": {
     "appId": "space.nestgroup.md442",
     "productName": "MD-442",
-    "copyright": "© NEST Group LLC",
-    "files": ["main.js", "preload.js", "web/**/*"],
-    "directories": { "output": "dist", "buildResources": "build" },
+    "copyright": "\u00a9 NEST Group LLC",
+    "files": [
+      "main.js",
+      "preload.js",
+      "web/**/*"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
     "mac": {
-      "target": [{ "target": "dmg", "arch": ["universal"] }],
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
       "category": "public.app-category.music",
-      "identity": "-",
+      "identity": null,
       "icon": "build/icon.png",
-      "extendInfo": { "NSBluetoothAlwaysUsageDescription": "MD-442 uses Bluetooth MIDI controllers." },
+      "extendInfo": {
+        "NSBluetoothAlwaysUsageDescription": "MD-442 uses Bluetooth MIDI controllers."
+      },
       "artifactName": "md442-mac.${ext}"
     },
-    "dmg": { "title": "MD-442" },
+    "dmg": {
+      "title": "MD-442"
+    },
     "win": {
-      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "icon": "build/icon.png",
       "artifactName": "md442-windows.${ext}"
     },
-    "nsis": { "oneClick": true, "perMachine": false, "shortcutName": "MD-442" }
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "shortcutName": "MD-442"
+    },
+    "afterPack": "./afterPack.js"
   }
 }
