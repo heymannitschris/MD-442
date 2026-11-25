@@ -12,7 +12,7 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
-      - name: Build (universal: Apple Silicon + Intel)
+      - name: 'Build (universal, Apple Silicon + Intel)'
         run: |
           cmake -S plugin -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
           cmake --build build --config Release -j 4 --target MD442_VST3 MD442_AU MD442_Standalone
