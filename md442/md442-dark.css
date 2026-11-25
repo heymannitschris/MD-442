@@ -1,0 +1,167 @@
+/* MD|442 dark theme: matte charcoal body, soft-touch knobs with a coloured light bar, charcoal key slabs, black pads.
+   Loaded AFTER md442.css. Switched on with <div id="md442" class="md ..." data-theme="dark"> (and data-md-theme="dark" on <html>).
+   Colours only: no size, spacing or layout is changed. Neon green #3dff7a stays the colour for selected, lit and playing.
+   Three depths: display and pads are black (sunk), the body is charcoal, keys are a lighter charcoal (raised). */
+
+/* ---------- page behind the phone app ---------- */
+html[data-md-theme="dark"][data-layout="phone"], html[data-md-theme="dark"][data-layout="phone"] body { background: #202225; }
+
+/* ---------- tokens ---------- */
+.md[data-theme="dark"] {
+  --ink: #f1f2f4; --mut: #a9adb4; --line: rgba(255,255,255,.11);
+  --panel: linear-gradient(180deg, #292b2f 0%, #232528 50%, #202225 100%);
+  --keyb: linear-gradient(#44474d, #36393e);
+  --keysh: inset 0 1px 0 rgba(255,255,255,.11), inset 0 -2px 0 rgba(0,0,0,.34), 0 2px 3px rgba(0,0,0,.45);
+  --dark: linear-gradient(#17181a, #0f1011);
+  --bar: #b06bff;                       /* light bar under a knob; each group sets its own */
+  --kbd: #5a5e65;                       /* key edge */
+  color-scheme: dark;
+}
+.md[data-theme="dark"] button:focus-visible, .md[data-theme="dark"] input:focus-visible { outline-color: var(--g); }
+
+/* ---------- keys: lighter charcoal slabs, crisp light legends ---------- */
+.md[data-theme="dark"] .key { border-color: var(--kbd); }
+.md[data-theme="dark"] .key.led::before { border-color: #7d8189; background: #08090a; }
+.md[data-theme="dark"] .key.led.on::before, .md[data-theme="dark"] .key.led.hit::before { border-color: #0c3b1c; background: var(--g); }
+.md[data-theme="dark"] .key.sel { border-color: var(--g); box-shadow: var(--glow), inset 0 1px 0 rgba(255,255,255,.11); background: linear-gradient(#4b5750, #37413b); }
+.md[data-theme="dark"] .key.mute { color: #c8cbd0; text-decoration-color: #ff8a8a; background: linear-gradient(#2b2d31, #232528); box-shadow: inset 0 2px 3px rgba(0,0,0,.45); }
+.md[data-theme="dark"] .key.sel.mute { box-shadow: var(--glow), inset 0 2px 3px rgba(0,0,0,.45); }
+.md[data-theme="dark"] .key.big { border-color: #6a6e75; background: linear-gradient(#141517, #08090a); color: #f4f5f6; box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 3px 6px rgba(0,0,0,.5); }
+.md[data-theme="dark"] .key.big.go.on { color: var(--g); border-color: var(--g); }
+.md[data-theme="dark"] .key.big.recon { color: #ff7373; }
+.md[data-theme="dark"] .key.sw { color: #b4b8be; background: linear-gradient(#222427, #1a1b1e); border-color: #50545a; box-shadow: inset 0 1px 2px rgba(0,0,0,.5); }
+.md[data-theme="dark"] .key.sw.on { color: #f1fff5; background: linear-gradient(#1f7340, #175a32); border-color: var(--g); box-shadow: 0 0 8px rgba(61,255,122,.35), inset 0 1px 0 rgba(255,255,255,.18); }
+.md[data-theme="dark"] .seg .key.on { background: linear-gradient(#141517, #08090a); color: var(--g); border-color: var(--g); box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 0 8px rgba(61,255,122,.25); }
+.md[data-theme="dark"] .seg .key.led.on { background: var(--keyb); color: var(--ink); border-color: var(--kbd); box-shadow: var(--keysh); }
+.md[data-theme="dark"] .key.sc.next, .md[data-theme="dark"] .key.next { border-color: var(--g); color: #8dffb0; background: linear-gradient(#2c332f, #252b28); }
+.md[data-theme="dark"] .key.rec.on { color: #ff9a9a; }
+.md[data-theme="dark"] .key.led.rec.on::before { background: #ff3b3b; border-color: #5a1010; }
+.md[data-theme="dark"].phone .mutek { background: linear-gradient(#141517, #08090a); color: #f4f5f6; border-color: #6a6e75; }
+
+/* ---------- knobs: dark soft-touch cylinders, thin light position line, light bar underneath ---------- */
+.md[data-theme="dark"] .knob { --arc: #d3d6da; --trk: rgba(255,255,255,.13); }
+.md[data-theme="dark"] .knob:hover, .md[data-theme="dark"] .knob:focus-visible, .md[data-theme="dark"] .kb.turn .knob { --arc: var(--g); --trk: rgba(255,255,255,.16); }
+.md[data-theme="dark"] .knob .cap { background: radial-gradient(circle at 50% 22%, #54575d 0%, #3a3d42 38%, #2a2c30 70%, #1d1f22 100%); box-shadow: 0 3px 6px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.2), inset 0 -2px 3px rgba(0,0,0,.4); }
+.md[data-theme="dark"] .knob .ptr::after { background: #f4f5f6; }
+/* the light bar sits in the open bottom of the ring: absolutely placed inside the knob, so it takes no layout space */
+.md[data-theme="dark"] .knob::after { content: ''; position: absolute; left: 35%; right: 35%; bottom: 0; height: max(2px, 6%); border-radius: 2px; background: var(--bar); box-shadow: 0 0 6px var(--bar); pointer-events: none; }
+.md[data-theme="dark"] .kb.off .knob::after { box-shadow: none; }
+.md[data-theme="dark"] .kb.turn .kv { color: var(--g); }
+
+/* colour run across the panel: magenta, violet, blue, cyan, green */
+.md[data-theme="dark"].desk .sec:nth-child(1) { --bar: #ff4fd0; }
+.md[data-theme="dark"].desk .sec:nth-child(2) { --bar: #e25cff; }
+.md[data-theme="dark"].desk .sec:nth-child(3) { --bar: #b06bff; }
+.md[data-theme="dark"].desk .sec:nth-child(4) { --bar: #7f7cff; }
+.md[data-theme="dark"].desk .sec:nth-child(5) { --bar: #4f9dff; }
+.md[data-theme="dark"].desk .sec:nth-child(6) { --bar: #2cc4f0; }
+.md[data-theme="dark"].desk .sec:nth-child(7) { --bar: #27dcc0; }
+.md[data-theme="dark"].desk .sec:nth-child(8) { --bar: #9be85a; }
+.md[data-theme="dark"].desk .fxr .blk:nth-child(1) { --bar: #ff4fd0; }
+.md[data-theme="dark"].desk .fxr .blk:nth-child(2) { --bar: #4f9dff; }
+.md[data-theme="dark"] .strip:nth-child(13n+1) { --bar: #ff4fd0; }
+.md[data-theme="dark"] .strip:nth-child(13n+2) { --bar: #f055e8; }
+.md[data-theme="dark"] .strip:nth-child(13n+3) { --bar: #e25cff; }
+.md[data-theme="dark"] .strip:nth-child(13n+4) { --bar: #c964ff; }
+.md[data-theme="dark"] .strip:nth-child(13n+5) { --bar: #b06bff; }
+.md[data-theme="dark"] .strip:nth-child(13n+6) { --bar: #9774ff; }
+.md[data-theme="dark"] .strip:nth-child(13n+7) { --bar: #7f7cff; }
+.md[data-theme="dark"] .strip:nth-child(13n+8) { --bar: #668dff; }
+.md[data-theme="dark"] .strip:nth-child(13n+9) { --bar: #4f9dff; }
+.md[data-theme="dark"] .strip:nth-child(13n+10) { --bar: #3cb1f8; }
+.md[data-theme="dark"] .strip:nth-child(13n+11) { --bar: #2cc4f0; }
+.md[data-theme="dark"] .strip:nth-child(13n+12) { --bar: #27dcc0; }
+.md[data-theme="dark"] .strip:nth-child(13n+13) { --bar: #9be85a; }
+.md[data-theme="dark"].phone .krow .kb:nth-child(5n+1) { --bar: #ff4fd0; }
+.md[data-theme="dark"].phone .krow .kb:nth-child(5n+2) { --bar: #b06bff; }
+.md[data-theme="dark"].phone .krow .kb:nth-child(5n+3) { --bar: #4f9dff; }
+.md[data-theme="dark"].phone .krow .kb:nth-child(5n+4) { --bar: #2cc4f0; }
+.md[data-theme="dark"].phone .krow .kb:nth-child(5n+5) { --bar: #9be85a; }
+.md[data-theme="dark"] .sheet .knobs1 .kb:nth-child(4n+1) { --bar: #ff4fd0; }
+.md[data-theme="dark"] .sheet .knobs1 .kb:nth-child(4n+2) { --bar: #b06bff; }
+.md[data-theme="dark"] .sheet .knobs1 .kb:nth-child(4n+3) { --bar: #4f9dff; }
+.md[data-theme="dark"] .sheet .knobs1 .kb:nth-child(4n+4) { --bar: #2cc4f0; }
+
+/* ---------- display, logo, meters ---------- */
+.md[data-theme="dark"] .lcd { background: #050606; box-shadow: inset 0 2px 8px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.09), 0 1px 0 rgba(255,255,255,.06); color: #f6f7f8; }
+.md[data-theme="dark"] .lcd .l1 { text-shadow: 0 0 5px rgba(255,255,255,.35); }
+.md[data-theme="dark"] .lcd .l2, .md[data-theme="dark"] .lcd .tl { color: #b9bcc2; }
+.md[data-theme="dark"] .logo { color: #f4f5f6; }
+.md[data-theme="dark"] .meter { background: #050606; box-shadow: inset 0 1px 4px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.09); }
+.md[data-theme="dark"] .none { color: #a9adb4; }
+.md[data-theme="dark"] .toast { background: #eef0f2; color: #111214; box-shadow: 0 8px 28px rgba(0,0,0,.7), 0 0 0 1px rgba(0,0,0,.5); }
+
+/* ---------- step pads: black rubber, a thin light bar per beat, neon green when lit ---------- */
+.md[data-theme="dark"] .st { border-color: #000; box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 1px 0 rgba(255,255,255,.05); color: #a9adb4; }
+.md[data-theme="dark"] .st.alt { background: linear-gradient(#222427, #18191b); }
+.md[data-theme="dark"] .st.on { background: var(--lit); box-shadow: 0 0 12px rgba(61,255,122,.5), inset 0 1px 0 rgba(255,255,255,.45); color: #06310f; border-color: #0b3a1b; }
+.md[data-theme="dark"] .steps.one .st { --pb: #ff4fd0; background: linear-gradient(var(--pb), var(--pb)) no-repeat 50% calc(100% - 6px) / 34% 3px, var(--dark); }
+.md[data-theme="dark"] .steps.one .st:nth-child(n+5) { --pb: #b06bff; }
+.md[data-theme="dark"] .steps.one .st:nth-child(n+9) { --pb: #4f9dff; }
+.md[data-theme="dark"] .steps.one .st:nth-child(n+13) { --pb: #2cc4f0; }
+.md[data-theme="dark"] .steps.one .st.alt { background: linear-gradient(var(--pb), var(--pb)) no-repeat 50% calc(100% - 6px) / 34% 3px, linear-gradient(#222427, #18191b); }
+.md[data-theme="dark"] .steps.one .st.on { background: linear-gradient(rgba(255,255,255,.9), rgba(255,255,255,.9)) no-repeat 50% calc(100% - 6px) / 34% 3px, var(--lit); }
+.md[data-theme="dark"] .st.ph { outline-color: #fff; }
+.md[data-theme="dark"] .prow.mute .nm { color: #a9adb4; }
+.md[data-theme="dark"] .prow.mute .st.on { background: linear-gradient(#2f6b40, #1d4a2b); box-shadow: none; color: #d9f7e2; border-color: #000; }
+
+.md[data-theme="dark"] .hold { border-color: #6a6e75; background: linear-gradient(#141517, #08090a); color: #f4f5f6; box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 3px 6px rgba(0,0,0,.5); }
+.md[data-theme="dark"] .hold span { color: #b4b8be; }
+.md[data-theme="dark"] .hold.on { color: var(--g); border-color: var(--g); box-shadow: var(--glow); }
+.md[data-theme="dark"] .hold.on span { color: var(--g); }
+
+/* ---------- desktop console ---------- */
+.md[data-theme="dark"] .md-fit.fs { background: #050505; }
+.md[data-theme="dark"] .md-console { border-color: #3f4247; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 30px 80px rgba(0,0,0,.7); }
+.md[data-theme="dark"].desk .sec { background: rgba(255,255,255,.028); }
+.md[data-theme="dark"].desk .sec.sel { border-color: var(--g); }
+.md[data-theme="dark"].desk .sec-t { background: linear-gradient(#17181a, #0f1011); color: #f4f5f6; box-shadow: inset 0 -2px 0 var(--bar); }
+.md[data-theme="dark"].desk .sec.sel .sec-t { color: var(--g); }
+.md[data-theme="dark"].desk .blk, .md[data-theme="dark"].desk .mixp { background: rgba(255,255,255,.028); }
+
+/* ---------- shortcut library ---------- */
+.md[data-theme="dark"] .pal { background: rgba(0,0,0,.66); }
+.md[data-theme="dark"] .pal-box { background: #141517; border-color: #44474d; }
+.md[data-theme="dark"] .pal-in { background: #141517; border-bottom-color: #33363b; }
+.md[data-theme="dark"] .pal-in::placeholder { color: #9a9ea5; }
+.md[data-theme="dark"] .pal-row.on, .md[data-theme="dark"] .pal-row:hover { background: #25272b; }
+.md[data-theme="dark"] .pal-tips { border-top-color: #33363b; }
+
+/* ---------- phone app ---------- */
+.md[data-theme="dark"].phone .pov { background: #050606; box-shadow: inset 0 2px 6px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.09); }
+.md[data-theme="dark"].phone .ovn { color: #b4b8be; }
+.md[data-theme="dark"].phone .ovr i { background: #1f2124; }
+.md[data-theme="dark"].phone .ovr i.alt { background: #2b2d31; }
+.md[data-theme="dark"].phone .ovr i.on { background: #e2e4e7; }
+.md[data-theme="dark"].phone .ovr.sel .ovn { color: var(--g); }
+.md[data-theme="dark"].phone .ovr.sel i.on { background: var(--g); }
+.md[data-theme="dark"].phone .ovr.mute .ovn { color: #9a9ea5; }
+.md[data-theme="dark"].phone .ovr.mute i.on { background: #5d6168; }
+.md[data-theme="dark"] .scrim { background: rgba(0,0,0,.62); }
+.md[data-theme="dark"] .sheet { background: linear-gradient(180deg, #303236 0%, #27292d 100%); box-shadow: 0 -10px 40px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.14); }
+
+/* ---------- mixer strips and faders ---------- */
+.md[data-theme="dark"] .strip { background: rgba(255,255,255,.035); }
+.md[data-theme="dark"] .strip.sel { border-color: var(--g); background: rgba(61,255,122,.05); }
+.md[data-theme="dark"] .strip.master { background: rgba(0,0,0,.26); }
+.md[data-theme="dark"] .strip.mute .fname { color: #a9adb4; }
+.md[data-theme="dark"] .chm { background: #050606; box-shadow: inset 0 1px 3px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.07); }
+/* track with tick marks either side */
+.md[data-theme="dark"] .fader { background:
+  linear-gradient(90deg, transparent 13px, #050606 13px 17px, transparent 17px),
+  repeating-linear-gradient(180deg, rgba(255,255,255,.3) 0 1px, transparent 1px 10%) no-repeat 2px 0 / 8px 100%,
+  repeating-linear-gradient(180deg, rgba(255,255,255,.3) 0 1px, transparent 1px 10%) no-repeat 20px 0 / 8px 100%; }
+.md[data-theme="dark"] .fader .fthumb { border-color: #0a0b0c; background: linear-gradient(#5a5d63, #3d4045 44%, #f4f5f6 45% 55%, #33363a 56%, #25272a); box-shadow: 0 3px 6px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.22); }
+
+/* ---------- keyboard ---------- */
+.md[data-theme="dark"] .pk { border-color: #0a0b0c; background: linear-gradient(#d4d7db, #b0b4ba); box-shadow: inset 0 -3px 0 rgba(0,0,0,.22), 0 2px 3px rgba(0,0,0,.5); color: #1b1c1e; }
+.md[data-theme="dark"] .pk.bl { background: linear-gradient(#1b1c1f, #060707); color: #d6d8dc; border-color: #000; box-shadow: inset 0 1px 0 rgba(255,255,255,.12), inset 0 -3px 0 rgba(255,255,255,.07), 0 2px 3px rgba(0,0,0,.5); }
+.md[data-theme="dark"] .pk.on, .md[data-theme="dark"] .pk.held { background: var(--lit); color: #06310f; border-color: #0b3a1b; box-shadow: 0 0 12px rgba(61,255,122,.6); }
+
+/* added with the newer panels: MIDI list keys and the phone page behind the app */
+.md[data-theme="dark"] .mstat { color: #c9cdd3; }
+html[data-md-theme="dark"][data-layout="phone"], html[data-md-theme="dark"][data-layout="phone"] body { background: #202225; }
+
+.md[data-theme="dark"] .key.inst.mute::before { background: #ff3b3b; }
+.md[data-theme="dark"] .key.inst.solo::before { background: #ffd23b; }
+.md[data-theme="dark"].desk.armed .md-console { border-color: #2b6b43; }

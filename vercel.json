@@ -1,29 +1,113 @@
 {
   "trailingSlash": true,
-  "buildCommand": "bash build.sh",
-  "outputDirectory": "public",
   "redirects": [
-    { "source": "/", "destination": "/mathew-dj/", "permanent": false },
-    { "source": "/md-442", "destination": "/md442/", "permanent": false },
-    { "source": "/md-442/", "destination": "/md442/", "permanent": false },
-    { "source": "/md-442/app", "destination": "/md442/app/", "permanent": false },
-    { "source": "/md-442/app/", "destination": "/md442/app/", "permanent": false },
-    { "source": "/md-911", "destination": "/md442/", "permanent": false },
-    { "source": "/md-911/", "destination": "/md442/", "permanent": false },
-    { "source": "/md-911/app", "destination": "/md442/app/", "permanent": false },
-    { "source": "/md-911/app/", "destination": "/md442/app/", "permanent": false }
+    {
+      "source": "/",
+      "destination": "/mathew-dj/",
+      "permanent": false
+    },
+    {
+      "source": "/md-442",
+      "destination": "/md442/",
+      "permanent": false
+    },
+    {
+      "source": "/md-442/",
+      "destination": "/md442/",
+      "permanent": false
+    },
+    {
+      "source": "/md-442/app",
+      "destination": "/md442/app/",
+      "permanent": false
+    },
+    {
+      "source": "/md-442/app/",
+      "destination": "/md442/app/",
+      "permanent": false
+    },
+    {
+      "source": "/md-911",
+      "destination": "/md442/",
+      "permanent": false
+    },
+    {
+      "source": "/md-911/",
+      "destination": "/md442/",
+      "permanent": false
+    },
+    {
+      "source": "/md-911/app",
+      "destination": "/md442/app/",
+      "permanent": false
+    },
+    {
+      "source": "/md-911/app/",
+      "destination": "/md442/app/",
+      "permanent": false
+    }
   ],
   "headers": [
-    { "source": "/(.*)", "headers": [
-      { "key": "X-Content-Type-Options", "value": "nosniff" },
-      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-      { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-      { "key": "Content-Security-Policy", "value": "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'" },
-      { "key": "Permissions-Policy", "value": "midi=(self), camera=(), microphone=(), geolocation=(), payment=()" }
-    ] },
-    { "source": "/md442/(.*)\\.(js|css)", "headers": [ { "key": "Cache-Control", "value": "public, max-age=300, stale-while-revalidate=604800" } ] },
-    { "source": "/md442/app/(.*)\\.png", "headers": [ { "key": "Cache-Control", "value": "public, max-age=2592000" } ] },
-    { "source": "/md442/app/sw.js", "headers": [ { "key": "Cache-Control", "value": "no-cache" } ] },
-    { "source": "/md442/sw.js", "headers": [ { "key": "Cache-Control", "value": "no-cache" } ] }
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "midi=(self), camera=(), microphone=(), geolocation=(), payment=()"
+        }
+      ]
+    },
+    {
+      "source": "/md442/(.*)\\.(js|css)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/md442/app/(.*)\\.png",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/md442/app/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    },
+    {
+      "source": "/md442/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
+    }
   ]
 }

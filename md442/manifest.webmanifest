@@ -1,0 +1,38 @@
+{
+  "name": "MD|442 by MATHEW",
+  "short_name": "MD|442",
+  "description": "MD|442: a drum machine, sequencer and synth by MATHEW. 13 voices, scenes, mixer, effects, keyboard and arp, recording.",
+  "id": "/md442/",
+  "start_url": "/md442/?app=1",
+  "scope": "/md442/",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "categories": [
+    "music"
+  ],
+  "icons": [
+    {
+      "src": "app/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "app/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "app/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
