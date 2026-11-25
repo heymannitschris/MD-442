@@ -40,7 +40,7 @@ jobs:
         run: |
           cd x0x
           ./build.sh --release 1.1               # the M-VAVE FM-1 (same chip; X0X's original target)
-          cp build/x0x-1.0.fwsc ../out/md442-fm1.fwsc
+          cp "$(ls -t build/x0x-[0-9]*.fwsc | head -1)" ../out/md442-fm1.fwsc
       - name: Download bundle (md442-firmware.zip) and guide
         run: |
           cp firmware/md442-controls.pdf out/
