@@ -1,7 +1,7 @@
 // MD-442 desktop: the MD|442 web app in its own window, with WebMIDI for the
 // M-VAVE SMK-37 Elite / Pro, FM-1 and any other USB or Bluetooth MIDI controller.
 const { app, BrowserWindow, protocol, net, session, shell, Menu } = require('electron');
-const path = require('path'), url = require('url');
+const path = require('path'), url = require('url'), fs = require('fs');
 const SITE = 'https://music.nestgroup.space';
 const WEB = path.join(__dirname, 'web');
 
@@ -38,6 +38,16 @@ app.whenReady().then(() => {
   session.defaultSession.setPermissionRequestHandler((wc, perm, cb) => cb(ok.has(perm)));
   session.defaultSession.setPermissionCheckHandler((wc, perm) => ok.has(perm));
   serve();
+  // Beats (.md442.json) and MIDI clips (.mid) save to Documents/MD-442/Beats, the same folder as the plugin.
+  session.defaultSession.on('will-download', (e, item) => {
+    const name = item.getFilename();
+    if (!/\.(md442\.json|mid)$/i.test(name)) return;
+    const dir = path.join(app.getPath('documents'), 'MD-442', 'Beats');
+    fs.mkdirSync(dir, { recursive: true });
+    let file = path.join(dir, name), n = 2;
+    while (fs.existsSync(file)) file = path.join(dir, name.replace(/(\.md442\.json|\.mid)$/i, ` ${n++}$1`));
+    item.setSavePath(file);
+  });
   if (process.platform === 'darwin') Menu.setApplicationMenu(Menu.buildFromTemplate([{ role: 'appMenu' }, { role: 'editMenu' }, { role: 'viewMenu' }, { role: 'windowMenu' }]));
   else Menu.setApplicationMenu(null);
   createWindow();

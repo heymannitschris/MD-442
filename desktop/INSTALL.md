@@ -3,7 +3,7 @@
 - **Mac** (Apple Silicon and Intel, macOS 11+): [md442-mac.dmg](https://github.com/heymannitschris/md-442/releases/download/desktop/md442-mac.dmg)
 - **Windows** (10 and 11, 64-bit): [md442-windows.exe](https://github.com/heymannitschris/md-442/releases/download/desktop/md442-windows.exe)
 
-Plug in your M-VAVE SMK-37 Elite / Pro, FM-1 or any USB MIDI controller, open MD-442 and press CONNECT. Works offline, your beats stay on your computer.
+Plug in your M-VAVE SMK-37 Elite / Pro, FM-1 or any USB MIDI controller, open MD-442 and press CONNECT. Works offline. EXPORT and MIDI ↓ save to Documents/MD-442/Beats, the same folder the plugin uses.
 
 ## Mac
 1. Open the .dmg and drag MD-442 into Applications.
