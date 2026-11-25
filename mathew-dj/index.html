@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>MATHEW — DJ / Promoter</title>
+<script src="./image-slot.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@50..150,100..900&family=Martian+Mono:wdth,wght@75..112.5,300..600&family=Instrument+Serif:ital@0;1&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#0a0a0a;color:#f2f2f2;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+*{box-sizing:border-box}
+a{color:#f2f2f2;text-decoration:none}
+a:hover{color:#ffffff}
+html,body{cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2228%22 height=%2228%22 viewBox=%220 0 28 28%22%3E%3Cpath d=%22M5 3l17 9.5-7.4 1.9L11 22z%22 fill=%22%230a0a0a%22 stroke=%22%23ffffff%22 stroke-width=%222%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E') 5 3,auto}
+@media (max-width:760px),(pointer:coarse) and (max-width:950px){#beatmatch,a[href="#beatmatch"]{display:none!important}#wordmark{display:none!important}#topmenu{max-width:calc(100vw - 24px)!important;margin:0 auto}}
+#machine[data-full="1"] button[style*="font-size: 9px"]{font-size:11.5px!important;padding:19px 15px 10px!important}
+@keyframes md442pulse{0%,100%{box-shadow:0 0 0 0 rgba(61,255,122,.55),0 0 6px rgba(61,255,122,.35)}50%{box-shadow:0 0 0 7px rgba(61,255,122,0),0 0 16px rgba(61,255,122,.8)}}
+@media (prefers-reduced-motion:reduce){a[href="#machine"]{animation:none!important;box-shadow:0 0 10px rgba(61,255,122,.6)}}
+a,button,label,[data-cursor]{cursor:url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2228%22 height=%2228%22 viewBox=%220 0 28 28%22%3E%3Cpath d=%22M5 3l17 9.5-7.4 1.9L11 22z%22 fill=%22%233dff7a%22 stroke=%22%230a0a0a%22 stroke-width=%222%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E') 5 3,pointer}
+::selection{background:#f2f2f2;color:#0a0a0a}
+input[type=range]{accent-color:#f2f2f2}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes xfade{0%{opacity:0;transform:scale(1.08)}4%{opacity:.13}17%{opacity:.13}21%{opacity:0;transform:scale(1)}100%{opacity:0}}
+@keyframes flow{from{stroke-dashoffset:0}to{stroke-dashoffset:-1660}}
+@keyframes strobe{0%,100%{opacity:0}3%{opacity:.16}9%{opacity:0}48%{opacity:0}51%{opacity:.09}57%{opacity:0}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+</style>
+</helmet>
+
+<div style="font-family:'Martian Mono',monospace;font-variation-settings:'wdth' 85;font-size:13px;background:#0a0a0a;color:#f2f2f2;min-height:100vh;overflow-x:hidden;position:relative">
+
+{{ bg }}
+{{ cursor }}
+
+<nav style="position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px clamp(16px,3vw,40px);font-size:11px;letter-spacing:.12em;text-transform:uppercase">
+  <a id="wordmark" href="#top" data-cursor="top" style="display:flex;align-items:center;gap:10px;font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:19px;letter-spacing:-.02em;mix-blend-mode:difference">
+    <span style="width:8px;height:8px;border-radius:50%;background:#fff;animation:blink 1.2s steps(1) infinite"></span>MATHEW
+  </a>
+  <div id="topmenu" style="display:flex;align-items:center;gap:2px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;max-width:calc(100vw - 150px);white-space:nowrap;background:rgba(10,10,10,.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid #262626;border-radius:999px;padding:5px">
+    <a href="#bio" style="padding:9px 13px;border-radius:999px" style-hover="background:#f2f2f2;color:#0a0a0a">Bio</a>
+    <a href="#sound" style="padding:9px 13px;border-radius:999px" style-hover="background:#f2f2f2;color:#0a0a0a">Sound</a>
+    <a href="#venues" style="padding:9px 13px;border-radius:999px" style-hover="background:#f2f2f2;color:#0a0a0a">Venues</a>
+    <a href="/md442/" title="MD|442: 442 is binary for NEST. Open the drum machine." aria-label="MD|442, binary for NEST. Open the drum machine." style="padding:8px 13px;border-radius:999px;border:1px solid #3dff7a;color:#3dff7a;animation:md442pulse 1.8s ease-in-out infinite" style-hover="background:#3dff7a;color:#0a0a0a">MD|442</a>
+    <a href="#beatmatch" style="padding:9px 13px;border-radius:999px" style-hover="background:#f2f2f2;color:#0a0a0a">Beatmatch</a>
+    <a href="#press" style="padding:9px 13px;border-radius:999px" style-hover="background:#f2f2f2;color:#0a0a0a">Press kit</a>
+    <a href="#book" style="padding:9px 15px;border-radius:999px;background:#f2f2f2;color:#0a0a0a" style-hover="background:#fff;color:#0a0a0a">Book</a>
+  </div>
+</nav>
+
+<header id="top" ref="{{ heroRef }}" style="position:relative;z-index:2;height:100vh;min-height:640px;overflow:hidden;background:#0a0a0a">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="relight" color-interpolation-filters="sRGB" primitiveUnits="userSpaceOnUse"><feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h"></feColorMatrix><feGaussianBlur in="h" stdDeviation="2.5" result="hb"></feGaussianBlur><feDiffuseLighting in="hb" surfaceScale="7" diffuseConstant="1.5" lighting-color="#ffffff" result="lt"><fePointLight ref="{{ lightRef }}" x="500" y="200" z="320"></fePointLight></feDiffuseLighting><feComposite in="SourceGraphic" in2="lt" operator="arithmetic" k1="1.5" k2="0" k3="0" k4="0"></feComposite></filter>
+    <filter id="relight2" color-interpolation-filters="sRGB" primitiveUnits="userSpaceOnUse"><feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="h"></feColorMatrix><feGaussianBlur in="h" stdDeviation="2.5" result="hb"></feGaussianBlur><feDiffuseLighting in="hb" surfaceScale="8" diffuseConstant="1.8" lighting-color="#ffffff" result="lt"><fePointLight ref="{{ light2Ref }}" x="500" y="0" z="260"></fePointLight></feDiffuseLighting><feComposite in="SourceGraphic" in2="lt" operator="arithmetic" k1="1.7" k2="0" k3="0" k4="0"></feComposite></filter>
+  </svg>
+  <div ref="{{ photoRef }}" style="position:absolute;top:0;bottom:0;right:0;width:max(62vw, min(100%, (900px - 100vw) * 100));opacity:{{ heroPhotoOpacity }};filter:{{ heroPhotoFilter }}">
+    <image-slot id="v4-hero-main1" shape="rect" src="https://lh3.googleusercontent.com/d/1pGgwVdrZdjclcY_kpyx5kziMSUQJ-jUu=w1200" placeholder="MATHEW // MAIN 1"></image-slot>
+  </div>
+  <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle min(34vmax,420px) at var(--hx,72%) var(--hy,38%),rgba(10,10,10,0) 0%,rgba(10,10,10,.35) 35%,rgba(10,10,10,.9) 75%,#0a0a0a 100%)"></div>
+  <div ref="{{ strobeRef }}" style="position:absolute;top:0;bottom:0;right:0;width:max(62vw, min(100%, (900px - 100vw) * 100));pointer-events:none;opacity:0;background-image:url(https://lh3.googleusercontent.com/d/1pGgwVdrZdjclcY_kpyx5kziMSUQJ-jUu=w1200);background-size:cover;background-position:center;filter:grayscale(1) contrast(1.2) brightness(1.7)"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;background:radial-gradient(ellipse 80% 70% at 50% 10%,#ffffff 0%,rgba(255,255,255,0) 70%);opacity:calc(var(--kick, 0) * .14);transition:opacity .12s ease-out"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg,#0a0a0a 0%,rgba(10,10,10,.7) 35%,rgba(10,10,10,0) 70%),linear-gradient(0deg,#0a0a0a 0%,rgba(10,10,10,.85) 22%,rgba(10,10,10,0) 60%);pointer-events:none"></div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="toon" color-interpolation-filters="sRGB" x="0" y="0" width="100%" height="100%"><feColorMatrix type="saturate" values="0" result="g"></feColorMatrix><feComponentTransfer in="g" result="d"><feFuncR type="linear" slope="0.26"></feFuncR><feFuncG type="linear" slope="0.26"></feFuncG><feFuncB type="linear" slope="0.26"></feFuncB></feComponentTransfer><feGaussianBlur in="g" stdDeviation="1.6" result="gb"></feGaussianBlur><feConvolveMatrix in="gb" order="3" kernelMatrix="-1 -1 -1 -1 8 -1 -1 -1 -1" preserveAlpha="true" result="e"></feConvolveMatrix><feComponentTransfer in="e" result="l"><feFuncR type="linear" slope="11" intercept="-0.12"></feFuncR><feFuncG type="linear" slope="11" intercept="-0.12"></feFuncG><feFuncB type="linear" slope="11" intercept="-0.12"></feFuncB></feComponentTransfer><feBlend in="l" in2="d" mode="screen"></feBlend></filter></svg>
+  <div style="position:absolute;left:0;right:0;top:0;padding:96px clamp(16px,3vw,40px) 0;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#fff;mix-blend-mode:difference;pointer-events:none">
+    <span>DJ / Promoter</span>
+    <span>NOSLEEP. CLAN — Koh Phangan</span>
+  </div>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:0 clamp(16px,3vw,40px) clamp(18px,2.6vw,32px);display:flex;flex-direction:column;gap:clamp(14px,2vw,24px);pointer-events:none">
+    <p style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(28px,3.6vw,54px);line-height:1;letter-spacing:-.01em;max-width:18ch;text-wrap:balance">Driving house, dub <span style="font-style:italic">&amp;</span> techno. Glasgow to Koh Phangan.</p>
+    <div style="width:100%;position:relative">
+    <h1 ref="{{ nameRef }}" style="position:relative;z-index:1;margin:0;font-family:{{ heroFont }};font-weight:400;font-size:12vw;line-height:.88;letter-spacing:-.01em;white-space:nowrap;color:#fff">MATHEW</h1></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px 24px;border-top:1px solid #333;padding-top:16px;font-size:11px;letter-spacing:.1em;text-transform:uppercase">
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="color:#8a8a8a">From</span><span>Glasgow, UK</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="color:#8a8a8a">Based</span><span>Koh Phangan, TH</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="color:#8a8a8a">Sound</span><span>House · Deep · Techno · Live</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="color:#8a8a8a">Tempo</span><span>120–140 BPM</span></div>
+    </div>
+  </div>
+</header>
+
+<a href="https://www.facebook.com/events/1314947590090130" target="_blank" rel="noopener" data-cursor="EVENT" style="text-decoration:none;color:inherit;position:relative;z-index:2;background:#0a0a0a;border-top:1px solid #262626;border-bottom:1px solid #262626;padding:clamp(20px,2.4vw,32px) clamp(16px,3vw,40px);display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px">
+  <div style="flex:0 0 120px;display:flex;align-items:center;gap:12px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#3dff7a"><span style="width:8px;height:8px;border-radius:50%;background:#3dff7a;box-shadow:0 0 10px #3dff7a"></span>Next gig</div>
+  <div style="flex:1 1 260px;min-width:0;display:flex;align-items:baseline;gap:10px 24px;flex-wrap:wrap;justify-content:flex-start">
+    <span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 140;font-size:clamp(26px,3.6vw,52px);line-height:.9;letter-spacing:-.02em;text-transform:uppercase;color:#fff">Jungle Experience</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,2vw,28px);color:#a3a3a3">Koh Phangan</span>
+  </div>
+  <div style="flex:0 1 330px;display:flex;gap:8px;flex-wrap:wrap;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase">
+    <span style="padding:9px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#f2f2f2">23rd</span>
+    <span style="padding:9px 14px;border:1px solid #3dff7a;border-radius:999px;color:#3dff7a">Main stage</span>
+    <span style="padding:9px 14px;border-radius:999px;background:#3dff7a;color:#0a0a0a">Event ↗</span>
+  </div>
+</a>
+<div style="position:relative;z-index:2;background:#0a0a0a;border-bottom:1px solid #262626;padding:clamp(14px,1.6vw,20px) clamp(16px,3vw,40px);display:flex;flex-wrap:wrap;align-items:center;gap:12px 32px">
+  <div style="flex:0 0 120px;display:flex;align-items:center;gap:12px;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#8a8a8a"><span style="width:8px;height:8px;border-radius:50%;border:1px solid #8a8a8a"></span>Then</div>
+  <div style="flex:1 1 260px;min-width:0;display:flex;align-items:baseline;gap:10px 24px;flex-wrap:wrap;justify-content:flex-start">
+    <span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 140;font-size:clamp(20px,2.4vw,34px);line-height:.9;letter-spacing:-.02em;text-transform:uppercase;color:#f2f2f2">Tiki Beach</span>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(18px,1.7vw,24px);color:#a3a3a3">Full Moon Party · Koh Phangan</span>
+  </div>
+  <div style="flex:0 1 330px;display:flex;gap:8px;flex-wrap:wrap;font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase">
+    <span style="padding:9px 14px;border:1px solid #3a3a3a;border-radius:999px;color:#f2f2f2">24th</span>
+  </div>
+</div>
+
+<section id="bio" style="position:relative;z-index:2;padding:clamp(80px,11vw,160px) clamp(16px,3vw,40px)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #262626;padding-top:18px;margin-bottom:clamp(36px,5vw,72px)">
+    <div style="display:flex;gap:18px;align-items:baseline"><span style="font-size:12px;color:#8a8a8a">01</span><h2 style="margin:0;font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(40px,7vw,104px);line-height:.85;letter-spacing:-.03em;text-transform:uppercase">Biography</h2></div>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,2vw,28px);color:#8a8a8a">20 years behind the decks</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(32px,5vw,80px);align-items:stretch">
+    <div style="position:relative;min-height:480px;height:100%;border-radius:2px;overflow:hidden;background:#141414;filter:grayscale(1) contrast(1.1)">
+      <image-slot id="v5-bio-studio" shape="rect" src="https://lh3.googleusercontent.com/d/1JojVHTvmP6QKLKBJ_kV0mv3EW4vUPexJ=w1200" placeholder="MATHEW / STUDIO"></image-slot>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:clamp(32px,4vw,56px)">
+      <p style="margin:0;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(24px,2.4vw,36px);line-height:1.15;color:#a3a3a3;text-wrap:pretty">It started in a friend's flat in Glasgow — two decks, a crate of vinyl, and Dave Clarke's World Service on repeat.</p>
+      <p style="margin:0;font-family:'Anybody',sans-serif;font-weight:400;font-variation-settings:'wdth' 90;font-size:clamp(22px,2.3vw,34px);line-height:1.28;letter-spacing:-.015em;text-wrap:pretty">20 years on MATHEW has spent a career DJing and promoting club nights across Scotland, Berlin and Thailand. Bringing huge names like <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:1.1em">Steffi, Midland, George Fitzgerald, Nina Kraviz and DjRum</span> to the dance floors in Scotland.</p>
+      <p style="margin:0;font-size:14px;line-height:1.8;color:#a3a3a3;max-width:52ch;text-wrap:pretty">To this day his passion is driving house, dub and techno. Now a promoter and head honcho at NOSLEEP. CLAN on koh Phangan, it's guaranteed you will enjoy his unique underground style.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#262626;border:1px solid #262626">
+        <div style="background:#0a0a0a;padding:20px 16px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(26px,3.2vw,46px);line-height:.9">20</span><span style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a">Years</span></div>
+        <div style="background:#0a0a0a;padding:20px 16px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(26px,3.2vw,46px);line-height:.9">2–6h</span><span style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a">Play time</span></div>
+        <div style="background:#0a0a0a;padding:20px 16px;display:flex;flex-direction:column;gap:10px"><span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(26px,3.2vw,46px);line-height:.9">100+</span><span style="font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#8a8a8a">Venues</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sound" style="position:relative;z-index:2;padding:0 clamp(16px,3vw,40px) clamp(80px,11vw,160px)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #262626;padding-top:18px;margin-bottom:clamp(36px,5vw,72px)">
+    <div style="display:flex;gap:18px;align-items:baseline"><span style="font-size:12px;color:#8a8a8a">02</span><h2 style="margin:0;font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(40px,7vw,104px);line-height:.85;letter-spacing:-.03em;text-transform:uppercase">Sound</h2></div>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,2vw,28px);color:#8a8a8a">ride the pitch fader</span>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,72px);align-items:start">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <div style="display:flex;align-items:flex-end;gap:16px">
+        <span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(80px,12vw,180px);line-height:.78;letter-spacing:-.05em">{{ bpmView }}</span>
+        <span style="font-size:12px;letter-spacing:.14em;color:#8a8a8a;padding-bottom:8px">BPM</span>
+      </div>
+      <input type="range" min="120" max="140" value="{{ bpmView }}" onChange="{{ onBpmView }}" data-cursor="pitch" style="width:100%"></input>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:#5e5e5e;letter-spacing:.1em"><span>120</span><span>125</span><span>130</span><span>135</span><span>140</span></div>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #262626">
+        <sc-for list="{{ genres }}" as="g" hint-placeholder-count="12">
+          <div style="display:grid;grid-template-columns:72px minmax(0,1fr) auto auto;gap:16px;align-items:center;padding:13px 0;border-bottom:1px solid #262626;opacity:{{ g.op }};transition:opacity .25s">
+            <span style="font-size:10px;letter-spacing:.14em;color:#8a8a8a">{{ g.fam }}</span>
+            <span style="font-family:'Anybody',sans-serif;font-weight:700;font-variation-settings:'wdth' 120;font-size:clamp(18px,1.8vw,24px);text-transform:uppercase;letter-spacing:-.01em">{{ g.name }}</span>
+            <span style="font-size:10px;color:#8a8a8a">{{ g.range }}</span>
+            <span style="width:8px;height:8px;border-radius:50%;background:{{ g.dot }}"></span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="border:1px solid #262626;border-radius:2px;padding:clamp(18px,2vw,26px);display:flex;flex-direction:column;gap:18px;background:#0f0f0f">
+        <div style="display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a8a"><span>Mixcloud</span><span>Radio</span></div>
+        <div style="font-family:'Anybody',sans-serif;font-weight:800;font-variation-settings:'wdth' 140;font-size:clamp(26px,3vw,42px);line-height:.95;letter-spacing:-.02em;text-transform:uppercase">Techno set — Full Moon Radio</div>
+        <sc-if value="{{ hasMixcloud }}" hint-placeholder-val="{{ false }}">
+          <iframe title="Mixcloud" width="100%" height="120" src="{{ mixcloudEmbed }}" frameborder="0" allow="autoplay; encrypted-media; fullscreen; idle-detection; speaker-selection; web-share" style="display:block;border:0;filter:grayscale(1)"></iframe>
+        </sc-if>
+      </div>
+      <div style="border:1px solid #262626;border-radius:2px;overflow:hidden;background:#0f0f0f">
+        <iframe loading="lazy" title="SoundCloud" width="100%" height="400" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mdn_ggw&amp;color=%23111111&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false&amp;visual=false" style="display:block;border:0;filter:grayscale(1) invert(.92) contrast(1.1)"></iframe>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;font-size:11px;letter-spacing:.12em;text-transform:uppercase">
+        <a href="https://www.youtube.com/@NOSLEEPCLAN" target="_blank" data-cursor="watch" style="border:1px solid #f2f2f2;border-radius:999px;padding:14px 20px" style-hover="background:#f2f2f2;color:#0a0a0a">YouTube — NOSLEEP CLAN ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="venues" style="position:relative;z-index:2;padding:0 clamp(16px,3vw,40px) clamp(80px,11vw,160px)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #262626;padding-top:18px;margin-bottom:clamp(36px,5vw,72px)">
+    <div style="display:flex;gap:18px;align-items:baseline"><span style="font-size:12px;color:#8a8a8a">03</span><h2 style="margin:0;font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(40px,7vw,104px);line-height:.85;letter-spacing:-.03em;text-transform:uppercase">Venues</h2></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <sc-for list="{{ regions }}" as="r" hint-placeholder-count="4">
+        <button onClick="{{ r.pick }}" style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:10px 14px;border-radius:999px;border:1px solid #3a3a3a;background:{{ r.bg }};color:{{ r.fg }}">{{ r.label }}</button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));column-gap:clamp(16px,3vw,48px)">
+    <sc-for list="{{ venues }}" as="v" hint-placeholder-count="14">
+      <div data-cursor="{{ v.code }}" data-img="{{ v.img }}" style="display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:12px 0;border-bottom:1px solid #1c1c1c;color:#f2f2f2;transition:padding .3s cubic-bezier(.2,.8,.2,1),color .2s" style-hover="padding-left:10px;color:#ffffff">
+        <span style="font-size:10px;color:#5e5e5e">{{ v.n }}</span>
+        <span style="font-family:'Anybody',sans-serif;font-weight:800;font-variation-settings:'wdth' 130;font-size:clamp(17px,1.6vw,22px);line-height:1;letter-spacing:-.01em;text-transform:uppercase">{{ v.name }}</span>
+        <span style="font-size:10px;letter-spacing:.14em;color:#8a8a8a">{{ v.code }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin:28px 0 0;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,2vw,28px);color:#8a8a8a">…and many more.</p>
+</section>
+
+
+
+<section id="machine" data-full="{{ mFullAttr }}" style="position:{{ mPos }};inset:0;z-index:{{ mZ }};overflow-y:{{ mOv }};overscroll-behavior:contain;background:{{ mBg }};padding:{{ mPad }}">
+  <div style="display:{{ mHead }};align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #262626;padding-top:18px;margin-bottom:clamp(36px,5vw,72px)">
+    <div style="display:flex;gap:18px;align-items:baseline"><span style="font-size:12px;color:#8a8a8a">05</span><h2 style="margin:0;font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(40px,7vw,104px);line-height:.85;letter-spacing:-.03em;text-transform:uppercase">Your turn</h2></div>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,2vw,28px);color:#8a8a8a">load a groove, ride the knobs — the decks move with your kick</span>
+    <span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#a3a3a3">MD-001 · a free taste of MD|442. The full machine is one tap below ↓</span>
+  </div>
+
+  <a href="/md442/" data-cursor="open" title="MD|442: 442 is binary for NEST. Open the main drum machine." style="display:{{ mHead }};align-items:center;justify-content:space-between;gap:clamp(16px,3vw,40px);flex-wrap:wrap;text-decoration:none;margin:0 0 clamp(28px,4vw,56px);padding:clamp(22px,3.4vw,44px) clamp(20px,3.4vw,48px);border-radius:18px;border:1px solid #3dff7a;background:#3dff7a;color:#0a0a0a" style-hover="background:#0a0a0a;color:#3dff7a">
+    <span style="display:flex;flex-direction:column;gap:10px;min-width:0">
+      <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase">The main machine · 442 is binary for NEST</span>
+      <span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(44px,9vw,128px);line-height:.82;letter-spacing:-.04em">MD|442</span>
+    </span>
+    <span style="font-family:'Martian Mono',monospace;font-size:clamp(12px,1.4vw,16px);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Play MD|442 free ↗</span>
+  </a>
+
+  <div style="max-width:{{ mMax }};margin:0 auto;overflow-x:auto;padding:6px 6px 30px">
+  <div data-fitw="980" data-fitfull="1" style="min-width:980px;position:relative;border-radius:14px;padding:26px 30px 30px;color:#1a1a1a;background:repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,rgba(0,0,0,.035) 1px 2px,rgba(255,255,255,.03) 2px 3px),linear-gradient(180deg,#e3e4e6 0%,#c9cbce 45%,#b4b6b9 100%);box-shadow:0 60px 120px rgba(0,0,0,.75),0 0 0 1px #6f7175,inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 0 rgba(0,0,0,.2)">
+    <span style="position:absolute;left:12px;top:12px;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f4f4f4,#777);box-shadow:inset 0 0 0 1px #555"></span>
+    <span style="position:absolute;right:12px;top:12px;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f4f4f4,#777);box-shadow:inset 0 0 0 1px #555"></span>
+    <span style="position:absolute;left:12px;bottom:12px;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f4f4f4,#777);box-shadow:inset 0 0 0 1px #555"></span>
+    <span style="position:absolute;right:12px;bottom:12px;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f4f4f4,#777);box-shadow:inset 0 0 0 1px #555"></span>
+
+    <div style="display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center;padding-bottom:20px;border-bottom:1px solid rgba(0,0,0,.25)">
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:42px;line-height:.85;letter-spacing:-.03em;color:#111">MD-001</span>
+        <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#1a1a1a">Teaser of MD|442 · rhythm &amp; groove composer</span>
+      </div>
+      <div style="background:#0c0d0d;border-radius:6px;padding:12px 16px;box-shadow:inset 0 2px 8px rgba(0,0,0,.9),0 1px 0 rgba(255,255,255,.6);display:flex;flex-direction:column;gap:6px;min-width:0">
+        <span style="font-family:'Martian Mono',monospace;font-size:15px;letter-spacing:.12em;color:#f4f4f4;text-shadow:0 0 6px rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ lcdTop }}</span>
+        <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.1em;color:#bdbdbd;white-space:nowrap">{{ lcdBot }}</span>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button onClick="{{ randomize }}" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a;background:linear-gradient(#f4f4f5,#cfd0d3);border:1px solid #8d8f92;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);padding:16px 12px 8px">Random</button>
+        <button onClick="{{ clear }}" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a;background:linear-gradient(#f4f4f5,#cfd0d3);border:1px solid #8d8f92;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);padding:16px 12px 8px">Clear</button>
+        <button onClick="{{ savePattern }}" data-cursor="save" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a;background:linear-gradient(#f4f4f5,#cfd0d3);border:1px solid #8d8f92;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);padding:16px 12px 8px">{{ saveTxt }}</button>
+        <button onClick="{{ togglePlay }}" data-cursor="{{ playLabel }}" style="width:86px;height:58px;border-radius:6px;border:1px solid #000;background:linear-gradient(#2c2c2c,#0e0e0e);color:{{ playCol }};font-size:20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 3px 6px rgba(0,0,0,.4)" style-active="transform:translateY(1px)">{{ playIcon }}</button>
+        <button type="button" onClick="{{ mToggle }}" data-cursor="{{ mCur }}" aria-label="{{ mTxt }}" style="width:58px;height:58px;border-radius:6px;border:1px solid #8d8f92;background:linear-gradient(#f4f4f5,#cfd0d3);color:#111;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;padding:0" style-active="transform:translateY(1px)">
+          <sc-if value="{{ mIsFull }}" hint-placeholder-val="{{ false }}">
+            <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+          </sc-if>
+          <sc-if value="{{ mNotFull }}" hint-placeholder-val="{{ true }}">
+            <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5M4 4l6 6M20 4l-6 6M4 20l6-6M20 20l-6-6"/></svg>
+          </sc-if>
+        </button>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.25)">
+      <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#1a1a1a;align-self:center;margin-right:8px;white-space:nowrap">Mathew's patterns</span>
+      <sc-for list="{{ presets }}" as="p" hint-placeholder-count="7">
+        <button onClick="{{ p.pick }}" data-cursor="load" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a;background:linear-gradient(#f4f4f5,#cfd0d3);border:1px solid #8d8f92;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);padding:16px 12px 8px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #111;background:{{ p.led }};box-shadow:{{ p.glow }}"></span>{{ p.name }}</button>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:22px 0;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.25)">
+      <sc-for list="{{ knobGroups }}" as="grp" hint-placeholder-count="6">
+        <div style="flex:1 1 auto;display:flex;flex-direction:column;gap:14px;padding:0 12px;border-left:1px solid rgba(0,0,0,.18)">
+          <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#1a1a1a;color:#3a3a3a">{{ grp.title }}</span>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <sc-for list="{{ grp.knobs }}" as="k" hint-placeholder-count="2">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:7px">
+                <div onPointerDown="{{ k.down }}" onDoubleClick="{{ k.reset }}" data-cursor="turn" data-knob="{{ k.key }}" style="position:relative;width:{{ k.size }}px;height:{{ k.size }}px;touch-action:pan-y;user-select:none;cursor:ns-resize;border-radius:50%;box-shadow:{{ k.ring }};transition:box-shadow .15s">
+                  <div style="position:absolute;inset:-7px;border-radius:50%;background:repeating-conic-gradient(from -135deg,#222 0 1.6deg,transparent 1.6deg 27deg);-webkit-mask:radial-gradient(circle,transparent 0 62%,#000 63%);mask:radial-gradient(circle,transparent 0 62%,#000 63%);opacity:.55"></div>
+                  <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 28%,#4b4b4b,#141414 70%);box-shadow:0 5px 10px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.25)"></div>
+                  <div style="position:absolute;inset:0;border-radius:50%;transform:rotate({{ k.angle }}deg)">
+                    <div style="position:absolute;left:50%;top:6%;width:2px;height:20%;margin-left:-1px;background:#fff;border-radius:1px"></div>
+                  </div>
+                  <div style="position:absolute;inset:26%;border-radius:50%;background:radial-gradient(circle at 40% 32%,#fbfbfb,#b7b9bc 62%,#8d8f92);box-shadow:0 1px 2px rgba(0,0,0,.5)"></div>
+                </div>
+                <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#1a1a1a">{{ k.label }}</span>
+                <span style="font-family:'Martian Mono',monospace;font-size:9px;color:#4a4a4a">{{ k.val }}</span>
+                <sc-if value="{{ k.hasSw }}" hint-placeholder-val="{{ false }}">
+                  <button type="button" onClick="{{ k.swToggle }}" aria-label="{{ k.swAria }}" data-cursor="fx" style="position:relative;min-width:54px;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a;background:linear-gradient(#f4f4f5,#cfd0d3);border:1px solid #8d8f92;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);padding:16px 10px 7px;margin-top:2px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #111;background:{{ k.swLed }};box-shadow:{{ k.swGlow }}"></span>{{ k.swTxt }}</button>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;padding:16px 0;border-bottom:1px solid rgba(0,0,0,.25)">
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#1a1a1a;margin-right:6px">FX</span>
+        <sc-for list="{{ fxSw }}" as="x" hint-placeholder-count="4">
+          <button onClick="{{ x.toggle }}" onPointerDown="{{ x.down }}" onPointerUp="{{ x.up }}" onPointerLeave="{{ x.up }}" data-cursor="fx" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a;background:linear-gradient(#f4f4f5,#cfd0d3);border:1px solid #8d8f92;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);padding:16px 12px 8px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #111;background:{{ x.led }};box-shadow:{{ x.glow }}"></span>{{ x.label }}</button>
+        </sc-for>
+        <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#1a1a1a;margin:0 6px 0 14px">Repeat</span>
+        <sc-for list="{{ repeatLens }}" as="rl" hint-placeholder-count="3">
+          <button onClick="{{ rl.pick }}" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a;background:linear-gradient(#f4f4f5,#cfd0d3);border:1px solid #8d8f92;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);padding:16px 12px 8px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #111;background:{{ rl.led }};box-shadow:{{ rl.glow }}"></span>{{ rl.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#1a1a1a;margin-right:6px">Kill</span>
+        <sc-for list="{{ kills }}" as="k" hint-placeholder-count="3">
+          <button onClick="{{ k.toggle }}" data-cursor="kill" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#1a1a1a;background:linear-gradient(#f4f4f5,#cfd0d3);border:1px solid #8d8f92;border-radius:4px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.22),0 2px 3px rgba(0,0,0,.25);padding:16px 12px 8px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #111;background:{{ k.led }};box-shadow:{{ k.glow }}"></span>{{ k.label }}</button>
+        </sc-for>
+        <div style="margin-left:14px;width:150px;height:14px;border-radius:3px;background:#0c0d0d;box-shadow:inset 0 1px 4px rgba(0,0,0,.9);position:relative;overflow:hidden">
+          <div style="position:absolute;inset:3px;background:repeating-linear-gradient(90deg,#2a2a2a 0 8px,transparent 8px 11px)"></div>
+          <div ref="{{ meterRef }}" style="position:absolute;inset:3px;transform-origin:0 50%;transform:scaleX(0);background:repeating-linear-gradient(90deg,#3dff7a 0 8px,transparent 8px 11px);filter:drop-shadow(0 0 3px #3dff7a)"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:8px;padding-top:18px">
+      <sc-for list="{{ rows }}" as="row" hint-placeholder-count="8">
+        <div style="display:grid;grid-template-columns:118px repeat(16,minmax(0,1fr)) 24px 52px;gap:6px;align-items:center">
+          <button type="button" onClick="{{ row.preview }}" data-cursor="hit" aria-label="{{ row.selAria }}" style="text-align:left;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:{{ row.selBg }};border:none;border-radius:4px;outline:{{ row.selOutline }};box-shadow:{{ row.selGlow }};color:#1a1a1a;padding:6px 6px;margin:-6px 0 -6px -6px;display:flex;gap:8px;align-items:center">
+            <span style="font-weight:600">{{ row.key }}</span><span style="color:#555">{{ row.name }}</span>
+          </button>
+          <sc-for list="{{ row.steps }}" as="s" hint-placeholder-count="16">
+            <button data-stc="{{ $index }}" data-srow="{{ row.key }}" aria-label="{{ row.name }} step {{ $index }}" onClick="{{ s.toggle }}" onPointerDown="{{ s.paint }}" style="position:relative;touch-action:pan-y;user-select:none;-webkit-user-select:none;height:38px;border-radius:4px;border:1px solid #000;background:{{ s.key }};box-shadow:{{ s.ksh }};padding:0;transition:background .08s"><span aria-hidden="true" style="position:absolute;left:5px;bottom:3px;font-family:'Martian Mono',monospace;font-size:9px;line-height:1;color:{{ s.kbCol }};pointer-events:none">{{ s.kb }}</span></button>
+          </sc-for>
+          <div onPointerDown="{{ row.lvlDown }}" onDoubleClick="{{ row.lvlReset }}" data-cursor="level" style="position:relative;width:24px;height:38px;touch-action:none;user-select:none">
+            <div style="position:absolute;left:11px;top:2px;bottom:2px;width:2px;background:#1a1a1a;border-radius:1px;box-shadow:0 1px 0 rgba(255,255,255,.6)"></div>
+            <div style="position:absolute;left:3px;width:18px;height:10px;bottom:{{ row.lvlPos }}%;background:linear-gradient(#fbfbfb,#a9abae);border:1px solid #555;border-radius:2px;box-shadow:0 2px 3px rgba(0,0,0,.45)">
+              <div style="position:absolute;left:2px;right:2px;top:4px;height:1px;background:#222"></div>
+            </div>
+          </div>
+          <button onClick="{{ row.toggleCut }}" data-cursor="cut" style="position:relative;height:38px;border-radius:4px;border:1px solid #6f7175;background:{{ row.cutBg }};color:{{ row.cutFg }};font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:12px 0 0;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #111;background:{{ row.cutLed }};box-shadow:{{ row.cutGlow }}"></span>Cut</button>
+        </div>
+      </sc-for>
+      <div style="display:grid;grid-template-columns:118px repeat(16,minmax(0,1fr)) 24px 52px;gap:6px;padding-top:6px">
+        <span></span>
+        <sc-for list="{{ leds }}" as="l" hint-placeholder-count="16">
+          <span style="display:flex;flex-direction:column;align-items:center;gap:5px;font-family:'Martian Mono',monospace;font-size:9px;color:#3a3a3a">
+            <span data-sled="{{ $index }}" style="width:6px;height:6px;border-radius:50%;border:1px solid #111;background:{{ l.c }};box-shadow:{{ l.g }}"></span>{{ l.n }}
+          </span>
+        </sc-for>
+        <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#1a1a1a;text-align:center;font-size:8px">Lvl</span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section id="beatmatch" style="position:relative;z-index:2;padding:0 clamp(16px,3vw,40px) clamp(80px,11vw,160px)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #262626;padding-top:18px;margin-bottom:clamp(36px,5vw,72px)">
+    <div style="display:flex;gap:18px;align-items:baseline"><span style="font-size:12px;color:#8a8a8a">06</span><h2 style="margin:0;font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(40px,7vw,104px);line-height:.85;letter-spacing:-.03em;text-transform:uppercase">Beatmatch</h2></div>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,2vw,28px);color:#8a8a8a">hidden tempos — ride the pitch, push the platter, lock it in</span>
+  </div>
+
+  <div ref="{{ gameRef }}" style="max-width:1320px;margin:0 auto;overflow-x:auto;padding:6px 6px 30px;border-radius:14px;outline:1px solid {{ gOutline }};outline-offset:4px;transition:outline-color .3s">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 14px;padding:10px 14px;border-radius:8px;background:#0f0f0f;border:1px solid #232323">
+    <span style="display:flex;align-items:center;gap:8px;font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#f2f2f2"><span style="width:7px;height:7px;border-radius:50%;background:{{ gFocusLed }};box-shadow:{{ gFocusGlow }}"></span>{{ gFocusTxt }}</span>
+    <span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.08em;color:#8a8a8a">Space start/stop · 1/2 decks · 3 mixer (←→ xfade, ↑↓ master) · Q/A W/S channel faders · ↑↓ pitch (⇧ coarse) · ←→ nudge · C cue from top · V headphone cue · Z/X crossfade · F fx · scroll on pitch or platter · red strobe: big dots freeze at 0%, small rows at +6 / +3.3 / −3.3%</span>
+  </div>
+  <div data-fitw="1080" style="min-width:1080px;display:grid;grid-template-columns:minmax(0,1fr) 380px minmax(0,1fr);gap:14px;align-items:center">
+    <sc-for list="{{ gDecks }}" as="d" hint-placeholder-count="2">
+      <div onPointerDown="{{ d.select }}" style="display:flex;flex-direction:column;gap:12px;order:{{ d.order }};border-radius:12px;box-shadow:{{ d.selSh }};transition:box-shadow .25s">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 4px">
+          <div style="display:flex;align-items:center;gap:8px"><span ref="{{ d.lampRef }}" style="width:8px;height:8px;border-radius:50%;background:#3dff7a;box-shadow:0 0 8px #3dff7a;opacity:.12"></span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.12em;color:#f2f2f2;white-space:nowrap">DECK {{ d.key }}</span><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.1em;color:#8a8a8a;white-space:nowrap">{{ d.bpmTxt }}</span></div>
+          <div style="display:flex;align-items:center;gap:6px;background:#0a0202;border-radius:3px;padding:3px 8px;box-shadow:inset 0 1px 3px #000"><span style="font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.14em;color:#ff5340;opacity:.8">TC</span><span ref="{{ d.tcRef }}" style="font-family:'Martian Mono',monospace;font-size:11px;color:#ff5340;text-shadow:0 0 6px rgba(255,70,50,.8)">00:00.0</span></div>
+        </div>
+        <div style="position:relative;aspect-ratio:1.28;border-radius:8px;background:radial-gradient(120% 90% at 30% 20%,#2c2d2f 0%,#1b1c1d 60%,#141415 100%);box-shadow:0 40px 90px rgba(0,0,0,.85),0 0 0 1px #000,inset 0 1px 0 rgba(255,255,255,.12),inset 0 0 0 3px #0e0e0f,inset 0 0 0 4px rgba(255,255,255,.05)">
+          <div style="position:absolute;left:10.3%;top:12%;width:59.4%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#202022 0 86%,#48494c 88%,#2c2d2f 100%);box-shadow:0 14px 30px rgba(0,0,0,.8),0 0 0 1px #000">
+            <div style="position:absolute;inset:0;border-radius:50%;overflow:hidden">{{ d.strobe }}</div>
+            <div style="position:absolute;inset:0;border-radius:50%;pointer-events:none;mix-blend-mode:multiply;background:radial-gradient(circle at 14% 84%,#ff4a2e 0%,#e0250f 14%,#5a0904 30%,#0c0505 46%,#080808 100%);-webkit-mask:radial-gradient(circle,transparent 0 43.4%,#000 43.6%);mask:radial-gradient(circle,transparent 0 43.4%,#000 43.6%)"></div>
+            <div ref="{{ d.platRef }}" onPointerDown="{{ d.platDown }}" data-wheel="{{ d.wPlat }}" data-cursor="push" style="position:absolute;inset:7.5%;border-radius:50%;touch-action:none;background:radial-gradient(circle,transparent 0 30%,#060606 30% 31.6%,transparent 31.6% 58%,rgba(0,0,0,.75) 58% 58.5%,transparent 58.5% 77%,rgba(0,0,0,.75) 77% 77.4%,transparent 77.4% 97.4%,#1e1e1e 97.4% 98.4%,#0b0b0b 98.4% 100%),repeating-radial-gradient(circle,#0b0b0b 0 1px,#141414 1px 2px,#0e0e0e 2px 3px);box-shadow:0 0 0 2px #050505">
+              <div style="position:absolute;inset:32.5%;border-radius:50%;background:{{ d.labelBg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#0a0a0a;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25)">
+                <span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(13px,1.4vw,20px);line-height:1">{{ d.key }}</span>
+                <span style="font-family:'Martian Mono',monospace;font-size:6px;letter-spacing:.08em;text-transform:uppercase;text-align:center;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ d.label }}</span>
+                <span style="font-family:'Martian Mono',monospace;font-size:5px;letter-spacing:.1em;text-transform:uppercase;opacity:.7;white-space:nowrap">33⅓</span>
+                <div style="position:absolute;left:50%;top:0;width:2px;height:16%;margin-left:-1px;background:#0a0a0a"></div>
+              </div>
+            </div>
+            <div style="position:absolute;inset:7.5%;border-radius:50%;pointer-events:none;background:conic-gradient(from -40deg,transparent 0 6%,rgba(255,255,255,.07) 10%,transparent 15% 52%,rgba(255,255,255,.045) 56%,transparent 61%);-webkit-mask:radial-gradient(circle,transparent 0 33%,#000 33.5%);mask:radial-gradient(circle,transparent 0 33%,#000 33.5%)"></div>
+            <div style="position:absolute;left:48.7%;top:48.7%;width:2.6%;height:2.6%;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4f4f4,#8a8a8a 60%,#333);pointer-events:none"></div>
+          </div>
+          <div style="position:absolute;left:3%;top:4%;width:4.4%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fffbe8,#d8d2b8 45%,#5a5850 75%);box-shadow:0 0 10px rgba(255,250,220,.5),0 0 0 2px #0a0a0a;pointer-events:none"></div>
+          <div style="position:absolute;left:3.2%;top:66%;width:8.5%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 30%,#4a4b4e,#151516 70%);box-shadow:0 4px 8px rgba(0,0,0,.7),0 0 0 1px #000;pointer-events:none">
+            <div style="position:absolute;left:46%;top:8%;width:8%;height:30%;background:#cfcfcf;border-radius:1px"></div>
+          </div>
+          <div style="position:absolute;left:4.6%;top:79.5%;width:5.6%;height:3.2%;border-radius:2px;background:linear-gradient(90deg,#ff5a3c,#ff2a10);box-shadow:0 0 12px 3px rgba(255,60,30,.55),0 0 0 1px #000;pointer-events:none"></div>
+          <button onClick="{{ d.toggle }}" data-cursor="start" style="position:relative;font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#d8d8d8;background:linear-gradient(#3a3b3d,#1b1c1e);border:1px solid #000;border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 2px 3px rgba(0,0,0,.6);position:absolute;left:3%;bottom:4%;width:14%;height:9.5%;padding-top:6px">
+            <span style="position:absolute;left:50%;top:4px;width:5px;height:5px;margin-left:-2.5px;border-radius:50%;background:{{ d.startLed }};box-shadow:{{ d.startGlow }}"></span>Start
+          </button>
+          <button onClick="{{ d.cue }}" data-cursor="drop" style="position:relative;font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#d8d8d8;background:linear-gradient(#3a3b3d,#1b1c1e);border:1px solid #000;border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 2px 3px rgba(0,0,0,.6);position:absolute;left:18.5%;bottom:4%;width:8%;height:7%">Cue</button>
+          <div style="position:absolute;left:28%;bottom:4.5%;display:flex;gap:4px;pointer-events:none"><span style="position:relative;font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#d8d8d8;background:linear-gradient(#3a3b3d,#1b1c1e);border:1px solid #000;border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 2px 3px rgba(0,0,0,.6);padding:3px 6px;color:#3dff7a">33</span><span style="position:relative;font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#d8d8d8;background:linear-gradient(#3a3b3d,#1b1c1e);border:1px solid #000;border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 2px 3px rgba(0,0,0,.6);padding:3px 6px">45</span></div>
+          <div style="position:absolute;right:8%;top:8%;width:14%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#6d6f72,#2a2b2d 55%,#121213 80%);box-shadow:0 6px 16px rgba(0,0,0,.75),0 0 0 1px #000;pointer-events:none">
+            <div style="position:absolute;inset:30%;border-radius:50%;background:radial-gradient(circle at 40% 35%,#d9d9d9,#6a6a6a);box-shadow:0 0 0 1px #000"></div>
+          </div>
+          <div style="position:absolute;right:10.2%;top:2%;width:5%;height:9%;border-radius:2px;background:linear-gradient(90deg,#4a4b4e,#1d1e20 60%,#4a4b4e);box-shadow:0 0 0 1px #000;pointer-events:none"></div>
+          <div style="position:absolute;right:14.3%;top:15%;width:1.3%;height:60%;background:linear-gradient(90deg,#8d8f92,#f4f4f4 45%,#7a7c7f);border-radius:4px;transform-origin:50% 0;transform:rotate({{ d.armDeg }}deg);transition:transform .9s cubic-bezier(.3,1.25,.5,1);box-shadow:6px 10px 16px rgba(0,0,0,.65);pointer-events:none">
+            <div style="position:absolute;bottom:-6%;left:-180%;width:460%;height:9%;background:linear-gradient(#2a2a2a,#0f0f0f);border-radius:2px;box-shadow:0 0 0 1px #444"></div>
+          </div>
+          <div style="position:absolute;right:6.5%;top:46%;width:2.6%;height:6%;border-radius:2px;background:#0d0d0e;box-shadow:inset 0 0 0 1px #3a3a3a;pointer-events:none"></div>
+          <div style="position:absolute;right:3.5%;top:46%;bottom:8%;width:9%;display:flex;flex-direction:column;align-items:center;gap:3px">
+            <div style="display:flex;align-items:center;gap:4px"><span style="width:5px;height:5px;border-radius:50%;background:{{ d.quartzLed }};box-shadow:{{ d.quartzGlow }}"></span><span style="font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#bdbdbd;font-size:6px">Quartz</span></div>
+            <div onPointerDown="{{ d.pitchDown }}" onDoubleClick="{{ d.pitchReset }}" data-cursor="scroll" data-wheel="{{ d.wPitch }}" style="position:relative;flex:1;width:100%;touch-action:none;user-select:none">
+              <div style="position:absolute;left:50%;top:0;bottom:0;width:5px;margin-left:-2.5px;background:#050505;border-radius:2px;box-shadow:inset 0 1px 2px #000,0 1px 0 rgba(255,255,255,.08)"></div>
+              <div style="position:absolute;left:0;right:0;top:0;bottom:0;background:repeating-linear-gradient(180deg,rgba(255,255,255,.25) 0 1px,transparent 1px 12.5%);-webkit-mask:linear-gradient(90deg,#000 0 22%,transparent 22% 78%,#000 78%);mask:linear-gradient(90deg,#000 0 22%,transparent 22% 78%,#000 78%);opacity:.6"></div>
+              <div style="position:absolute;left:0;right:0;height:11%;top:{{ d.pitchTop }}%;margin-top:-5.5%;background:linear-gradient(#e6e6e6,#8d8f92);border:1px solid #000;border-radius:2px;box-shadow:0 3px 6px rgba(0,0,0,.7)"><div style="position:absolute;left:8%;right:8%;top:44%;height:2px;background:#0a0a0a"></div></div>
+            </div>
+            <span style="font-family:'Martian Mono',monospace;font-size:8px;color:#3dff7a;white-space:nowrap">{{ d.pitchTxt }}</span>
+          </div>
+          <div style="position:absolute;right:14%;bottom:4%;display:flex;gap:4px">
+            <button onPointerDown="{{ d.nMinus }}" onPointerUp="{{ d.nOff }}" onPointerLeave="{{ d.nOff }}" data-cursor="slow" style="position:relative;font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#d8d8d8;background:linear-gradient(#3a3b3d,#1b1c1e);border:1px solid #000;border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 2px 3px rgba(0,0,0,.6);width:24px;height:22px;font-size:11px">−</button>
+            <button onPointerDown="{{ d.nPlus }}" onPointerUp="{{ d.nOff }}" onPointerLeave="{{ d.nOff }}" data-cursor="push" style="position:relative;font-family:'Martian Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#d8d8d8;background:linear-gradient(#3a3b3d,#1b1c1e);border:1px solid #000;border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 2px 3px rgba(0,0,0,.6);width:24px;height:22px;font-size:11px">+</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap">
+          <sc-for list="{{ d.styles }}" as="st" hint-placeholder-count="7">
+            <button onClick="{{ st.pick }}" style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:7px 9px;border-radius:999px;border:1px solid {{ st.bd }};background:{{ st.bg }};color:{{ st.fg }}">{{ st.name }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+
+    <div onPointerDown="{{ mxSelect }}" style="order:1;align-self:center;box-shadow:{{ mxSelSh }};transition:box-shadow .25s;border-radius:10px;padding:14px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 1px,transparent 1px 3px),linear-gradient(180deg,#1d1e20,#0f1011);display:flex;flex-direction:column;gap:12px">
+      <div style="display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:20px;line-height:1;letter-spacing:-.02em;color:#f2f2f2">MD-X2</span><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px;color:#8a8a8a">2ch club mixer</span></div>
+        <div style="background:#050505;border-radius:5px;padding:8px 10px;box-shadow:inset 0 2px 6px #000;display:flex;flex-direction:column;gap:6px;min-width:0">
+          <div style="display:flex;justify-content:space-between;gap:8px"><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.06em;color:#f2f2f2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ gStatus }}</span><span ref="{{ timerRef }}" style="font-family:'Martian Mono',monospace;font-size:10px;color:#3dff7a">0.0s</span></div>
+          <div style="position:relative;height:12px;border-radius:3px;background:#111;overflow:hidden">
+            <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:#3dff7a;opacity:.5"></div>
+            <div style="position:absolute;left:44%;right:44%;top:0;bottom:0;background:rgba(61,255,122,.12)"></div>
+            <div ref="{{ phaseRef }}" style="position:absolute;top:2px;bottom:2px;width:4px;margin-left:-2px;left:50%;border-radius:2px;background:#fff"></div>
+          </div>
+          <div style="height:3px;border-radius:2px;background:#111;overflow:hidden"><div ref="{{ lockRef }}" style="height:100%;background:#3dff7a;transform-origin:0 50%;transform:scaleX(0);box-shadow:0 0 8px #3dff7a"></div></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase">
+            <span style="display:flex;gap:10px;color:#8a8a8a;white-space:nowrap"><span>Mathew <span style="color:#f2f2f2">28.0s</span></span><span>You <span style="color:#3dff7a">{{ gBest }}</span></span></span>
+            <sc-if value="{{ gLocked }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:5px">
+                <button onClick="{{ gShare }}" style="font-family:inherit;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;border-radius:999px;border:1px solid #3dff7a;background:#3dff7a;color:#0a0a0a">{{ gShareTxt }}</button>
+                <button onClick="{{ gSaveCard }}" style="font-family:inherit;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 8px;border-radius:999px;border:1px solid #3a3a3a;background:transparent;color:#f2f2f2">Save card</button>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <sc-for list="{{ gStrips }}" as="c" hint-placeholder-count="2">
+          <div style="display:grid;grid-template-columns:minmax(0,1fr) 30px;grid-auto-flow:dense;gap:8px;align-items:end;padding:10px;border:1px solid #232323;border-radius:6px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:6px"><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:11px;color:#f2f2f2">{{ c.key }}</span><span ref="{{ c.lampRef }}" style="width:7px;height:7px;border-radius:50%;background:#3dff7a;box-shadow:0 0 6px #3dff7a;opacity:.12"></span></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px 6px;justify-items:center">
+                <sc-for list="{{ c.knobs }}" as="k" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div onPointerDown="{{ k.down }}" onDoubleClick="{{ k.reset }}" data-cursor="turn" data-wheel="{{ k.wkey }}" style="position:relative;width:34px;height:34px;touch-action:pan-y;user-select:none">
+                  <div style="position:absolute;inset:-5px;border-radius:50%;background:repeating-conic-gradient(from -135deg,#cfcfcf 0 1.6deg,transparent 1.6deg 27deg);-webkit-mask:radial-gradient(circle,transparent 0 62%,#000 63%);mask:radial-gradient(circle,transparent 0 62%,#000 63%);opacity:.45"></div>
+                  <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 28%,#5a5a5a,#161616 70%);box-shadow:0 4px 8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25)"></div>
+                  <div style="position:absolute;inset:0;border-radius:50%;transform:rotate({{ k.angle }}deg)"><div style="position:absolute;left:50%;top:7%;width:2px;height:22%;margin-left:-1px;background:#3dff7a;border-radius:1px;box-shadow:0 0 4px #3dff7a"></div></div>
+                  <div style="position:absolute;inset:28%;border-radius:50%;background:radial-gradient(circle at 40% 32%,#3c3c3c,#111 70%)"></div>
+                </div>
+                <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px">{{ k.label }}</span>
+              </div>
+                </sc-for>
+              </div>
+            </div>
+            <button onClick="{{ c.cueToggle }}" data-cursor="cue" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e8e8e8;background:linear-gradient(#3a3b3d,#1f2022);border:1px solid #000;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 2px 3px rgba(0,0,0,.5);grid-column:1 / -1;height:28px;padding-top:9px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #000;background:{{ c.cueLed }};box-shadow:{{ c.cueGlow }}"></span>Cue {{ c.key }}</button>
+            <div onPointerDown="{{ c.faderDown }}" onDoubleClick="{{ c.faderReset }}" data-cursor="fader" data-wheel="{{ c.wFader }}" style="grid-column:2;grid-row:1;position:relative;width:30px;height:118px;touch-action:none;user-select:none">
+              <div style="position:absolute;left:50%;top:4px;bottom:4px;width:4px;margin-left:-2px;background:#000;border-radius:2px;box-shadow:0 1px 0 rgba(255,255,255,.12)"></div>
+              <div style="position:absolute;left:2px;right:2px;height:20px;bottom:{{ c.faderPos }}%;background:linear-gradient(#efefef,#9c9ea1);border:1px solid #000;border-radius:3px;box-shadow:0 3px 6px rgba(0,0,0,.6)"><div style="position:absolute;left:3px;right:3px;top:9px;height:2px;background:#111"></div></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px;border:1px solid #232323;border-radius:6px">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px;color:#8a8a8a">FX</span>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">
+            <sc-for list="{{ gFxKeys }}" as="x" hint-placeholder-count="3">
+              <button onClick="{{ x.pick }}" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e8e8e8;background:linear-gradient(#3a3b3d,#1f2022);border:1px solid #000;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 2px 3px rgba(0,0,0,.5);height:32px;padding-top:10px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #000;background:{{ x.led }};box-shadow:{{ x.glow }}"></span>{{ x.label }}</button>
+            </sc-for>
+            <button onClick="{{ gFxToggle }}" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e8e8e8;background:linear-gradient(#3a3b3d,#1f2022);border:1px solid #000;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 2px 3px rgba(0,0,0,.5);height:32px;padding-top:10px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #000;background:{{ gFxOnLed }};box-shadow:{{ gFxOnGlow }}"></span>{{ gFxOnTxt }}</button>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div onPointerDown="{{ gFxAmt.down }}" onDoubleClick="{{ gFxAmt.reset }}" data-cursor="turn" data-wheel="{{ gFxAmt.wkey }}" style="position:relative;width:40px;height:40px;touch-action:pan-y;user-select:none">
+                  <div style="position:absolute;inset:-5px;border-radius:50%;background:repeating-conic-gradient(from -135deg,#cfcfcf 0 1.6deg,transparent 1.6deg 27deg);-webkit-mask:radial-gradient(circle,transparent 0 62%,#000 63%);mask:radial-gradient(circle,transparent 0 62%,#000 63%);opacity:.45"></div>
+                  <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 28%,#5a5a5a,#161616 70%);box-shadow:0 4px 8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25)"></div>
+                  <div style="position:absolute;inset:0;border-radius:50%;transform:rotate({{ gFxAmt.angle }}deg)"><div style="position:absolute;left:50%;top:7%;width:2px;height:22%;margin-left:-1px;background:#3dff7a;border-radius:1px;box-shadow:0 0 4px #3dff7a"></div></div>
+                  <div style="position:absolute;inset:28%;border-radius:50%;background:radial-gradient(circle at 40% 32%,#3c3c3c,#111 70%)"></div>
+                </div>
+                <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px">{{ gFxAmt.label }}</span>
+              </div>
+      </div>
+      <div style="display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:12px;align-items:center;padding:10px;border:1px solid #232323;border-radius:6px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+          <div onPointerDown="{{ gCueMix.down }}" onDoubleClick="{{ gCueMix.reset }}" data-cursor="turn" data-wheel="{{ gCueMix.wkey }}" style="position:relative;width:40px;height:40px;touch-action:pan-y;user-select:none">
+            <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 28%,#5a5a5a,#161616 70%);box-shadow:0 4px 8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25)"></div>
+            <div style="position:absolute;inset:0;border-radius:50%;transform:rotate({{ gCueMix.angle }}deg)"><div style="position:absolute;left:50%;top:7%;width:2px;height:22%;margin-left:-1px;background:#3dff7a;box-shadow:0 0 4px #3dff7a"></div></div>
+          </div>
+          <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px">Cue mix</span>
+        </div>
+        <button onClick="{{ gSplit }}" data-cursor="split" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e8e8e8;background:linear-gradient(#3a3b3d,#1f2022);border:1px solid #000;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 2px 3px rgba(0,0,0,.5);height:32px;padding:10px 10px 0"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #000;background:{{ splitLed }};box-shadow:{{ splitGlow }}"></span>Split</button>
+        <span style="font-family:'Martian Mono',monospace;font-size:9px;line-height:1.5;letter-spacing:.04em;color:#8a8a8a">{{ cueHint }}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div onPointerDown="{{ xfDown }}" onDoubleClick="{{ xfReset }}" data-cursor="xfade" data-wheel="knob:g:xf" style="position:relative;width:100%;height:30px;touch-action:pan-y;user-select:none">
+            <div style="position:absolute;left:4px;right:4px;top:50%;height:4px;margin-top:-2px;background:#000;border-radius:2px"></div>
+            <div style="position:absolute;top:2px;bottom:2px;width:12%;left:{{ xfPos }}%;background:linear-gradient(90deg,#efefef,#9c9ea1);border:1px solid #000;border-radius:3px;box-shadow:0 3px 6px rgba(0,0,0,.6)"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between"><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px">A</span><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px">Crossfader</span><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px">B</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:5px">
+                <div onPointerDown="{{ gMaster.down }}" onDoubleClick="{{ gMaster.reset }}" data-cursor="turn" data-wheel="{{ gMaster.wkey }}" style="position:relative;width:40px;height:40px;touch-action:pan-y;user-select:none">
+                  <div style="position:absolute;inset:-5px;border-radius:50%;background:repeating-conic-gradient(from -135deg,#cfcfcf 0 1.6deg,transparent 1.6deg 27deg);-webkit-mask:radial-gradient(circle,transparent 0 62%,#000 63%);mask:radial-gradient(circle,transparent 0 62%,#000 63%);opacity:.45"></div>
+                  <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 28%,#5a5a5a,#161616 70%);box-shadow:0 4px 8px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.25)"></div>
+                  <div style="position:absolute;inset:0;border-radius:50%;transform:rotate({{ gMaster.angle }}deg)"><div style="position:absolute;left:50%;top:7%;width:2px;height:22%;margin-left:-1px;background:#3dff7a;border-radius:1px;box-shadow:0 0 4px #3dff7a"></div></div>
+                  <div style="position:absolute;inset:28%;border-radius:50%;background:radial-gradient(circle at 40% 32%,#3c3c3c,#111 70%)"></div>
+                </div>
+                <span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#cfcfcf;font-size:8px">{{ gMaster.label }}</span>
+              </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+        <button onClick="{{ gNew }}" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e8e8e8;background:linear-gradient(#3a3b3d,#1f2022);border:1px solid #000;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 2px 3px rgba(0,0,0,.5);height:32px">New round</button>
+        <button onClick="{{ gSync }}" data-cursor="sync" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e8e8e8;background:linear-gradient(#3a3b3d,#1f2022);border:1px solid #000;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 2px 3px rgba(0,0,0,.5);height:32px">Sync</button>
+        <button onClick="{{ gAssist }}" style="position:relative;font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e8e8e8;background:linear-gradient(#3a3b3d,#1f2022);border:1px solid #000;border-radius:4px;box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 2px 3px rgba(0,0,0,.5);height:32px;padding-top:10px"><span style="position:absolute;left:50%;top:5px;width:6px;height:6px;margin-left:-3px;border-radius:50%;border:1px solid #000;background:{{ assistLed }};box-shadow:{{ assistGlow }}"></span>Assist</button>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div style="max-width:720px;margin:20px 0 0;display:flex;flex-direction:column;gap:14px">
+    <button onClick="{{ gBoardToggle }}" style="display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:14px 18px;border-radius:6px;border:1px solid #2a2a2a;background:linear-gradient(#1a1a1a,#0e0e0e);color:#f2f2f2;text-align:left">
+      <span style="display:flex;align-items:center;gap:12px"><span style="width:7px;height:7px;border-radius:50%;background:{{ gBoardLed }};box-shadow:{{ gBoardGlow }}"></span><span style="font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(18px,2vw,26px);line-height:1;letter-spacing:-.01em;text-transform:uppercase">Leaderboard</span><span style="font-family:'Martian Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a8a8a">{{ gBoardCount }}</span></span>
+      <span style="font-family:'Martian Mono',monospace;font-size:14px;color:#8a8a8a;transform:rotate({{ gBoardRot }}deg);transition:transform .25s">▾</span>
+    </button>
+    <sc-if value="{{ gBoardOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:14px">
+    <sc-if value="{{ gCanPost }}" hint-placeholder-val="{{ false }}">
+      <form onSubmit="{{ gPost }}" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:12px;border:1px solid #3dff7a;border-radius:6px;background:rgba(61,255,122,.06)">
+        <span style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#3dff7a">{{ gLastTxt }}</span>
+        <input ref="{{ gNameRef }}" value="{{ gName }}" onChange="{{ gNameChange }}" maxlength="16" placeholder="Your DJ name" style="flex:1;min-width:140px;font-family:'Martian Mono',monospace;font-size:13px;padding:10px 12px;border-radius:4px;border:1px solid #3a3a3a;background:#0a0a0a;color:#fff;outline:none"></input>
+        <button type="submit" style="font-family:'Martian Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:11px 16px;border-radius:999px;border:0;background:#3dff7a;color:#0a0a0a">Add to board</button>
+      </form>
+    </sc-if>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ gBoard }}" as="b" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:32px minmax(0,1fr) auto auto;gap:14px;align-items:baseline;padding:12px 0;border-bottom:1px solid #1c1c1c">
+          <span style="font-family:'Martian Mono',monospace;font-size:11px;color:#5e5e5e">{{ b.n }}</span>
+          <span style="display:flex;gap:10px;align-items:baseline;min-width:0"><span style="font-family:'Anybody',sans-serif;font-weight:800;font-variation-settings:'wdth' 130;font-size:20px;line-height:1;text-transform:uppercase;color:{{ b.c }};overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ b.name }}</span><span style="font-family:'Martian Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#3dff7a">{{ b.tag }}</span></span>
+          <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:16px;color:#8a8a8a;white-space:nowrap">{{ b.mix }}</span>
+          <span style="font-family:'Martian Mono',monospace;font-size:14px;color:#fff">{{ b.t }}</span>
+        </div>
+      </sc-for>
+    </div>
+    </div>
+    </sc-if>
+  </div>
+</section>
+
+<section id="press" style="position:relative;z-index:2;padding:0 clamp(16px,3vw,40px) clamp(80px,11vw,160px)">
+  <div style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid #262626;padding-top:18px;margin-bottom:clamp(36px,5vw,72px)">
+    <div style="display:flex;gap:18px;align-items:baseline"><span style="font-size:12px;color:#8a8a8a">07</span><h2 style="margin:0;font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(40px,7vw,104px);line-height:.85;letter-spacing:-.03em;text-transform:uppercase">Press kit</h2></div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(24px,4vw,56px);margin-bottom:clamp(48px,6vw,88px)">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a8a">Equipment</span>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #262626;font-size:13px;text-transform:uppercase;letter-spacing:.04em">
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>Pioneer</span><span style="color:#8a8a8a">CDJs</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>Traktor</span><span style="color:#8a8a8a">Native Instruments</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>Production (live)</span><span style="color:#8a8a8a;text-align:right">Maschine / Ableton / Hardware</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>Play time</span><span style="color:#8a8a8a">2–6 hrs</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a8a">Genres</span>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #262626;font-size:13px;text-transform:uppercase;letter-spacing:.04em">
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>House</span><span style="color:#8a8a8a;text-align:right">House, deep house</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>Live set</span><span style="color:#8a8a8a;text-align:right">Maschine / Ableton / Hardware</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>Dub house</span><span style="color:#8a8a8a;text-align:right">Deep, tech, raw, driving</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>Techno</span><span style="color:#8a8a8a;text-align:right">Dub, minimal, peak time, hard</span></div>
+        <div style="display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #262626"><span>BPM</span><span style="color:#8a8a8a">120–140</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a8a">Photos — hover for colour</span>
+    <div style="overflow:hidden;margin:0 calc(-1 * clamp(16px,3vw,40px))">{{ carousel }}</div>
+  </div>
+</section>
+
+<section id="book" style="position:relative;z-index:2;padding:clamp(80px,11vw,160px) clamp(16px,3vw,40px) 32px;border-top:1px solid #262626">
+  <div style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8a8a8a;margin-bottom:24px">Bookings — worldwide</div>
+  <a href="mailto:mathew@nestgroup.space" data-cursor="email" style="display:block;font-family:'Anybody',sans-serif;font-weight:900;font-variation-settings:'wdth' 150;font-size:clamp(44px,10vw,170px);line-height:.82;letter-spacing:-.045em;text-transform:uppercase;transition:letter-spacing .4s cubic-bezier(.2,.8,.2,1)" style-hover="letter-spacing:-.02em">Book<br>Mathew →</a>
+  <div style="margin-top:28px;font-size:14px;letter-spacing:.04em"><a href="mailto:mathew@nestgroup.space" style="text-decoration:underline;text-underline-offset:4px">mathew@nestgroup.space</a></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:clamp(64px,10vw,140px);padding-top:20px;border-top:1px solid #262626;font-size:11px;letter-spacing:.12em;text-transform:uppercase">
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <a href="https://soundcloud.com/mdn_ggw" target="_blank">SoundCloud</a>
+      <a href="{{ mixcloudLink }}" target="_blank">Mixcloud</a>
+      <a href="https://www.youtube.com/@NOSLEEPCLAN" target="_blank">YouTube</a>
+      <a href="{{ instagram }}" target="_blank">Instagram</a>
+    </div>
+    <span style="color:#5e5e5e">© 2026 MATHEW / NOSLEEP. CLAN</span>
+  </div>
+</section>
+
+
+</div>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#0a0a0a"/><circle cx="50" cy="50" r="22" fill="none" stroke="#3dff7a" stroke-width="3"/><circle cx="50" cy="50" r="4" fill="#3dff7a"/></svg></template>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroPhotoStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Photo&quot;,&quot;options&quot;:[&quot;Outline&quot;,&quot;Photo&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;heroFont&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;Dela Gothic&quot;,&quot;options&quot;:[&quot;Dela Gothic&quot;,&quot;Rubik Mono&quot;,&quot;Bungee&quot;,&quot;Michroma&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;heroColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#ff2a1a&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#ff2a1a&quot;,&quot;#2b2bff&quot;,&quot;#d4ff1e&quot;,&quot;#ffffff&quot;],&quot;section&quot;:&quot;Hero&quot;},&quot;mixcloudUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://www.mixcloud.com/dunnyggw/full-moon-radio-techno/&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;instagramUrl&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;:{&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;editor&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;:&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;text&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;,&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;default&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;:&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;https://www.instagram.com/mathew_dn/&quot;instagramUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Links&quot;},&quot;emptyPosterSlots&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:7,&quot;min&quot;:0,&quot;max&quot;:40,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Poster archive&quot;}}">
+const ROWS = [['BD','Kick'],['SD','Snare'],['CP','Clap'],['CH','Closed hat'],['OH','Open hat'],['RM','Bongo'],['BS','Bass'],['ST','Dub stab']];
+const Z = Array(16).fill(0);
+/* MD|442 drum voices, built the way the classic analogue drum machines make sound:
+   ringing resonators hit by a pulse, a bank of six square waves for the metal, filtered noise for snap and clap.
+   Every q value is 0..1. */
+const MD808 = (() => {
+  const st = new WeakMap();
+  function init(ac) {
+    let s = st.get(ac); if (s) return s;
+    s = {}; st.set(ac, s);
+    s.bank = ac.createGain(); s.bank.gain.value = .17;
+    [205.3, 304.4, 369.6, 522.7, 540, 800].forEach(f => { const o = ac.createOscillator(); o.type = 'square'; o.frequency.value = f; o.connect(s.bank); o.start(); });
+    s.noise = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate); { const d = s.noise.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
+    s.pulse = ac.createBuffer(1, Math.ceil(ac.sampleRate * .004), ac.sampleRate); { const d = s.pulse.getChannelData(0), n = ac.sampleRate * .0008; for (let i = 0; i < d.length; i++) d[i] = i < n ? 1 : Math.exp(-(i - n) / (n * .6)); }
+    return s;
+  }
+  // capacitor-style envelope: fast rise, true exponential fall
+  const eg = (ac, t, pk, tau, att = .0008) => { const g = ac.createGain(); g.gain.value = 0; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(pk, t + att); g.gain.setTargetAtTime(0, t + att, tau); return g; };
+  const flt = (ac, type, f, q) => { const n = ac.createBiquadFilter(); n.type = type; n.frequency.value = f; if (q) n.Q.value = q; return n; };
+  // one ringing resonator: a sine that starts sharp and settles onto its note
+  function ring(ac, t, f, tau, pk, dest, bend = 1, bendT = .01, sag = 1) {
+    const o = ac.createOscillator(), g = eg(ac, t, pk, tau); o.type = 'sine';
+    o.frequency.setValueAtTime(f * bend, t); if (bend !== 1) o.frequency.exponentialRampToValueAtTime(f, t + bendT);
+    if (sag !== 1) o.frequency.exponentialRampToValueAtTime(f * sag, t + bendT + tau * 3);
+    o.connect(g); g.connect(dest); o.start(t); o.stop(t + tau * 8 + .05); return g;
+  }
+  function click(ac, t, pk, cutoff, dest) {
+    const s = init(ac), b = ac.createBufferSource(), f = flt(ac, 'lowpass', cutoff, .7), g = ac.createGain(); b.buffer = s.pulse; g.gain.value = pk;
+    b.connect(f); f.connect(g); g.connect(dest); b.start(t);
+  }
+  function hiss(ac, t, pk, tau, dest, filters, att) {
+    const s = init(ac), b = ac.createBufferSource(), g = eg(ac, t, pk, tau, att); b.buffer = s.noise; let n = b;
+    filters.forEach(f => { n.connect(f); n = f; }); n.connect(g); g.connect(dest); b.start(t, Math.random() * 1.5); b.stop(t + tau * 8 + .05); return g;
+  }
+  function kick(ac, t, dest, q) {
+    const f = 60 - q.depth * 18, tau = .045 + Math.pow(q.decay, 1.6) * .5;
+    ring(ac, t, f, tau, .8, dest, 1.9 + q.punch * 4.2, .007 + (1 - q.punch) * .022, .955);
+    ring(ac, t, f * 2, tau * .28, .1 + q.punch * .12, dest, 1.5, .006);           // a little second harmonic for weight on small speakers
+    if (q.attack > .02) click(ac, t, q.attack * .85, 700 + q.attack * 6500, dest);
+  }
+  function snare(ac, t, dest, q) {
+    const f = 238 * Math.pow(2, (q.tune - .5) * .9);
+    ring(ac, t, f, .055, .42, dest, 1.7, .008); ring(ac, t, f * 2, .032, .22, dest, 1.4, .006);
+    hiss(ac, t, .12 + q.snap * .34, .045 + q.decay * .2, dest, [flt(ac, 'highpass', 1700 + q.snap * 900, .7), flt(ac, 'peaking', 5200, .8)]);
+  }
+  function clap(ac, t, dest, q) {
+    const s = init(ac), b = ac.createBufferSource(), bp = flt(ac, 'bandpass', 950 + q.tone * 750, 1.4), hp = flt(ac, 'highpass', 450, .7), g = ac.createGain(), tail = .028 + q.decay * .2;
+    b.buffer = s.noise; g.gain.setValueAtTime(0, t);
+    [0, .0105, .021].forEach(o => { g.gain.setValueAtTime(2.1, t + o); g.gain.linearRampToValueAtTime(.22, t + o + .0095); });   // three quick sawtooth bursts
+    g.gain.setValueAtTime(1.65, t + .032); g.gain.setTargetAtTime(0, t + .032, tail);                                        // then the room-like tail
+    b.connect(bp); bp.connect(hp); hp.connect(g); g.connect(dest); b.start(t, Math.random()); b.stop(t + .04 + tail * 8);
+  }
+  function hat(ac, t, dest, q, open) {
+    const s = init(ac), f = 5200 + q.tone * 4600, h1 = flt(ac, 'highpass', f, .8), h2 = flt(ac, 'highpass', f, .6), pk = flt(ac, 'peaking', 8800, 1.2);
+    const tau = open ? .08 + Math.pow(q.len, 1.4) * .5 : .011 + Math.pow(q.len, 1.5) * .085, g = eg(ac, t, open ? .85 : 1, tau, .0006);
+    pk.gain.value = 5; s.bank.connect(h1); h1.connect(h2); h2.connect(pk); pk.connect(g); g.connect(dest);
+    setTimeout(() => { try { s.bank.disconnect(h1); } catch (_) {} }, Math.max(0, (t - ac.currentTime) + tau * 9 + .2) * 1000);
+    return g;
+  }
+  function conga(ac, t, dest, q) {
+    const f = (q.hi ? 370 : 250) * Math.pow(2, q.tune - .5), tau = .04 + q.decay * .2;
+    ring(ac, t, f, tau, .55, dest, 1.28, .012); ring(ac, t, f * 2.02, tau * .3, .08, dest); click(ac, t, .2, 2600, dest);
+  }
+  return { init, kick, snare, clap, hat, conga };
+})();
+
+/* Sample kits: recordings of the original machines. The knobs pick the nearest recorded setting. */
+const MDKIT = (() => {
+  const near = (v, o) => o.reduce((a, b) => Math.abs(b[0] - v) < Math.abs(a[0] - v) ? b : a)[1];
+  const Q4 = [[0, '0'], [33, '3'], [66, '7'], [100, 'A']], Q6 = [[0, '0'], [20, '2'], [40, '4'], [60, '6'], [80, '8'], [100, 'A']], Q5 = [[0, '00'], [25, '25'], [50, '50'], [75, '75'], [100, '10']];
+  const cache = {}, last = {};
+  // q: { depth, attack, decay, tune, snap, tone, len, hi } each 0-100
+  function file(kit, k, q) {
+    if (kit === '909') {
+      if (k === 'BD') { const a = q.attack >= 55 ? 'A' : '0', d = a === 'A' ? (q.decay >= 50 ? 'A' : '0') : near(q.decay, Q4); return '909/BT' + near(100 - q.depth, Q4) + 'A' + a + 'D' + d + '.WAV'; }
+      if (k === 'SD') { const s = near(q.snap, Q4); return '909/ST' + near(q.tune, Q4) + 'T' + (s === '0' ? '0' : '7') + 'S' + s + '.WAV'; }
+      if (k === 'CP') return '909/HANDCLP' + (q.tone < 50 ? '1' : '2') + '.WAV';
+      if (k === 'CH') return '909/HHCD' + near(q.len, Q6) + '.WAV';
+      if (k === 'OH') return '909/HHOD' + near(q.len, Q6) + '.WAV';
+      if (k === 'RM') return '909/' + (q.hi ? 'HT' : 'MT') + near(q.tune, Q4) + 'D' + near(q.decay, Q4) + '.WAV';
+    }
+    if (kit === '808') {
+      if (k === 'BD') return '808/BD/BD' + near(q.attack, Q5) + near(q.decay, Q5) + '.WAV';
+      if (k === 'SD') return '808/SD/SD' + near(q.tune, Q5) + near(q.snap, Q5) + '.WAV';
+      if (k === 'CP') return '808/CP/CP.WAV';
+      if (k === 'CH') return '808/CH/CH.WAV';
+      if (k === 'OH') return '808/OH/OH' + near(q.len, Q5) + '.WAV';
+      if (k === 'RM') return '808/' + (q.hi ? 'HC/HC' : 'MC/MC') + near(q.tune, Q5) + '.WAV';
+    }
+    return null;
+  }
+  function get(ac, base, path, slot) {
+    const c = cache[path];
+    if (c && c !== 1) { if (c !== 2) last[slot] = c; return c === 2 ? (last[slot] || null) : c; }
+    if (!c) { cache[path] = 1; fetch(base + path).then(r => { if (!r.ok) throw 0; return r.arrayBuffer(); }).then(b => new Promise((ok, no) => ac.decodeAudioData(b, ok, no))).then(buf => { cache[path] = buf; }).catch(() => { cache[path] = 2; }); }
+    return last[slot] || null;   // while a new setting loads, keep playing the previous one
+  }
+  function play(ac, buf, t, dest, gain, rate, fade) {
+    const s = ac.createBufferSource(), g = ac.createGain(); s.buffer = buf; if (rate && rate !== 1) s.playbackRate.value = rate;
+    g.gain.setValueAtTime(gain, t); if (fade) g.gain.setTargetAtTime(0, t + fade, fade / 3);
+    s.connect(g); g.connect(dest); s.start(t); return g;
+  }
+  return { file, get, play, LEVEL: { BD: .95, SD: .75, CP: .75, CH: .5, OH: .45, RM: .75 } };
+})();
+const MDCHORDS = [['Fifth', [0, 7, 12]], ['Minor', [0, 3, 7]], ['Min 7', [0, 3, 7, 10]], ['Min 9', [0, 3, 7, 10, 14]], ['Maj 7', [0, 4, 7, 11]], ['Maj 9', [0, 4, 7, 11, 14]], ['6/9', [0, 4, 7, 9, 14]]];
+const MDKEYS = ['E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C', 'C#', 'D', 'D#'];
+// the knob positions that give a preset's kick type, bass character, key and chord
+const mdExtra = p => ({ rumble: p.kick === 'hard' ? 80 : 0, acid: Math.round(p.acid * 100), key: ((Math.round(12 * Math.log2(p.root / 41.2)) % 12) + 12) % 12, chord: Math.max(0, MDCHORDS.findIndex(c => c[1].join() === p.chord.join())) });
+function md442Gen() {
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  const BD = pick(['x...x...x...x...', 'x...x...x...x...', 'x...x...x...x..x', 'x...x..xx...x...', 'x.....x...x.....', 'x..x..x...x..x..', 'x.x.......xx....']), four = BD.startsWith('x...x...x...x');
+  const SD = four ? pick(['................', '................', '............x...', '.......x......x.']) : pick(['....x.......x...', '....x..x.x..x...', '....x.......x..x']);
+  const CP = four ? pick(['....x.......x...', '....x.......x...', '............x...']) : pick(['................', '............x...']);
+  const CH = pick(['x.x.x.x.x.x.x.x.', 'xxxxxxxxxxxxxxxx', 'x.xxx.xxx.xxx.xx', 'x..xx..xx..xx..x', 'xx.xxx.xxx.xxx.x', '..x...x...x...x.']);
+  const OH = pick(['..x...x...x...x.', '..x...x...x...x.', '..............x.', '......x.......x.', '................']);
+  const RM = pick(['................', '................', '...x..x....x.x..', '..x.....x.x.....', '.x...x.x...x..x.', '......x......x..']);
+  const BS = pick(['.xx..xx..xx..xx.', '.x.x.x.x.x.x.x.x', 'x..x..x...x..x..', 'x.x...x.x..x..x.', 'x.xxx.xx.xx.xxx.', 'x.......x..x....', '..x..x....x..x..', 'x..x...x..x.....']);
+  const ST = pick(['................', '................', '..............x.', '......x.........', 'x..x......x.....', '..x.....x..x....']);
+  const scale = [3, 5, 7, 10, 12, 12], notes = Array.from({ length: 16 }, (_, i) => i % 4 === 0 || Math.random() < .6 ? 0 : pick(scale));
+  return { g: { BD, SD, CP, CH, OH, RM, BS, ST }, notes };
+}
+const PRESETS = {
+  'Peak Warehouse':  { sn:{tune:55,snap:65,decay:30}, cl:{tone:60,decay:40}, pc:{tune:55,decay:35}, bpm:142, swing:0,  decay:84, verb:22, kick:'hard', acid:.55, space:0,  root:41.2, chord:[0,7,12],      notes:[0,0,12,0,0,0,12,0,0,0,15,0,0,12,0,7],  kk:{depth:45,attack:70,punch:85}, hh:{closed:25,open:40,tone:72}, bass:{cutoff:52,res:62}, bx:{drive:68,echo:0,verb:8},   stab:{tone:70,decay:18,echo:35,verb:30},
+    BD:'x...x...x...x...', SD:'................', CP:'....x.......x...', CH:'xxxxxxxxxxxxxxxx', OH:'..x...x...x...x.', RM:'...........x..x.', BS:'.xx..xx..xx..xx.', ST:'..............x.' },
+  'Berlin Roll':     { sn:{tune:45,snap:55,decay:38}, cl:{tone:50,decay:50}, pc:{tune:45,decay:45}, bpm:133, swing:4,  decay:78, verb:0, kick:'hard', acid:.25, space:30, root:43.65,chord:[0,3,7],       notes:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,12,0],    kk:{depth:55,attack:55,punch:65}, hh:{closed:30,open:50,tone:55}, bass:{cutoff:38,res:48}, bx:{drive:45,echo:10,verb:0}, stab:{tone:42,decay:30,echo:70,verb:0},
+    BD:'x...x...x...x...', SD:'............x...', CP:'................', CH:'x.xxx.xxx.xxx.xx', OH:'..x...x...x...x.', RM:'..x.....x.x.....', BS:'.x.x.x.x.x.x.x.x', ST:'......x.........' },
+  'Electro': { sn:{tune:55,snap:80,decay:40}, cl:{tone:60,decay:45}, pc:{tune:55,decay:35}, bpm:124, swing:6, decay:47, verb:12, kick:'hard', acid:0.5, space:0, root:49, chord:[0,3,7,10], notes:[0,0,0,12,0,10,0,0,0,0,0,12,0,7,10,0], kk:{depth:45,attack:70,punch:85}, hh:{closed:20,open:40,tone:70}, bass:{cutoff:58,res:55}, bx:{drive:95,echo:0,verb:0}, stab:{tone:68,decay:30,echo:25,verb:20},
+    BD:'x...x...x...x...', SD:'....x.......x...', CP:'....x.......x...', CH:'..xx..xx..xx..xx', OH:'..x...x...x...x.', RM:'................', BS:'x.xx.x..x.xx.xx.', ST:'......x.......x.' },
+  'Acid Jack': { sn:{tune:55,snap:60,decay:35}, cl:{tone:55,decay:40}, pc:{tune:55,decay:35}, bpm:126, swing:8, decay:45, verb:8, kick:'deep', acid:0.9, space:0, root:55, chord:[0,3,7], notes:[0,0,12,0,3,0,0,12,0,7,0,0,10,12,0,0], kk:{depth:50,attack:60,punch:65}, hh:{closed:22,open:40,tone:66}, bass:{cutoff:48,res:85}, bx:{drive:55,echo:0,verb:0}, stab:{tone:60,decay:20,echo:0,verb:0},
+    BD:'x...x...x...x...', SD:'................', CP:'....x.......x...', CH:'x.x.x.x.x.x.x.xx', OH:'..x...x...x...x.', RM:'................', BS:'x.xxx.xx.xx.xxx.', ST:'................' },
+  'Deep House': { sn:{tune:45,snap:45,decay:40}, cl:{tone:48,decay:50}, pc:{tune:50,decay:40}, bpm:122, swing:18, decay:50, verb:18, kick:'deep', acid:0, space:0, root:43.65, chord:[0,3,7,10,14], notes:[0,0,0,0,0,0,0,10,0,0,7,0,0,0,0,0], kk:{depth:70,attack:35,punch:40}, hh:{closed:30,open:48,tone:50}, bass:{cutoff:32,res:25}, bx:{drive:15,echo:0,verb:0}, stab:{tone:45,decay:45,echo:15,verb:25},
+    BD:'x...x...x...x...', SD:'................', CP:'....x.......x...', CH:'x..xx..xx..xx..x', OH:'..x...x...x...x.', RM:'......x......x..', BS:'x..x...x..x.....', ST:'x..x......x.....' },
+  'Breakbeat': { sn:{tune:60,snap:50,decay:25}, cl:{tone:55,decay:45}, pc:{tune:60,decay:30}, bpm:134, swing:24, decay:47, verb:25, kick:'deep', acid:0, space:15, root:43.65, chord:[0,4,7,11,14], notes:[0,0,0,0,0,0,0,0,0,0,5,0,0,7,0,0], kk:{depth:55,attack:50,punch:55}, hh:{closed:22,open:40,tone:60}, bass:{cutoff:30,res:15}, bx:{drive:15,echo:0,verb:0}, stab:{tone:55,decay:55,echo:30,verb:45},
+    BD:'x......x..x.....', SD:'.........x.....x', CP:'....x.......x...', CH:'x.x.x.xxx.x.x.x.', OH:'..x.......x.....', RM:'...x.....x..x...', BS:'x..x......x..x..', ST:'x.....x...x.....' },
+  'Dub Techno': { sn:{tune:45,snap:40,decay:45}, cl:{tone:42,decay:55}, pc:{tune:70,decay:15}, bpm:118, swing:12, decay:58, verb:60, kick:'deep', acid:0, space:70, root:46.25, chord:[0,3,7,10,14], notes:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], kk:{depth:85,attack:10,punch:25}, hh:{closed:18,open:55,tone:36}, bass:{cutoff:22,res:15}, bx:{drive:8,echo:0,verb:10}, stab:{tone:34,decay:62,echo:95,verb:85},
+    BD:'x...x...x...x...', SD:'................', CP:'................', CH:'..x..xx...x..xx.', OH:'......x.........', RM:'....x.......x..x', BS:'x.....x...x.....', ST:'..x.......x.....' }
+};
+const parse = p => Object.fromEntries(ROWS.map(([k]) => [k, p[k].split('').map(c => c === 'x')]));
+const P0 = PRESETS['Peak Warehouse'];
+const RANGE = { bpm: [100, 150, 128], swing: [0, 60, 0], decay: [15, 95, 50], cutoff: [0, 100, 45], res: [0, 100, 45], filter: [-100, 100, 0], verb: [0, 100, 0], space: [0, 100, 0], drive: [0, 100, 0], 'sn.tune': [0, 100, 50], 'sn.snap': [0, 100, 65], 'sn.decay': [0, 100, 40], 'cl.tone': [0, 100, 50], 'cl.decay': [0, 100, 45], 'pc.tune': [0, 100, 50], 'pc.decay': [0, 100, 40], vol: [0, 100, 80], 'bx.drive': [0, 100, 30], 'bx.echo': [0, 100, 0], 'bx.verb': [0, 100, 0], 'stab.tone': [0, 100, 55], 'stab.decay': [0, 100, 35], 'stab.echo': [0, 100, 0], 'stab.verb': [0, 100, 0], 'kk.depth': [0, 100, 50], 'kk.attack': [0, 100, 45], 'kk.punch': [0, 100, 50], 'kk.rumble': [0, 100, 0], 'bx.acid': [0, 100, 0], 'stab.chord': [0, 6, 1], key: [0, 11, 0], 'hh.closed': [0, 100, 35], 'hh.open': [0, 100, 45], 'hh.tone': [0, 100, 55] };
+const T = id => `https://drive.google.com/thumbnail?id=${id}&sz=w1200`;
+const TS = id => `https://drive.google.com/thumbnail?id=${id}&sz=w800`;
+const DL = id => `https://drive.google.com/uc?export=download&id=${id}`;
+const IMG = { oxa:'1V-ym4KOgheGBftgeH6HJ8bkNEJVlwyVj', hallo:'1FL30JszV_jIovOc4bEVdr2U0nEYZo1mt', sg:'14PXz8E8I3wP8o3oNw8PzmKdjZd93TGsW', mm:'1lWH-kMsboXbZw9xX1IRUkOsEkPESJMmg', hk:'102XWJGXhA0fGy3c0IsGInvOPFSnMtTBO', mtn:'1wH6JeRiFbbYzxgJ4dMPRdFfM_jDKQV1Y', studio:'1JojVHTvmP6QKLKBJ_kV0mv3EW4vUPexJ', m1:'1pGgwVdrZdjclcY_kpyx5kziMSUQJ-jUu', m2:'1gQ8jqV1hfPQFnuzNlQQJ-WUHhlXKcv7I', kit:'1rjgHz3YLuMfXjrXCjenKEXGpWpOOR9zy', logo:'1rbGHnGTzfzkgS6-4r4Vv0E2Mwhla3eEB' };
+const VENUES = [
+  ['Sub Club','SCO'],['SWG3','SCO'],['La Cheetah','SCO'],['Club 69','SCO'],['Griessmuehle','BER'],
+  ['OXA Beach','KP',IMG.oxa],['Hollystone','KP'],['Seaside','KP'],['Retro Mountain','KP',IMG.mtn],['Sabaii Bay','KP'],
+  ['Tiki Beach','KP'],['Money Moon','KP',IMG.mm],['Soundgarden','KP',IMG.sg],['Barcelona','KP'],['Jungle Experience','KP'],['Waterfall Festival','KP'],['Echo Beach','KP'],['Escobar','KT'],['Secret Party','KT'],['Hii Festival','KT']
+];
+const GENRES = [
+  ['House','House',120,126],['House','Deep house',118,124],['Live','Live set',120,135],
+  ['House','Deep',120,124],['House','Dub',120,125],['House','Tech',123,127],['House','Raw',124,128],['House','Driving',125,130],
+  ['Techno','Dub',122,128],['Techno','Minimal',124,130],['Techno','Peak time',128,136],['Techno','Hard',134,140]
+];
+
+class Component extends DCLogic {
+  state = { selRow: 'BD', kit: 'synth', grid: parse(P0), preset: 'Peak Warehouse', snd: { root: P0.root, chord: P0.chord, notes: P0.notes, kick: P0.kick, acid: P0.acid }, playing: false, step: -1, bpm: P0.bpm, swing: P0.swing, decay: P0.decay, cut: {}, lvl: { BD: 90, SD: 75, CP: 80, CH: 70, OH: 65, RM: 70, BS: 80, ST: 70 }, sn: { ...P0.sn }, cl: { ...P0.cl }, pc: { ...P0.pc }, key: mdExtra(P0).key, kk: { ...P0.kk, rumble: mdExtra(P0).rumble }, hh: { ...P0.hh }, bass: { ...P0.bass }, bx: { ...P0.bx, acid: mdExtra(P0).acid }, stab: { ...P0.stab, chord: mdExtra(P0).chord }, mx: { vol: 80, kill: { LOW: false, MID: false, HI: false } }, fx: { drive: { on: true, amt: 0 }, verb: { on: true, amt: P0.verb }, filter: { on: true, amt: 0 }, space: { on: P0.space > 0, amt: P0.space || 45 }, repeat: { on: false, amt: 2 } }, bpmView: 128, region: 'All', g: { a: { style: 'Berlin Roll', playing: false, pitch: 0, gain: 70, hi: 0, mid: 0, lo: 0, fader: 100 }, b: { style: 'Deep House', playing: false, pitch: 0, gain: 70, hi: 0, mid: 0, lo: 0, fader: 0 }, xf: 0, master: 80, fxType: 'echo', fxOn: false, fxamt: 50, focus: false, sel: 'b', cueA: false, cueB: true, cuemix: 35, split: false, assist: true, reveal: false, locked: false, result: '' } };
+  gm = this.mkRound();
+
+  componentDidMount() {
+    this.fine = window.matchMedia('(pointer:fine)').matches;
+    this.mx = innerWidth / 2; this.my = innerHeight / 2; this.rx = this.mx; this.ry = this.my;
+    this.onMove = e => {
+      this.mx = e.clientX; this.my = e.clientY;
+      if (this.fine && !this.raf && this.cLoop) this.raf = requestAnimationFrame(this.cLoop);
+      if (this.bgEl && !this.pxRaf) this.pxRaf = requestAnimationFrame(() => { this.pxRaf = 0; this.bgEl.style.setProperty('--mx', (this.mx / innerWidth - .5).toFixed(3)); this.bgEl.style.setProperty('--my', (this.my / innerHeight - .5).toFixed(3)); });
+    };
+    this.onOver = e => {
+      const el = e.target.closest && e.target.closest('[data-cursor],[data-img],a,button,input,label');
+      const ring = this.cRing, lab = this.cLabel, img = this.cImg;
+      if (!ring) return;
+      let text = '';
+      if (el) {
+        const tag = el.tagName;
+        text = el.getAttribute('data-cursor') || (tag === 'A' ? 'open' : tag === 'INPUT' || tag === 'LABEL' ? 'drag' : tag === 'BUTTON' ? '' : '');
+      }
+      const big = !!el;
+      const size = big ? 26 : 12;
+      Object.assign(ring.style, { width: size + 'px', height: size + 'px', margin: `-${size / 2}px 0 0 -${size / 2}px`, background: 'transparent', mixBlendMode: 'difference' });
+      lab.textContent = text;
+      const src = el && el.getAttribute('data-img');
+      if (src) { img.style.backgroundImage = `url(${T(src)})`; img.style.opacity = 1; } else img.style.opacity = 0;
+    };
+    window.addEventListener('mousemove', this.onMove);
+    document.addEventListener('mouseover', this.onOver);
+    const loop = () => {
+      this.rx += (this.mx - this.rx) * .2; this.ry += (this.my - this.ry) * .2;
+      if (Math.abs(this.mx - this.rx) < .3 && Math.abs(this.my - this.ry) < .3) { this.raf = 0; return; }
+      if (this.cDot) this.cDot.style.transform = `translate(${this.mx}px,${this.my}px)`;
+      if (this.cRing) this.cRing.style.transform = `translate(${this.rx}px,${this.ry}px)`;
+      if (this.cImg) this.cImg.style.transform = `translate(${this.rx}px,${this.ry}px)`;
+      if (this.heroEl) { const b = this.heroEl.getBoundingClientRect(); if (b.bottom > 0) { this.heroEl.style.setProperty('--hx', (this.rx - b.left) + 'px'); this.heroEl.style.setProperty('--hy', (this.ry - b.top) + 'px'); } }
+      this.raf = requestAnimationFrame(loop);
+    };
+    this.cLoop = loop;
+    if (this.fine) loop();
+    this.fitUnits = () => { document.querySelectorAll('[data-fitw]').forEach(el => { const w = +el.getAttribute('data-fitw'), p = el.parentElement; if (!p) return; el.style.zoom = ''; const avail = p.clientWidth - 12; let z = avail < w ? avail / w : 1; if (this.state.mFull && el.hasAttribute('data-fitfull')) z = Math.max(.3, Math.min(avail / w, (innerHeight - 64) / el.offsetHeight, 2)); el.style.zoom = z === 1 ? '' : z.toFixed(3); }); };
+    window.addEventListener('resize', this.fitUnits); setTimeout(this.fitUnits, 300); setTimeout(this.fitUnits, 1500);
+    this.fit = () => {
+      const el = this.nameEl; if (!el || !el.parentElement) return;
+      el.style.fontSize = '100px'; el.style.display = 'inline-block';
+      const w = el.parentElement.clientWidth, tw = el.getBoundingClientRect().width;
+      el.style.display = 'block';
+      if (tw) el.style.fontSize = (100 * w / tw * .99) + 'px';
+    };
+    window.addEventListener('resize', this.fit);
+    this.onVis = () => document.documentElement.style.setProperty('--play', document.hidden ? 'paused' : 'running');
+    document.addEventListener('visibilitychange', this.onVis);
+    window.addEventListener('pointermove', this.onDragMove);
+    window.addEventListener('pointerup', this.onDragUp);
+    this.onCtlKey = e => { if (e.key === 'Escape' && this.state.mFull) this.setFull(false); }; this.onBIP = () => {};
+    window.addEventListener('keydown', this.onCtlKey);
+    this.onFs = () => { if (!document.fullscreenElement && this.state.mFull) this.setFull(false, true); }; document.addEventListener('fullscreenchange', this.onFs);
+    window.addEventListener('keydown', this.onSeqKey);
+    window.addEventListener('pointermove', this.onPaintMove); window.addEventListener('pointerup', this.onPaintUp); window.addEventListener('pointercancel', this.onPaintCancel);
+    document.addEventListener('wheel', this.onKnobWheel, { passive: false });
+    window.addEventListener('keydown', this.onKnobKey);
+    this.endAll = () => { if (this.drag) this.drag.moved = true; this.onDragUp(); if (this.gDragUp) this.gDragUp(); };
+    window.addEventListener('pointercancel', this.endAll); window.addEventListener('blur', this.endAll); document.addEventListener('lostpointercapture', this.endAll, true);
+    window.addEventListener('pointermove', this.gDragMove);
+    document.addEventListener('pointerdown', this.onGPointer, true);
+    window.addEventListener('keydown', this.onGKey, true);
+    window.addEventListener('keyup', this.onGKey, true);
+    window.addEventListener('pointerup', this.gDragUp);
+    // one strobe flash. beat = true gives the short, hard flash used when it follows the music
+    const flash = beat => {
+      const el = this.strobeEl;
+      if (el && el.animate && !(window.MDStrobe && window.MDStrobe.off)) {
+        const x = Math.random() * 100, y = Math.random() * 90, w = 40 + Math.random() * 50, peak = beat ? .75 + Math.random() * .25 : .3 + Math.random() * .7;
+        const m = `radial-gradient(ellipse ${w}% ${w * .9}% at ${x}% ${y}%, #000 0%, rgba(0,0,0,.6) 40%, transparent 78%)`;
+        el.style.webkitMaskImage = m; el.style.maskImage = m;
+        el.animate([{ opacity: peak }, { opacity: 0 }], { duration: beat ? 150 : 120 + Math.random() * 520, easing: 'ease-out' });
+        if (!beat && Math.random() < .25) setTimeout(() => el.animate([{ opacity: peak * .7 }, { opacity: 0 }], { duration: 90, easing: 'ease-out' }), 110);
+      }
+    };
+    // music: 'mix' while Full Moon Radio plays (mix-autoplay.js flashes on its beat), 'md442' while the drum machine plays (flashes on every kick)
+    const strobe = window.MDStrobe = window.MDStrobe || {}; strobe.flash = flash;
+    const idle = () => { if (!strobe.music) flash(false); this.strobeT = setTimeout(idle, 260 + Math.random() * 1300); };
+    this.strobeT = setTimeout(idle, 800);
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(this.fit);
+    setTimeout(this.fit, 600);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('mousemove', this.onMove);
+    document.removeEventListener('mouseover', this.onOver);
+    window.removeEventListener('resize', this.fit);
+    window.removeEventListener('resize', this.fitUnits);
+    window.removeEventListener('pointermove', this.onDragMove);
+    window.removeEventListener('pointerup', this.onDragUp);
+    window.removeEventListener('keydown', this.onCtlKey); window.removeEventListener('beforeinstallprompt', this.onBIP);
+    window.removeEventListener('keydown', this.onSeqKey);
+    window.removeEventListener('pointermove', this.onPaintMove); window.removeEventListener('pointerup', this.onPaintUp); window.removeEventListener('pointercancel', this.onPaintCancel);
+    document.removeEventListener('wheel', this.onKnobWheel); window.removeEventListener('keydown', this.onKnobKey); cancelAnimationFrame(this.flickRaf);
+    window.removeEventListener('pointercancel', this.endAll); window.removeEventListener('blur', this.endAll); document.removeEventListener('lostpointercapture', this.endAll, true);
+    window.removeEventListener('pointermove', this.gDragMove);
+    document.removeEventListener('pointerdown', this.onGPointer, true);
+    window.removeEventListener('keydown', this.onGKey, true);
+    window.removeEventListener('keyup', this.onGKey, true);
+    if (this.gameEl && this.onGWheel) this.gameEl.removeEventListener('wheel', this.onGWheel);
+    window.removeEventListener('pointerup', this.gDragUp);
+    clearInterval(this.gTimer); cancelAnimationFrame(this.graf);
+    cancelAnimationFrame(this.raf); cancelAnimationFrame(this.mraf); clearInterval(this.timer); clearTimeout(this.strobeT);
+    if (this.ac) this.ac.close();
+  }
+
+  ensure() {
+    if (this.ac) return this.ac;
+    const ac = this.ac = new (window.AudioContext || window.webkitAudioContext)();
+    const b = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    this.noise = b;
+    const bq = (type, fr, q, g) => { const n = ac.createBiquadFilter(); n.type = type; n.frequency.value = fr; if (q != null) n.Q.value = q; if (g != null) n.gain.value = g; return n; };
+    this.bus = ac.createGain();
+    this.lo = bq('lowshelf', 220, null, 0); this.mid = bq('peaking', 1000, .8, 0); this.hi = bq('highshelf', 3800, null, 0);
+    this.flt = bq('allpass', 1000, 1);
+    this.mst = ac.createGain();
+    const comp = ac.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 4; comp.attack.value = .003; comp.release.value = .18;
+    this.an = ac.createAnalyser(); this.an.fftSize = 512;
+    this.wet = ac.createGain(); this.wet.connect(this.lo); this.bus.connect(this.lo); this.lo.connect(this.mid); this.mid.connect(this.hi); this.hi.connect(this.flt); this.drv = ac.createWaveShaper(); this.drv.oversample = '2x'; this.flt.connect(this.drv); this.drv.connect(this.mst); this.mst.connect(comp); comp.connect(this.an);
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (ios && ac.createMediaStreamDestination) { const md = ac.createMediaStreamDestination(); this.an.connect(md); this.audioEl = new Audio(); this.audioEl.srcObject = md.stream; this.audioEl.play().catch(() => {}); }
+    else this.an.connect(ac.destination);
+    // kick saturation
+    this.rowG = {}; ROWS.forEach(([k]) => { const g = ac.createGain(); g.connect(this.bus); this.rowG[k] = g; });
+    this.kBus = ac.createGain(); const sh = ac.createWaveShaper(); const c = new Float32Array(1024);
+    for (let i = 0; i < 1024; i++) { const x = i / 512 - 1; c[i] = Math.tanh(3.2 * x) * .9; }
+    sh.curve = c; this.kBus.connect(sh); sh.connect(this.rowG.BD);
+    this.applyLevels();
+    // dub delay
+    this.dIn = ac.createGain(); this.dl = ac.createDelay(2); this.fb = ac.createGain(); this.fb.gain.value = .55;
+    const dlp = bq('lowpass', 2400, .7), dhp = bq('highpass', 280, .7);
+    this.dIn.connect(this.dl); this.dl.connect(dlp); dlp.connect(dhp); dhp.connect(this.fb); this.fb.connect(this.dl); this.dWet = ac.createGain(); this.dWet.gain.value = .9; dhp.connect(this.dWet); this.dWet.connect(this.wet); this.spSend = ac.createGain(); this.spSend.gain.value = 0; this.bus.connect(this.spSend); this.spSend.connect(this.dIn);
+    // reverb
+    this.rIn = ac.createGain(); const cv = ac.createConvolver(); const len = ac.sampleRate * 3.6, ir = ac.createBuffer(2, len, ac.sampleRate);
+    for (let ch = 0; ch < 2; ch++) { const x = ir.getChannelData(ch); for (let i = 0; i < len; i++) x[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.4); }
+    cv.buffer = ir; const rv = this.rv = ac.createGain(); rv.gain.value = .32; this.rIn.connect(cv); cv.connect(rv); rv.connect(this.wet);
+    // global reverb send (whole kit) so the Reverb knob is obvious; high-passed to keep the kick tight
+    this.vSend = ac.createGain(); this.vSend.gain.value = 0; const vhp = bq('highpass', 260, .7); this.bus.connect(vhp); vhp.connect(this.vSend); this.vSend.connect(this.rIn);
+    // bass: drive + its own echo / reverb sends
+    this.bsIn = ac.createGain(); this.bsDrive = ac.createWaveShaper(); this.bsDrive.oversample = '2x'; this.bsIn.connect(this.bsDrive); this.bsDrive.connect(this.rowG.BS);
+    this.bsEcho = ac.createGain(); this.bsEcho.gain.value = 0; this.bsDrive.connect(this.bsEcho); this.bsEcho.connect(this.dIn);
+    this.bsVerb = ac.createGain(); this.bsVerb.gain.value = 0; this.bsDrive.connect(this.bsVerb); this.bsVerb.connect(this.rIn);
+    this.applyMaster();
+    return ac;
+  }
+  applyMaster() {
+    if (!this.ac) return;
+    { const d = this.state.fx.drive, da = d && d.on ? d.amt / 100 : 0; if (this._da !== da) { this._da = da; if (da > .01) { const kd = 1 + da * 14, c = new Float32Array(2048), nn = Math.tanh(kd); for (let i = 0; i < 2048; i++) c[i] = Math.tanh(kd * (i / 1024 - 1)) / nn * (1 - da * .35); this.drv.curve = c; } else this.drv.curve = null; } }
+    this.kitWarm();
+    const m = this.state.mx, x = this.state.fx, t = this.ac.currentTime;
+    this.mst.gain.setTargetAtTime(Math.pow(m.vol / 100, 1.6) * 1.1, t, .02);
+    this.lo.gain.setTargetAtTime(m.kill.LOW ? -40 : 0, t, .01);
+    this.mid.gain.setTargetAtTime(m.kill.MID ? -40 : 0, t, .01);
+    this.hi.gain.setTargetAtTime(m.kill.HI ? -40 : 0, t, .01);
+    this.rv.gain.setTargetAtTime(x.verb.on ? .25 + x.verb.amt / 100 * 1.75 : 0, t, .05);
+    this.vSend.gain.setTargetAtTime(x.verb.on ? Math.pow(x.verb.amt / 100, 1.3) * .9 : 0, t, .05);
+    this.spSend.gain.setTargetAtTime(x.space.on ? .1 + x.space.amt / 100 * .65 : 0, t, .03);
+    this.fb.gain.setTargetAtTime(x.space.on ? .25 + x.space.amt / 100 * .6 : .45, t, .05);
+    const bx = this.state.bx, dk = 1 + bx.drive / 100 * 24, cvv = new Float32Array(1024); for (let i = 0; i < 1024; i++) { const xx = i / 512 - 1; cvv[i] = Math.tanh(dk * xx) / Math.tanh(dk) * (1 - bx.drive / 260); }
+    if (this.kBus) this.kBus.gain.setTargetAtTime(.6 + this.state.kk.punch / 100 * 1.1, t, .02);
+    if (this._dk !== dk) { this._dk = dk; this.bsDrive.curve = cvv; }
+    this.bsEcho.gain.setTargetAtTime(bx.echo / 100 * 1.4, t, .03);
+    this.bsVerb.gain.setTargetAtTime(bx.verb / 100 * 1.8, t, .05);
+    const v = x.filter.on ? x.filter.amt : 0;
+    if (Math.abs(v) < 4) this.flt.type = 'allpass';
+    else if (v < 0) { this.flt.type = 'lowpass'; this.flt.Q.value = 5; this.flt.frequency.setTargetAtTime(18000 * Math.pow(160 / 18000, -v / 100), t, .02); }
+    else { this.flt.type = 'highpass'; this.flt.Q.value = 5; this.flt.frequency.setTargetAtTime(20 * Math.pow(3500 / 20, v / 100), t, .02); }
+  }
+  applyLevels() {
+    if (!this.ac) return;
+    const t = this.ac.currentTime;
+    ROWS.forEach(([k]) => this.rowG[k].gain.setTargetAtTime(this.state.cut[k] ? 0 : Math.pow(this.state.lvl[k] / 100, 1.5) * 1.25, t, .015));
+  }
+  env(g, t, peak, dur, att = .001) { g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(peak, t + att); g.gain.exponentialRampToValueAtTime(.0008, t + dur); }
+  nz(t, dur, type, fr, g, q, dest) {
+    const ac = this.ac, s = ac.createBufferSource(), fl = ac.createBiquadFilter(), gn = ac.createGain();
+    s.buffer = this.noise; fl.type = type; fl.frequency.value = fr; if (q) fl.Q.value = q;
+    this.env(gn, t, g, dur); s.connect(fl); fl.connect(gn); gn.connect(dest || this._d || this.bus); s.start(t, Math.random()); s.stop(t + dur + .05);
+    return gn;
+  }
+  tn(t, type, f0, f1, dur, g, dest, sweep = .08) {
+    const ac = this.ac, o = ac.createOscillator(), gn = ac.createGain();
+    o.type = type; o.frequency.setValueAtTime(f0, t); if (f1) o.frequency.exponentialRampToValueAtTime(f1, t + sweep);
+    this.env(gn, t, g, dur); o.connect(gn); gn.connect(dest || this._d || this.bus); o.start(t); o.stop(t + dur + .05);
+    return gn;
+  }
+  metal(t, dur, g, tone = 1) {
+    const ac = this.ac, gn = ac.createGain(), bp = ac.createBiquadFilter(), hp = ac.createBiquadFilter();
+    bp.type = 'bandpass'; bp.frequency.value = Math.min(16000, 10000 * tone); bp.Q.value = .8; hp.type = 'highpass'; hp.frequency.value = 7000 * tone;
+    [2, 3, 4.16, 5.43, 6.79, 8.21].forEach(r => { const o = ac.createOscillator(); o.type = 'square'; o.frequency.value = 40 * r; o.connect(bp); o.start(t); o.stop(t + dur + .05); });
+    bp.connect(hp); hp.connect(gn); this.env(gn, t, g, dur); gn.connect(this._d || this.bus);
+  }
+  bongo(t, i, dest, lv, dry) {
+    // hand-drum bongo: alternating high/low heads, fast pitch drop, membrane overtone, skin slap
+    const ac = this.ac, hiHead = [0, 3, 6, 10, 13].includes(i % 16) ? false : i % 2 === 0, f0 = hiHead ? 410 : 290, pc = [0, 0, 2, 0, -1, 0, 3, 0][i % 8];
+    const f = f0 * Math.pow(2, pc / 12), dur = .14 + (this.state.decay || 50) / 900;
+    this.tn(t, 'sine', f * 1.45, f, dur, .9 * lv, dest, .018);
+    this.tn(t, 'sine', f * 2.2, f * 1.58, dur * .45, .28 * lv, dest, .012);
+    this.tn(t, 'triangle', f * 3.1, f * 2.6, .025, .12 * lv, dest, .008);
+    this.nz(t, .014, 'bandpass', 2200, .45 * lv, 1.8, dest);
+    this.nz(t + .002, .05, 'bandpass', f * 4, .12 * lv, 4, dest);
+    if (this.rIn && !dry) this.tn(t, 'sine', f * 1.45, f, dur, .25 * lv, this.rIn, .018);
+  }
+  kitQ(k, i) {
+    const s = this.state;
+    if (k === 'BD') return { depth: s.kk.depth, attack: s.kk.attack, decay: (s.decay - 15) / 80 * 100 };
+    if (k === 'SD') return { tune: 50, snap: 66 };
+    if (k === 'CP') return { tone: 60 };
+    if (k === 'CH') return { len: s.hh.closed };
+    if (k === 'OH') return { len: s.hh.open };
+    return { tune: 50, decay: 33, hi: ![0, 3, 6, 10, 13].includes(i % 16) && i % 2 === 0 };
+  }
+  kitVoice(k, t, i) {
+    const s = this.state, ac = this.ac, q = this.kitQ(k, i), path = MDKIT.file(s.kit, k, q); if (!path) return false;
+    const buf = MDKIT.get(ac, 'samples/', path, s.kit + k + (k === 'RM' ? (q.hi ? 'h' : 'l') : '')); if (!buf) return false;
+    const lv = MDKIT.LEVEL[k], tn = .9 + s.hh.tone / 100 * .2;
+    if (k === 'BD') MDKIT.play(ac, buf, t, this.kBus, lv, s.kit === '808' ? 1.1 - s.kk.depth / 100 * .2 : 1);
+    else if (k === 'CH') { if (this.openHatG) { this.openHatG.gain.cancelScheduledValues(t); this.openHatG.gain.setTargetAtTime(0, t, .006); this.openHatG = null; } MDKIT.play(ac, buf, t, this.rowG.CH, lv, tn, s.kit === '808' ? .03 + s.hh.closed / 100 * .2 : 0); }
+    else if (k === 'OH') this.openHatG = MDKIT.play(ac, buf, t, this.rowG.OH, lv, tn);
+    else MDKIT.play(ac, buf, t, this.rowG[k], lv);
+    return true;
+  }
+  kitWarm() { const s = this.state; if (!this.ac || !s.kit || s.kit === 'synth') return; ['BD', 'SD', 'CP', 'CH', 'OH'].forEach(k => { const f = MDKIT.file(s.kit, k, this.kitQ(k, 0)); if (f) MDKIT.get(this.ac, 'samples/', f, s.kit + k); }); [2, 0].forEach(i => { const q = this.kitQ('RM', i), f = MDKIT.file(s.kit, 'RM', q); if (f) MDKIT.get(this.ac, 'samples/', f, s.kit + 'RM' + (q.hi ? 'h' : 'l')); }); }
+  voice(k, t, i = 0) {
+    const ac = this.ac, s = this.state, sd = 60 / s.bpm / 4, acd = (s.bx.acid || 0) / 100;
+    const snd = { notes: s.snd.notes, kick: (s.kk.rumble || 0) >= 50 ? 'hard' : 'deep', acid: acd < .12 ? 0 : acd, root: 41.2 * Math.pow(2, (s.key || 0) / 12), chord: (MDCHORDS[s.stab.chord == null ? 1 : s.stab.chord] || MDCHORDS[1])[1] };
+    this._d = this.rowG[k];
+    if (s.kit && s.kit !== 'synth' && k !== 'BS' && k !== 'ST' && this.kitVoice(k, t, i)) { this._d = null; return; }
+    if (k === 'BD') {
+      const q = { depth: s.kk.depth / 100, attack: s.kk.attack / 100, punch: s.kk.punch / 100, decay: Math.max(0, Math.min(1, (s.decay - 15) / 80)) };
+      if (snd.kick === 'hard') {   // Rumble up: through the saturator, with a low tail into the room
+        const kg = ac.createGain(), rl = ac.createBiquadFilter(), rg = ac.createGain(); rl.type = 'lowpass'; rl.frequency.value = 150; rg.gain.value = .3;
+        kg.connect(this.kBus); kg.connect(rl); rl.connect(rg); rg.connect(this.rIn); MD808.kick(ac, t, kg, q);
+      } else MD808.kick(ac, t, this._d, q);
+    }
+    if (k === 'SD') MD808.snare(ac, t, this._d, { tune: s.sn.tune / 100, snap: s.sn.snap / 100, decay: s.sn.decay / 100 });
+    if (k === 'CP') MD808.clap(ac, t, this._d, { tone: s.cl.tone / 100, decay: s.cl.decay / 100 });
+    if (k === 'CH') { if (this.openHatG) { this.openHatG.gain.cancelScheduledValues(t); this.openHatG.gain.setTargetAtTime(0, t, .006); this.openHatG = null; } MD808.hat(ac, t, this._d, { len: s.hh.closed / 100, tone: s.hh.tone / 100 }, false); }
+    if (k === 'OH') this.openHatG = MD808.hat(ac, t, this._d, { len: s.hh.open / 100, tone: s.hh.tone / 100 }, true);
+    if (k === 'RM') MD808.conga(ac, t, this._d, { tune: s.pc.tune / 100, decay: s.pc.decay / 100, hi: ![0, 3, 6, 10, 13].includes(i % 16) && i % 2 === 0 });
+    if (k === 'BS') {
+      const fr = snd.root * Math.pow(2, (snd.notes[i] || 0) / 12), dur = sd * (snd.acid ? 1.1 : 1.7);
+      const base = 90 * Math.pow(2, s.bass.cutoff / 100 * 5.2), peak = base * (1.6 + snd.acid * 7);
+      const lp = ac.createBiquadFilter(), g = ac.createGain(); lp.type = 'lowpass'; lp.Q.value = 1 + s.bass.res / 100 * (snd.acid ? 20 : 9);
+      lp.frequency.setValueAtTime(Math.min(peak, 12000), t); lp.frequency.exponentialRampToValueAtTime(base, t + .06 + (1 - snd.acid) * .16);
+      const o1 = ac.createOscillator(), o2 = ac.createOscillator(); o1.type = snd.acid ? 'square' : 'sawtooth'; o1.frequency.value = fr * (snd.acid ? 2 : 1); o2.type = 'sine'; o2.frequency.value = fr;
+      const og = ac.createGain(); og.gain.value = snd.acid ? .45 : 1;
+      o1.connect(og); og.connect(lp); lp.connect(g); o2.connect(g); this.env(g, t, .45, dur, .004); g.connect(this.bsIn);
+      [o1, o2].forEach(o => { o.start(t); o.stop(t + dur + .05); });
+    }
+    if (k === 'ST') {
+      const sb = s.stab, top = 300 * Math.pow(2, sb.tone / 100 * 5.5), sdur = .08 + Math.pow(sb.decay / 100, 1.5) * 1.6;
+      const lp = ac.createBiquadFilter(), g = ac.createGain(); lp.type = 'lowpass'; lp.Q.value = 2 + sb.tone / 100 * 6;
+      lp.frequency.setValueAtTime(Math.min(top, 16000), t); lp.frequency.exponentialRampToValueAtTime(Math.max(120, top * .16), t + sdur * .85);
+      snd.chord.forEach(iv => [-7, 7].forEach(dt => { const o = ac.createOscillator(); o.type = 'sawtooth'; o.frequency.value = snd.root * 4 * Math.pow(2, iv / 12); o.detune.value = dt; o.connect(lp); o.start(t); o.stop(t + sdur + .1); }));
+      lp.connect(g); this.env(g, t, .09, sdur, .004); g.connect(this._d);
+      const sd2 = ac.createGain(); sd2.gain.value = sb.echo / 100 * 2.2; g.connect(sd2); sd2.connect(this.dIn);
+      const rs = ac.createGain(); rs.gain.value = sb.verb / 100 * 2.6; g.connect(rs); rs.connect(this.rIn);
+    }
+    this._d = null;
+  }
+  range(key) {
+    if (key.startsWith('lvl:')) return [0, 100, 80];
+    if (key.startsWith('g:')) { const p = key.slice(2), prop = p.includes('.') ? p.split('.')[1] : p;
+      return ({ gain: [0, 100, 70], hi: [-100, 100, 0], mid: [-100, 100, 0], lo: [-100, 100, 0], fader: [0, 100, 100], pitch: [-8, 8, 0], xf: [-100, 100, 0], master: [0, 100, 80], fxamt: [0, 100, 50], cuemix: [0, 100, 35] })[prop]; }
+    return RANGE[key];
+  }
+  getV(key) {
+    if (this.pend && key in this.pend) return this.pend[key];
+    const s = this.state;
+    if (key.startsWith('g:')) { const p = key.slice(2); if (!p.includes('.')) return s.g[p]; const [dk, pr] = p.split('.'); return s.g[dk][pr]; }
+    if (key.startsWith('lvl:')) return s.lvl[key.slice(4)];
+    if (key === 'cutoff' || key === 'res') return s.bass[key];
+    if (/^(bx|stab|kk|hh|sn|cl|pc)\./.test(key)) { const [gk, pk] = key.split('.'); return s[gk][pk]; }
+    if (key === 'filter' || key === 'verb' || key === 'space' || key === 'drive') return s.fx[key].amt;
+    if (key === 'vol') return s.mx.vol;
+    return s[key];
+  }
+  setV(key, v) {
+    { const [mn, mx] = this.range(key); v = Math.max(mn, Math.min(mx, v)); }
+    (this.pend || (this.pend = {}))[key] = v;
+    if (!this.pRaf) this.pRaf = requestAnimationFrame(() => { const p = this.pend; this.pend = {}; this.pRaf = 0; for (const k in p) this._setV(k, p[k]); });
+  }
+  _setV(key, v) {
+    const [mn, mx] = this.range(key); v = Math.max(mn, Math.min(mx, v)); v = key.endsWith('.pitch') ? Math.round(v * 20) / 20 : Math.round(v);
+    if (key.startsWith('g:')) { const p = key.slice(2); return this.setState(s => { if (!p.includes('.')) return { g: { ...s.g, [p]: v } }; const [dk, pr] = p.split('.'); return { g: { ...s.g, [dk]: { ...s.g[dk], [pr]: v } } }; }, () => this.applyGame()); }
+    if (key.startsWith('lvl:')) return this.setState(s => ({ lvl: { ...s.lvl, [key.slice(4)]: v } }), () => this.applyLevels());
+    if (key === 'cutoff' || key === 'res') return this.setState(s => ({ bass: { ...s.bass, [key]: v } }));
+    if (/^(bx|stab|kk|hh|sn|cl|pc)\./.test(key)) { const [gk, pk] = key.split('.'); return this.setState(s => ({ [gk]: { ...s[gk], [pk]: v } }), () => this.applyMaster()); }
+    if (key === 'filter' || key === 'verb' || key === 'space' || key === 'drive') return this.setFx(key, v !== 0 && !this.state.fx[key].on ? { amt: v, on: true } : { amt: v });
+    if (key === 'vol') return this.setMx({ vol: v });
+    this.setState({ [key]: v });
+  }
+  setStep(k, i, val, hear) {
+    try { if (navigator.vibrate) navigator.vibrate(val ? 9 : 4); } catch (_) {}
+    if (val && hear) { const ac = this.ensure(); try { ac.resume(); } catch (_) {} this.voice(k, ac.currentTime + .01, i); }
+    this.setState(st => { if (st.grid[k][i] === val) return null; const g = { ...st.grid, [k]: st.grid[k].slice() }; g[k][i] = val; return { grid: g, preset: null }; });
+  }
+  onPaintMove = e => {
+    const p = this.paint; if (!p) return;
+    if (e.buttons === 0 && e.pointerType === 'mouse') { this.paint = null; return; }
+    if (p.pending != null) { if (Math.abs(e.clientX - p.x) < 8) return; p.done.add(p.pending); this.setStep(p.k, p.pending, p.val, true); p.pending = null; }   // touch: only start painting once the finger moves sideways
+    const el = document.elementFromPoint(e.clientX, e.clientY), b = el && el.closest && el.closest('[data-stc]');
+    if (!b || b.getAttribute('data-srow') !== p.k) return;
+    const i = +b.getAttribute('data-stc'); if (p.done.has(i)) return;
+    // fill any steps skipped by a fast sweep
+    const last = [...p.done].pop(), lo = Math.min(last, i), hi = Math.max(last, i);
+    for (let j = lo; j <= hi; j++) if (!p.done.has(j)) { p.done.add(j); this.setStep(p.k, j, p.val, false); }
+  };
+  onPaintUp = () => { const p = this.paint; this.paint = null; if (p && p.pending != null) this.setStep(p.k, p.pending, p.val, true); };   // touch tap
+  onPaintCancel = () => { this.paint = null; };   // the finger turned into a page scroll: change nothing
+  openCtl = () => {
+    this.stepEls = null; this.setState({ ctlOpen: true }, () => { this.stepEls = null; });
+    try { document.documentElement.style.overflow = 'hidden'; } catch (_) {}
+    try { const el = document.documentElement; if (!this.standalone && el.requestFullscreen && matchMedia('(pointer:coarse)').matches) el.requestFullscreen().catch(() => {}); } catch (_) {}
+    try { if (location.hash !== '#controller') history.replaceState(null, '', '#controller'); } catch (_) {}
+  };
+  closeCtl = () => {
+    this.stepEls = null; this.setState({ ctlOpen: false }, () => { this.stepEls = null; });
+    try { document.documentElement.style.overflow = ''; } catch (_) {}
+    try { if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {}); } catch (_) {}
+    try { if (location.hash === '#controller') history.replaceState(null, '', location.pathname + location.search + '#machine'); } catch (_) {}
+  };
+  installApp = async () => { const p = this.installEvt; if (!p) return; this.installEvt = null; this.setState({ canInstall: false }); try { p.prompt(); await p.userChoice; } catch (_) {} };
+  setFull(on, fromBrowser) {
+    this.setState({ mFull: on }, () => { if (this.fitUnits) { this.fitUnits(); setTimeout(this.fitUnits, 300); setTimeout(this.fitUnits, 900); } this.stepEls = null; });
+    try { document.documentElement.style.overflow = on ? 'hidden' : ''; } catch (_) {}
+    try {
+      if (on) { const el = document.documentElement; if (el.requestFullscreen && !document.fullscreenElement) el.requestFullscreen().catch(() => {}); }
+      else { if (!fromBrowser && document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {}); const m = document.getElementById('machine'); if (m) setTimeout(() => m.scrollIntoView({ block: 'start' }), 60); }
+    } catch (_) {}
+  }
+  savedList() { if (!this.saved) { try { this.saved = JSON.parse((localStorage.getItem('md001-saved') || localStorage.getItem('md911-saved')) || '[]'); } catch (_) { this.saved = []; } if (!Array.isArray(this.saved)) this.saved = []; } return this.saved; }
+  savePattern = () => {
+    const st = this.state, list = this.savedList().slice();
+    let n = 1; while (list.some(x => x.name === 'My pattern ' + n)) n++;
+    const name = 'My pattern ' + n;
+    const d = JSON.parse(JSON.stringify({ sn: st.sn, cl: st.cl, pc: st.pc, key: st.key, kit: st.kit, grid: st.grid, bpm: st.bpm, swing: st.swing, decay: st.decay, snd: st.snd, kk: st.kk, hh: st.hh, bass: st.bass, bx: st.bx, stab: st.stab, lvl: st.lvl, verb: st.fx.verb, space: st.fx.space }));
+    list.push({ name, d }); while (list.length > 6) list.shift();
+    this.saved = list; try { localStorage.setItem('md001-saved', JSON.stringify(list)); } catch (_) {}
+    this.lastPreset = null; clearTimeout(this.svT); this.setState({ preset: name, savedMsg: true }); this.svT = setTimeout(() => this.setState({ savedMsg: false }), 1600);
+  };
+  loadSaved(sv) {
+    const d = sv.d; this.lastPreset = null;
+    this.setState(st => ({ sn: d.sn || st.sn, cl: d.cl || st.cl, pc: d.pc || st.pc, key: d.key == null ? st.key : d.key, kit: 'synth', grid: d.grid, preset: sv.name, bpm: d.bpm, swing: d.swing, decay: d.decay, snd: d.snd, kk: d.kk, hh: d.hh, bass: d.bass, bx: d.bx, stab: d.stab, lvl: d.lvl || st.lvl,
+      fx: { ...st.fx, filter: { ...st.fx.filter, amt: 0 }, verb: { ...st.fx.verb, ...d.verb }, space: { ...st.fx.space, ...d.space }, repeat: { ...st.fx.repeat, on: false } } }),
+      () => { this.repStart = null; this.applyLevels(); this.applyMaster(); if (this.isPlaying) { this.cur = 0; this.nt = null; } else this.togglePlay(); });
+  }
+  isKnob(k) { return !(k === 'g:xf' || k.endsWith('.pitch') || k.startsWith('lvl:') || k.endsWith('.fader')); }
+  down(key) {
+    return e => { e.preventDefault(); if (e.currentTarget.setPointerCapture) try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {}
+      cancelAnimationFrame(this.flickRaf);
+      const r = e.currentTarget.getBoundingClientRect();
+      this.drag = { key, y: e.clientY, x: e.clientX, v: this.getV(key), t: performance.now(), moved: false, cx: r.left + r.width / 2, touch: e.pointerType !== 'mouse', hist: [[performance.now(), this.getV(key)]] };
+      if (this.isKnob(key) && this.state.selKnob !== key) this.setState({ selKnob: key });
+    };
+  }
+  onDragMove = e => {
+    if (this.drag && e.buttons === 0 && e.pointerType === 'mouse') { this.onDragUp(e); return; }
+    const d = this.drag; if (!d) return;
+    const [mn, mx] = this.range(d.key), k = d.key;
+    if (!d.moved) { if (Math.hypot(e.clientX - d.x, e.clientY - d.y) < 4) return; d.moved = true; d.x = e.clientX; d.y = e.clientY; }   // start from where the drag began, so nothing jumps
+    let nv;
+    if (k === 'g:xf') nv = d.v + (e.clientX - d.x) / 150 * (mx - mn);
+    else if (k.endsWith('.pitch')) nv = d.v + (e.clientY - d.y) / 160 * (mx - mn);
+    else if (k.startsWith('lvl:')) nv = d.v + (d.y - e.clientY) / 40 * (mx - mn);
+    else if (k.endsWith('.fader')) nv = d.v + (d.y - e.clientY) / 110 * (mx - mn);
+    else nv = d.v + ((d.y - e.clientY) + (e.clientX - d.x)) / (d.touch ? 130 : 190) * (mx - mn); // up or right = more
+    this.setV(k, nv);
+    const now = performance.now(); d.hist.push([now, Math.max(mn, Math.min(mx, nv))]); while (d.hist.length > 2 && now - d.hist[0][0] > 90) d.hist.shift();
+  };
+  onDragUp = e => {
+    const d = this.drag; this.drag = null; if (!d) return;
+    const k = d.key, [mn, mx] = this.range(k), span = mx - mn;
+    if (!d.moved && d.touch && this.isKnob(k) && performance.now() - d.t < 350 && e && e.clientX != null) {
+      // tap: right half turns up, left half turns down (10% steps)
+      this.setV(k, this.getV(k) + (e.clientX >= d.cx ? 1 : -1) * span / 10); return;
+    }
+    if (d.moved && d.touch && this.isKnob(k) && d.hist.length > 1) {
+      // flick: keep turning with momentum
+      const [t0, v0] = d.hist[0], [t1, v1] = d.hist[d.hist.length - 1]; let vel = (v1 - v0) / Math.max(16, t1 - t0) * 16;
+      if (Math.abs(vel) < span / 400) return;
+      let cur = this.getV(k);
+      const step = () => { vel *= .9; cur = Math.max(mn, Math.min(mx, cur + vel)); this.setV(k, cur); if (Math.abs(vel) > span / 600 && cur > mn && cur < mx) this.flickRaf = requestAnimationFrame(step); };
+      this.flickRaf = requestAnimationFrame(step);
+    }
+  };
+  onKnobWheel = e => {
+    const el = e.target.closest && e.target.closest('[data-knob]'); if (!el) return;
+    e.preventDefault();
+    const k = el.getAttribute('data-knob'), [mn, mx] = this.range(k), dy = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? -e.deltaY : e.deltaX;
+    const amt = Math.max(-1, Math.min(1, dy / 60)) * (mx - mn) / (e.shiftKey ? 100 : 25);
+    this.setV(k, this.getV(k) + amt);
+    if (this.state.selKnob !== k) this.setState({ selKnob: k });
+  };
+  onKnobKey = e => {
+    const k = this.state.selKnob; if (!k || this.state.g.focus) return;
+    const tag = (e.target.tagName || '').toLowerCase(); if (tag === 'input' || tag === 'textarea') return;
+    const dir = { ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1 }[e.key]; if (!dir) { if (e.key === 'Escape') this.setState({ selKnob: null }); return; }
+    e.preventDefault(); const [mn, mx] = this.range(k); this.setV(k, this.getV(k) + dir * (mx - mn) / (e.shiftKey ? 10 : 50));
+  };
+  setGameEl(el) {
+    if (this.gameEl === el) return;
+    if (this.gameEl && this.onGWheel) this.gameEl.removeEventListener('wheel', this.onGWheel);
+    this.gameEl = el;
+    if (!el) return;
+    if (window.IntersectionObserver) { if (this.gIO) this.gIO.disconnect(); this.gIO = new IntersectionObserver(es => { this.gVisible = es[0].isIntersecting; }); this.gIO.observe(el); }
+    this.onGWheel = e => {
+      if (!this.state.g.focus) return;
+      const t = e.target.closest && e.target.closest('[data-wheel]'); if (!t) return;
+      e.preventDefault();
+      const raw = t.getAttribute('data-wheel'), ci = raw.indexOf(':'), kind = raw.slice(0, ci), k = raw.slice(ci + 1), dir = e.deltaY < 0 ? 1 : -1;
+      if (kind === 'knob') { const [mn, mx] = this.range(k); this.setV(k, this.getV(k) + dir * (mx - mn) / (e.shiftKey ? 10 : 50)); if (this.state.g.sel !== 'mx') this.setState(st => ({ g: { ...st.g, sel: 'mx' } })); return; }
+      if (kind === 'pitch') this.setV('g:' + k + '.pitch', this.state.g[k].pitch + dir * (e.shiftKey ? .5 : .05));
+      else { const m = this.gm[k]; m.beat = Math.max(0, m.beat + dir * .03); }
+      if (this.state.g.sel !== k) this.setState(st => ({ g: { ...st.g, sel: k } }));
+    };
+    el.addEventListener('wheel', this.onGWheel, { passive: false });
+  }
+  onSeqKey = e => {
+    if (!this.mFocus || this.state.g.focus || e.metaKey || e.ctrlKey || e.altKey || e.repeat) return;
+    const tag = (e.target.tagName || '').toLowerCase(); if (tag === 'input' || tag === 'textarea') return;
+    const k = this.state.selRow, i = 'qwertyuiasdfghjk'.indexOf(e.key.toLowerCase());
+    if (i >= 0 && e.key.length === 1) { e.preventDefault(); this.setStep(k, i, !this.state.grid[k][i], true); return; }
+    if (!this.state.selKnob && (e.key === 'ArrowUp' || e.key === 'ArrowDown')) { e.preventDefault(); const ks = ROWS.map(r => r[0]), n = ks[(ks.indexOf(k) + (e.key === 'ArrowDown' ? 1 : -1) + ks.length) % ks.length]; this.setState({ selRow: n }); }
+  };
+  onGPointer = e => {
+    { const m = document.getElementById('machine'); this.mFocus = !!(m && m.contains(e.target)); }
+    if (this.state.selKnob && !(e.target.closest && e.target.closest('[data-knob]'))) this.setState({ selKnob: null });
+    const inside = !!(this.gameEl && this.gameEl.contains(e.target));
+    if (inside !== this.state.g.focus) this.setState(st => ({ g: { ...st.g, focus: inside } }));
+  };
+  onGKey = e => {
+    const g = this.state.g; if (!g.focus) return;
+    const tag = (e.target.tagName || '').toLowerCase(); if (tag === 'input' || tag === 'textarea') return;
+    const k = g.sel, key = e.key;
+    const hit = () => { e.preventDefault(); e.stopPropagation(); };
+    if (e.type === 'keydown') {
+      const fk = { q: ['a', 5], a: ['a', -5], w: ['b', 5], s: ['b', -5] }[key.toLowerCase()];
+      if (fk) { hit(); this.setV('g:' + fk[0] + '.fader', g[fk[0]].fader + fk[1]); return; }
+      if (key === '3') { hit(); this.setState(st => ({ g: { ...st.g, sel: 'mx' } })); return; }
+      if (k === 'mx') {
+        if (key === 'ArrowLeft' || key === 'ArrowRight') { hit(); this.setV('g:xf', g.xf + (key === 'ArrowRight' ? 5 : -5) * (e.shiftKey ? 4 : 1)); return; }
+        if (key === 'ArrowUp' || key === 'ArrowDown') { hit(); this.setV('g:master', g.master + (key === 'ArrowUp' ? 2 : -2)); return; }
+        if (key === ' ') { hit(); if (!e.repeat) this.setState(st => ({ g: { ...st.g, fxOn: !st.g.fxOn } }), () => this.applyGame()); return; }
+      }
+    }
+    if (k === 'mx' && (key === 'ArrowLeft' || key === 'ArrowRight' || key === ' ')) return;
+    if (e.type === 'keyup') { if (key === 'ArrowLeft' || key === 'ArrowRight') { hit(); this.nudge(k, 1)(); } return; }
+    if (key === ' ') { hit(); if (!e.repeat) this.gToggle(k); }
+    else if (key === '1' || key === '2') { hit(); this.setState(st => ({ g: { ...st.g, sel: key === '1' ? 'a' : 'b' } })); }
+    else if (key === 'ArrowUp' || key === 'ArrowDown') { hit(); this.setV('g:' + k + '.pitch', g[k].pitch + (key === 'ArrowUp' ? 1 : -1) * (e.shiftKey ? .5 : .05)); }
+    else if (key === 'ArrowLeft' || key === 'ArrowRight') { hit(); if (!e.repeat) this.nudge(k, key === 'ArrowLeft' ? .94 : 1.06)(); }
+    else if (key === 'c' || key === 'C') { hit(); this.gCue(k); }
+    else if ((key === 'v' || key === 'V') && k !== 'mx') { hit(); const ck = 'cue' + k.toUpperCase(); this.setState(st => ({ g: { ...st.g, [ck]: !st.g[ck] } }), () => this.applyGame()); }
+    else if (key === 'z' || key === 'Z') { hit(); this.setV('g:xf', g.xf - 10); }
+    else if (key === 'x' || key === 'X') { hit(); this.setV('g:xf', g.xf + 10); }
+    else if (key === 'f' || key === 'F') { hit(); this.setState(st => ({ g: { ...st.g, fxOn: !st.g.fxOn } }), () => this.applyGame()); }
+  };
+  buildStrobe(k) {
+    this._strobe = this._strobe || {};
+    if (this._strobe[k]) return this._strobe[k];
+    const h = React.createElement, rows = [[48.9, .4, 120], [47.5, .4, 120], [45.9, .7, 120], [44.5, .4, 120]];
+    return this._strobe[k] = h('svg', { viewBox: '0 0 100 100', style: { position: 'absolute', inset: 0, width: '100%', height: '100%' } },
+      rows.map(([rr, dr, n], j) => h('g', { key: j, ref: el => { this['dot_' + k + j] = el; } },
+        Array.from({ length: n }, (_, i) => { const an = i / n * Math.PI * 2; return h('circle', { key: i, cx: (50 + rr * Math.cos(an)).toFixed(2), cy: (50 + rr * Math.sin(an)).toFixed(2), r: dr, fill: '#f0f0f0' }); }))));
+  }
+  mkRound() {
+    const a = Math.round((120 + Math.random() * 12) * 10) / 10;
+    const b = Math.round((a + (Math.random() < .5 ? -1 : 1) * (2 + Math.random() * 5)) * 10) / 10;
+    const mk = base => ({ base, beat: 0, lastT: 0, next16: 0, hold: false, nudge: 1 });
+    this.lockAcc = 0; this.roundStart = null;
+    return { a: mk(a), b: mk(b) };
+  }
+  ensureGame() {
+    const ac = this.ensure();
+    try { ac.resume(); } catch (e) {}
+    if (this.audioEl) this.audioEl.play().catch(() => {});
+    if (this.gch) return ac;
+    const bq = (type, fr, q) => { const n = ac.createBiquadFilter(); n.type = type; n.frequency.value = fr; if (q) n.Q.value = q; return n; };
+    this.gBus = ac.createGain(); this.gMaster = ac.createGain();
+    const pan = () => ac.createStereoPanner ? ac.createStereoPanner() : ac.createGain();
+    this.gCueBus = ac.createGain(); this.mPan = pan(); this.cPan = pan(); this.mOut = ac.createGain(); this.cOut = ac.createGain();
+    this.gMaster.connect(this.mPan); this.mPan.connect(this.mOut); this.mOut.connect(this.an);
+    this.gCueBus.connect(this.cPan); this.cPan.connect(this.cOut); this.cOut.connect(this.an);
+    this.gFlt = bq('allpass', 1000, 1); this.gBus.connect(this.gFlt); this.gFlt.connect(this.gMaster);
+    this.gEchoS = ac.createGain(); this.gEchoS.gain.value = 0; this.gDl = ac.createDelay(2); this.gFb = ac.createGain(); this.gFb.gain.value = .42; const ehp = bq('highpass', 250, .7);
+    this.gBus.connect(this.gEchoS); this.gEchoS.connect(this.gDl); this.gDl.connect(ehp); ehp.connect(this.gFb); this.gFb.connect(this.gDl); ehp.connect(this.gMaster);
+    this.gRevS = ac.createGain(); this.gRevS.gain.value = 0; const gcv = ac.createConvolver(); const ln = ac.sampleRate * 2, ir = ac.createBuffer(2, ln, ac.sampleRate);
+    for (let c = 0; c < 2; c++) { const x = ir.getChannelData(c); for (let i = 0; i < ln; i++) x[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / ln, 3); }
+    gcv.buffer = ir; this.gBus.connect(this.gRevS); this.gRevS.connect(gcv); gcv.connect(this.gMaster);
+    this.gch = {};
+    ['a', 'b'].forEach(k => { const c = { trim: ac.createGain(), lo: bq('lowshelf', 180), mid: bq('peaking', 1000, .7), hi: bq('highshelf', 3500), ch: ac.createGain(), xf: ac.createGain() };
+      c.trim.connect(c.lo); c.lo.connect(c.mid); c.mid.connect(c.hi); c.hi.connect(c.ch); c.cue = ac.createGain(); c.cue.gain.value = 0; c.hi.connect(c.cue); c.cue.connect(this.gCueBus); c.ch.connect(c.xf); c.xf.connect(this.gBus); this.gch[k] = c; });
+    this.applyGame();
+    this.gTimer = setInterval(() => this.gameTick(), 25);
+    const loop = () => { this.gameFrame(); this.graf = requestAnimationFrame(loop); };
+    this.graf = requestAnimationFrame(loop);
+    return ac;
+  }
+  applyGame() {
+    if (!this.gch) return;
+    const g = this.state.g, t = this.ac.currentTime, x = (g.xf / 100 + 1) * Math.PI / 4;
+    const eq = v => v < 0 ? v / 100 * 40 : v / 100 * 9;
+    ['a', 'b'].forEach(k => { const c = this.gch[k], d = g[k];
+      c.trim.gain.setTargetAtTime(d.gain / 100 * 1.4, t, .02);
+      c.lo.gain.setTargetAtTime(eq(d.lo), t, .02); c.mid.gain.setTargetAtTime(eq(d.mid), t, .02); c.hi.gain.setTargetAtTime(eq(d.hi), t, .02);
+      c.ch.gain.setTargetAtTime(Math.pow(d.fader / 100, 2), t, .02);
+      c.xf.gain.setTargetAtTime(k === 'a' ? Math.cos(x) * 1.41 : Math.sin(x) * 1.41, t, .02); });
+    this.gMaster.gain.setTargetAtTime(Math.pow(g.master / 100, 1.5) * .9, t, .02);
+    this.gch.a.cue.gain.setTargetAtTime(g.cueA ? .9 : 0, t, .02); this.gch.b.cue.gain.setTargetAtTime(g.cueB ? .9 : 0, t, .02);
+    const cm = g.cuemix / 100;
+    if (this.mPan.pan) { this.mPan.pan.setTargetAtTime(g.split ? 1 : 0, t, .02); this.cPan.pan.setTargetAtTime(g.split ? -1 : 0, t, .02); }
+    this.mOut.gain.setTargetAtTime(g.split ? 1 : Math.cos(cm * Math.PI / 2), t, .02);
+    this.cOut.gain.setTargetAtTime(g.split ? 1 : Math.sin(cm * Math.PI / 2), t, .02);
+    const on = g.fxOn, am = g.fxamt;
+    this.gEchoS.gain.setTargetAtTime(on && g.fxType === 'echo' ? am / 100 * .7 : 0, t, .03);
+    this.gRevS.gain.setTargetAtTime(on && g.fxType === 'reverb' ? am / 100 * 1.1 : 0, t, .05);
+    if (on && g.fxType === 'filter' && Math.abs(am - 50) > 3) { const v = (am - 50) * 2; if (v < 0) { this.gFlt.type = 'lowpass'; this.gFlt.frequency.setTargetAtTime(18000 * Math.pow(160 / 18000, -v / 100), t, .02); } else { this.gFlt.type = 'highpass'; this.gFlt.frequency.setTargetAtTime(20 * Math.pow(3500 / 20, v / 100), t, .02); } this.gFlt.Q.value = 4; }
+    else this.gFlt.type = 'allpass';
+  }
+  eff(k) { const m = this.gm[k], d = this.state.g[k]; return m.base * (1 + d.pitch / 100) * m.nudge; }
+  gVoice(k, i, t) {
+    const p = PRESETS[this.state.g[k].style], dest = this.gch[k].trim, ac = this.ac;
+    this._d = dest;
+    if (p.BD[i] === 'x') { const ke = 62 - p.kk.depth / 100 * 28, ka = p.kk.attack / 100, kp = p.kk.punch / 100; if (p.kick === 'hard') { this.tn(t, 'sine', 180 + kp * 160, ke, .32, 1.15, null, .075 - kp * .045); this.nz(t, .016, 'highpass', 2400 + ka * 2500, ka * .9); } else { this.tn(t, 'sine', 120 + kp * 120, ke, .38, 1.1, null, .14 - kp * .09); this.tn(t, 'triangle', 700 + ka * 900, 120, .012, ka * .5); }
+      const d = this.state.g[k]; if (d.fader > 30) setTimeout(() => this.pulse(), Math.max(0, (t - ac.currentTime) * 1000)); }
+    const htn = .55 + p.hh.tone / 100 * .9;
+    if (p.CH[i] === 'x') this.metal(t, .018 + Math.pow(p.hh.closed / 100, 1.4) * .16, .15, htn);
+    if (p.OH[i] === 'x') this.metal(t, .1 + Math.pow(p.hh.open / 100, 1.3) * 1.1, .12, htn);
+    if (p.CP[i] === 'x') { [0, .009, .019].forEach(o => this.nz(t + o, .028, 'bandpass', 1250, .6, 1.6)); this.nz(t + .028, .18, 'bandpass', 1250, .45, 1.6); }
+    if (p.SD[i] === 'x') { this.tn(t, 'triangle', 190, 175, .12, .4); this.nz(t, .2, 'bandpass', 3400, .5, .7); }
+    if (p.RM[i] === 'x') this.bongo(t, i, dest, .85, true);
+    if (p.BS[i] === 'x') { const fr = p.root * Math.pow(2, (p.notes[i] || 0) / 12), lp = ac.createBiquadFilter(), gn = ac.createGain(), o = ac.createOscillator(), s2 = ac.createOscillator();
+      lp.type = 'lowpass'; lp.Q.value = 6; lp.frequency.setValueAtTime(900 + p.acid * 2500, t); lp.frequency.exponentialRampToValueAtTime(160, t + .18);
+      o.type = 'sawtooth'; o.frequency.value = fr; s2.type = 'sine'; s2.frequency.value = fr; o.connect(lp); lp.connect(gn); s2.connect(gn); this.env(gn, t, .38, .2, .004); gn.connect(dest);
+      [o, s2].forEach(x => { x.start(t); x.stop(t + .26); }); }
+    this._d = null;
+  }
+  gameTick() {
+    const ac = this.ac; if (!ac || !this.gch) return; const now = ac.currentTime;
+    this.gDl.delayTime.setTargetAtTime(60 / this.eff('a') * .75, now, .05);
+    ['a', 'b'].forEach(k => {
+      const m = this.gm[k], d = this.state.g[k];
+      if (!d.playing) { m.lastT = now; return; }
+      const e = this.eff(k);
+      if (!m.hold) m.beat += (now - m.lastT) * e / 60;
+      m.lastT = now;
+      if (m.hold) return;
+      const need = Math.ceil(m.beat * 4 - 1e-6);
+      if (m.next16 < need || m.next16 / 4 - m.beat > .3) m.next16 = need;
+      let guard = 0;
+      while (guard++ < 8) { const tEv = now + (m.next16 / 4 - m.beat) * 60 / e; if (tEv > now + .1) break; this.gVoice(k, m.next16 % 16, Math.max(now, tEv)); m.next16++; }
+    });
+  }
+  gameFrame() {
+    const ac = this.ac; if (!ac || document.hidden || this.gVisible === false) return;
+    const now = ac.currentTime, g = this.state.g, dt = Math.min(.1, now - (this.gLast || now)); this.gLast = now;
+    const bn = {};
+    ['a', 'b'].forEach(k => {
+      const m = this.gm[k], d = g[k], e = this.eff(k);
+      const b = m.beat + (d.playing && !m.hold ? (now - m.lastT) * e / 60 : 0); bn[k] = b;
+      const pl = this['plat_' + k]; if (pl) pl.style.transform = `rotate(${(b * 360 * 33.333 / m.base) % 360}deg)`;
+      if (!m.st) m.st = [0, 0, 0, 0];
+      const sp = d.playing ? (m.hold ? 0 : e / m.base) : null;
+      [.06, .033, 0, -.033].forEach((tg, j) => { if (sp != null) m.st[j] = (m.st[j] + dt * 200 * (sp / (1 + tg) - 1)) % 3.6; const el = this['dot_' + k + j]; if (el) el.setAttribute('transform', `rotate(${m.st[j].toFixed(3)} 50 50)`); });
+      const tc = this['tc_' + k]; if (tc) { const sec = b * 60 / m.base, mm = Math.floor(sec / 60), ss = sec % 60; tc.textContent = String(mm).padStart(2, '0') + ':' + ss.toFixed(1).padStart(4, '0'); }
+      const fr = ((b % 1) + 1) % 1, op = d.playing ? Math.max(0, 1 - fr * 5) : 0;
+      ['lamp_' + k, 'chl_' + k].forEach(r => { if (this[r]) this[r].style.opacity = (.12 + op * .88).toFixed(2); });
+    });
+    const both = g.a.playing && g.b.playing;
+    let ms = 0;
+    if (both) { let df = ((bn.b % 1) - (bn.a % 1)); df -= Math.round(df); ms = df * 60000 / this.eff('a'); }
+    if (this.phaseEl) { this.phaseEl.style.left = (50 + Math.max(-1, Math.min(1, ms / 150)) * 47) + '%'; this.phaseEl.style.background = both && Math.abs(ms) < 18 ? '#3dff7a' : '#fff'; this.phaseEl.style.opacity = both && g.assist ? 1 : .15; }
+    const audible = g.a.fader > 20 && g.b.fader > 20 && Math.abs(g.xf) < 85;
+    const tempoOk = Math.abs(this.eff('a') - this.eff('b')) < .12;
+    if (!g.locked) {
+      if (both && audible && tempoOk && Math.abs(ms) < 20) this.lockAcc += dt; else this.lockAcc = Math.max(0, this.lockAcc - dt * 2);
+      const need = 8 * 60 / this.eff('a');
+      if (this.lockBar) this.lockBar.style.transform = `scaleX(${Math.min(1, this.lockAcc / need).toFixed(3)})`;
+      if (this.roundStart != null && this.timerEl) this.timerEl.textContent = (now - this.roundStart).toFixed(1) + 's';
+      if (this.lockAcc >= need) { const secs = (now - (this.roundStart ?? now)).toFixed(1); this.setState(s => ({ g: { ...s.g, locked: true, result: secs + 's' + (this.synced ? ' (sync)' : '') } })); this.recordTime(+secs); }
+    }
+  }
+  gToggle(k) {
+    const ac = this.ensureGame(); const m = this.gm[k];
+    m.lastT = ac.currentTime;
+    if (k === 'b' && !this.state.g.b.playing && this.roundStart == null) this.roundStart = ac.currentTime;
+    this.setState(s => ({ g: { ...s.g, [k]: { ...s.g[k], playing: !s.g[k].playing } } }));
+  }
+  gCue(k) {
+    const ac = this.ensureGame(); const m = this.gm[k];
+    m.beat = 0; m.next16 = 0; m.lastT = ac.currentTime;
+    if (k === 'b' && this.roundStart == null) this.roundStart = ac.currentTime;
+    this.setState(s => ({ g: { ...s.g, [k]: { ...s.g[k], playing: true } } }));
+  }
+  gSync() {
+    const ac = this.ensureGame(), now = ac.currentTime, g = this.state.g;
+    const k = g.sel === 'a' ? 'a' : 'b', o = k === 'a' ? 'b' : 'a', mk = this.gm[k], mo = this.gm[o];
+    [k, o].forEach(x => { const m = this.gm[x]; if (g[x].playing && !m.hold) { m.beat += (now - m.lastT) * this.eff(x) / 60; } m.lastT = now; m.nudge = 1; });
+    const target = mo.base * (1 + g[o].pitch / 100), pitch = Math.max(-8, Math.min(8, (target / mk.base - 1) * 100));
+    if (g[k].playing && g[o].playing) { mk.beat = Math.floor(mk.beat) + (((mo.beat % 1) + 1) % 1); mk.next16 = Math.ceil(mk.beat * 4 - 1e-6); }
+    this.synced = true;
+    this.setState(st => ({ g: { ...st.g, [k]: { ...st.g[k], pitch } } }), () => this.applyGame());
+  }
+  gNewRound() {
+    this.synced = false;
+    this.gm = this.mkRound();
+    if (this.lockBar) this.lockBar.style.transform = 'scaleX(0)';
+    if (this.timerEl) this.timerEl.textContent = '0.0s';
+    this.setState(s => ({ g: { ...s.g, a: { ...s.g.a, playing: false, pitch: 0 }, b: { ...s.g.b, playing: false, pitch: 0, fader: 0 }, locked: false, result: '', reveal: false } }), () => this.applyGame());
+  }
+  platDown(k) {
+    return e => { e.preventDefault(); this.ensureGame(); const r = e.currentTarget.getBoundingClientRect(); try { e.currentTarget.setPointerCapture(e.pointerId); } catch (_) {}
+      const cx = r.left + r.width / 2, cy = r.top + r.height / 2, m = this.gm[k];
+      if (this.state.g[k].playing && this.ac) { const now = this.ac.currentTime; m.beat += (now - m.lastT) * this.eff(k) / 60; m.lastT = now; }
+      m.hold = true; this.gdrag = { k, cx, cy, last: Math.atan2(e.clientY - cy, e.clientX - cx) * 180 / Math.PI }; };
+  }
+  gDragMove = e => {
+    const d = this.gdrag; if (!d) return;
+    if (e.buttons === 0) { this.gDragUp(); return; }
+    const a = Math.atan2(e.clientY - d.cy, e.clientX - d.cx) * 180 / Math.PI; let da = a - d.last; if (da > 180) da -= 360; if (da < -180) da += 360; d.last = a;
+    const m = this.gm[d.k]; m.beat = Math.max(0, m.beat + da / 360 * (m.base / 33.333));
+  };
+  gDragUp = () => { const d = this.gdrag; if (!d) return; const m = this.gm[d.k]; m.hold = false; if (this.ac) m.lastT = this.ac.currentTime; this.gdrag = null; };
+  nudge(k, v) { return () => { const m = this.gm[k]; if (this.ac && this.state.g[k].playing) { const now = this.ac.currentTime; m.beat += (now - m.lastT) * this.eff(k) / 60; m.lastT = now; } m.nudge = v; }; }
+  recordTime(t) {
+    let b = []; try { b = JSON.parse(localStorage.getItem('mathew-bm-times') || '[]'); } catch (e) {}
+    if (!this.synced) { b.push(t); b.sort((x, y) => x - y); b = b.slice(0, 5); try { localStorage.setItem('mathew-bm-times', JSON.stringify(b)); } catch (e) {} }
+    this.lastTime = t; this.bestList = b; this.posted = false; this.setState({ boardOpen: true }, () => setTimeout(() => { if (this.nameEl && !this.synced) this.nameEl.focus({ preventScroll: true }); }, 60));
+  }
+  boardLoad() { if (!this.board) { try { this.board = JSON.parse(localStorage.getItem('mathew-bm-board') || '[]'); } catch (e) { this.board = []; } } return this.board; }
+  gPost = e => {
+    e.preventDefault(); if (this.lastTime == null || this.synced || this.posted) return;
+    const g = this.state.g, name = (this.state.gName || '').trim() || 'Anon';
+    const b = this.boardLoad(); b.push({ name, t: this.lastTime, mix: g.a.style + ' → ' + g.b.style }); b.sort((x, y) => x.t - y.t); this.board = b.slice(0, 50);
+    try { localStorage.setItem('mathew-bm-board', JSON.stringify(this.board)); localStorage.setItem('mathew-bm-name', name); } catch (e2) {}
+    this.posted = true; this.forceUpdate();
+  };
+  shareText() { const g = this.state.g; return `I beatmatched ${g.a.style} into ${g.b.style} in ${this.lastTime}s${this.synced ? ' (with sync)' : ''} on MATHEW's decks. His record is 28.0s. Beat that 🎧 ${location.href.split('#')[0]}#beatmatch`; }
+  gShareTime = async () => {
+    const text = this.shareText();
+    try { if (navigator.share) { await navigator.share({ title: 'Beatmatch — MATHEW', text }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+    try { await navigator.clipboard.writeText(text); this.setState({ copied: true }); clearTimeout(this.cpT); this.cpT = setTimeout(() => this.setState({ copied: false }), 1800); } catch (e) {}
+  };
+  gSaveCard = () => {
+    const g = this.state.g, W = 1080, H = 1080, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+    x.fillStyle = '#0a0a0a'; x.fillRect(0, 0, W, H);
+    x.strokeStyle = 'rgba(255,255,255,.08)'; for (let r = 80; r < 700; r += 14) { x.beginPath(); x.arc(W * .78, H * .3, r, 0, Math.PI * 2); x.stroke(); }
+    x.fillStyle = '#3dff7a'; x.beginPath(); x.arc(96, 110, 10, 0, 7); x.fill();
+    x.font = '600 26px "Martian Mono", monospace'; x.fillText('LOCKED IN', 124, 120);
+    x.fillStyle = '#fff'; x.font = '400 280px "Dela Gothic One", sans-serif'; x.fillText(this.lastTime + 's', 80, 600);
+    x.fillStyle = '#a3a3a3'; x.font = 'italic 52px "Instrument Serif", serif'; x.fillText(g.a.style + '  →  ' + g.b.style, 86, 700);
+    if (this.synced) { x.fillStyle = '#8a8a8a'; x.font = '24px "Martian Mono", monospace'; x.fillText('WITH SYNC', 86, 760); }
+    x.fillStyle = '#8a8a8a'; x.font = '24px "Martian Mono", monospace'; x.fillText("MATHEW'S RECORD  28.0s", 86, 820);
+    x.fillStyle = '#3dff7a'; x.fillRect(80, 880, W - 160, 3);
+    x.fillStyle = '#fff'; x.font = '400 64px "Dela Gothic One", sans-serif'; x.fillText('MATHEW', 80, 980);
+    x.fillStyle = '#8a8a8a'; x.font = '24px "Martian Mono", monospace'; x.textAlign = 'right'; x.fillText('BEATMATCH CHALLENGE', W - 80, 975);
+    const a = document.createElement('a'); a.download = 'mathew-beatmatch-' + this.lastTime + 's.png'; a.href = c.toDataURL('image/png'); a.click();
+  };
+  showStep(i) {
+    if (!this.stepEls) { this.stepEls = [...document.querySelectorAll('[data-stc]')]; this.ledEls = [...document.querySelectorAll('[data-sled]')]; }
+    if (this.stepEls.length && !this.stepEls[0].isConnected) { this.stepEls = null; return this.showStep(i); }
+    const p = this.lastStep;
+    if (p != null && p >= 0) { this.stepEls.forEach(el => { if (+el.dataset.stc === p) el.style.outline = ''; }); const l = this.ledEls[p]; if (l) { l.style.background = '#0a0a0a'; l.style.boxShadow = 'none'; } }
+    if (i >= 0) { this.stepEls.forEach(el => { if (+el.dataset.stc === i) { el.style.outline = '2px solid #fff'; el.style.outlineOffset = '1px'; } }); const l = this.ledEls[i]; if (l) { l.style.background = '#3dff7a'; l.style.boxShadow = '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)'; } }
+    this.lastStep = i;
+  }
+  pulse() {
+    const els = [this.bgEl, this.heroEl].filter(Boolean); els.forEach(r => r.style.setProperty('--kick', '1'));
+    clearTimeout(this.kt); this.kt = setTimeout(() => els.forEach(r => r.style.setProperty('--kick', '0')), 80);
+  }
+  sched(i, t) {
+    const s = this.state, sd = 60 / s.bpm / 4;
+    this.dl.delayTime.setValueAtTime(sd * 3, t);
+    const tt = t + (i % 2 ? sd * s.swing / 100 * .66 : 0);
+    ROWS.forEach(([k]) => { if (s.grid[k][i] && !s.cut[k]) this.voice(k, tt, i); });
+    setTimeout(() => { if (!this.isPlaying) return; this.showStep(i); if (s.grid.BD[i] && !s.cut.BD) { this.pulse(); if (window.MDStrobe) { window.MDStrobe.music = 'md442'; window.MDStrobe.flash(true); } } }, Math.max(0, (tt - this.ac.currentTime) * 1000));
+  }
+  meterLoop() {
+    if (!this.an || !this.isPlaying) { if (this.meterEl) this.meterEl.style.transform = 'scaleX(0)'; return; }
+    const buf = this.mbuf || (this.mbuf = new Uint8Array(this.an.fftSize)); this.an.getByteTimeDomainData(buf);
+    let pk = 0; for (let i = 0; i < buf.length; i++) pk = Math.max(pk, Math.abs(buf[i] - 128) / 128);
+    this.lvl = Math.max(pk, (this.lvl || 0) * .9);
+    if (this.meterEl) this.meterEl.style.transform = `scaleX(${Math.min(1, this.lvl * 1.1).toFixed(3)})`;
+    this.mraf = requestAnimationFrame(() => this.meterLoop());
+  }
+  togglePlay = () => {
+    if (this.isPlaying) { this.isPlaying = false; if (window.MDStrobe && window.MDStrobe.music === 'md442') window.MDStrobe.music = null; clearInterval(this.timer); this.showStep(-1); this.setState(st => ({ playing: false, step: -1, fx: { ...st.fx, repeat: { ...st.fx.repeat, on: false } } })); this.repStart = null; this.hush(); return; }
+    const ac = this.ensure();
+    try { ac.resume(); } catch (e) {}
+    if (this.audioEl) this.audioEl.play().catch(() => {});
+    this.isPlaying = true; this.cur = 0; this.nt = null; this.repStart = null;
+    clearInterval(this.timer);
+    this.timer = setInterval(() => {
+      if (ac.state !== 'running') { try { ac.resume(); } catch (e) {} return; }
+      if (this.nt == null || this.nt < ac.currentTime - .2) this.nt = ac.currentTime + .06;
+      while (this.nt < ac.currentTime + .12) { const rp = this.state.fx.repeat; let idx = this.cur; if (rp.on) { if (this.repStart == null) { const len0 = [4, 2, 1][rp.amt - 1]; this.repStart = this.cur - (this.cur % len0); this.repN = 0; } const len = [4, 2, 1][rp.amt - 1]; idx = (this.repStart + (this.repN++ % len)) % 16; } else this.repStart = null; this.sched(idx, this.nt); this.nt += 60 / this.state.bpm / 4; this.cur = (this.cur + 1) % 16; }
+    }, 25);
+    this.setState({ playing: true });
+    this.meterLoop();
+  };
+  hush() {
+    if (!this.ac) return;
+    const t = this.ac.currentTime;
+    this.wet.gain.cancelScheduledValues(t); this.wet.gain.setTargetAtTime(0, t, .08);
+    this.fb.gain.cancelScheduledValues(t); this.fb.gain.setTargetAtTime(0, t, .05);
+    clearTimeout(this.hushT);
+    this.hushT = setTimeout(() => { if (!this.ac) return; const t2 = this.ac.currentTime; this.wet.gain.setTargetAtTime(1, t2, .05); this.applyMaster(); if (!this.isPlaying && !this.state.g.a.playing && !this.state.g.b.playing) this.ac.suspend().catch(() => {}); }, 900);
+  }
+  setMx(p) { this.setState(s => ({ mx: { ...s.mx, ...p } }), () => this.applyMaster()); }
+  setFx(k, p) { this.setState(s => ({ fx: { ...s.fx, [k]: { ...s.fx[k], ...p } } }), () => { if (k === 'repeat') this.repStart = null; this.applyMaster(); }); }
+
+  setRefs() {
+    if (this._refs) return this._refs;
+    return this._refs = { dot: e => this.cDot = e, ring: e => this.cRing = e, lab: e => this.cLabel = e, img: e => this.cImg = e, name: e => this.nameEl = e, hero: e => this.heroEl = e, meter: e => this.meterEl = e, platA: e => this.plat_a = e, platB: e => this.plat_b = e, dotA: e => this.dot_a = e, dotB: e => this.dot_b = e, tcA: e => this.tc_a = e, tcB: e => this.tc_b = e, lampA: e => this.lamp_a = e, lampB: e => this.lamp_b = e, chlA: e => this.chl_a = e, chlB: e => this.chl_b = e, phase: e => this.phaseEl = e, game: e => this.setGameEl(e), lockBar: e => this.lockBar = e, timer: e => this.timerEl = e, strobe: e => this.strobeEl = e, photo: e => this.photoEl = e, light: e => this.lightEl = e, light2: e => this.light2El = e };
+  }
+
+  buildBg() {
+    if (this._bg) return this._bg;
+    const h = React.createElement;
+    const photos = [IMG.sg, IMG.mm, IMG.oxa, IMG.studio, IMG.hk, IMG.mtn];
+    const n = photos.length, slot = 6;
+    const cable = (d, k) => [
+      h('path', { key: 'a' + k, d, fill: 'none', stroke: '#000', strokeWidth: 9, strokeLinecap: 'round', opacity: .7 }),
+      h('path', { key: 'b' + k, d, fill: 'none', stroke: 'rgba(255,255,255,.13)', strokeWidth: 6, strokeLinecap: 'round' }),
+      h('path', { key: 'c' + k, d, fill: 'none', stroke: 'rgba(255,255,255,.35)', strokeWidth: 1, strokeLinecap: 'round', transform: 'translate(-1.5,-1.5)' }),
+      h('path', { key: 'd' + k, d, fill: 'none', stroke: 'var(--hero, #ff2a1a)', strokeWidth: 3, strokeLinecap: 'round', strokeDasharray: '60 1600', style: { animation: `flow ${5 + (k % 4) * 1.7}s linear ${-k * 1.3}s infinite`, opacity: 'calc(.65 + var(--kick, 0) * .35)' } })
+    ];
+    const jack = (x, y, k) => h('g', { key: 'j' + k },
+      h('circle', { cx: x, cy: y, r: 16, fill: '#0d0d0d', stroke: 'rgba(255,255,255,.22)', strokeWidth: 1 }),
+      h('circle', { cx: x, cy: y, r: 10, fill: 'none', stroke: 'rgba(255,255,255,.4)', strokeWidth: 1.5 }),
+      h('circle', { cx: x, cy: y, r: 4, fill: 'var(--hero, #ff2a1a)', style: { opacity: 'calc(.5 + var(--kick, 0) * .5)' } }));
+    const cables = [
+      ['M 70 120 C 60 560, 470 600, 470 160', 70, 120, 470, 160],
+      ['M 250 80 C 250 380, 820 420, 760 70', 250, 80, 760, 70],
+      ['M 1300 90 C 1300 520, 940 560, 920 130', 1300, 90, 920, 130],
+      ['M 1110 60 C 1150 300, 1420 330, 1400 470', 1110, 60, 1400, 470],
+      ['M 90 900 C 230 600, 720 620, 760 920', 90, 900, 760, 920],
+      ['M 540 960 C 620 700, 1100 700, 1180 960', 540, 960, 1180, 960],
+      ['M 1400 640 C 1220 940, 1020 960, 1000 720', 1400, 640, 1000, 720],
+      ['M 30 520 C 300 760, 560 720, 640 520', 30, 520, 640, 520]
+    ];
+    const kickScale = 'scale(calc(1 + var(--kick, 0) * .035))';
+    const par = (k) => `translate(calc(var(--mx, 0) * ${k}px), calc(var(--my, 0) * ${k}px))`;
+    return this._bg = h('div', { ref: el => { this.bgEl = el; }, style: { position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none', overflow: 'hidden', contain: 'strict', opacity: .55 } },
+      photos.map((id, i) => h('div', { key: id, style: { position: 'absolute', inset: 0, backgroundImage: `url(${TS(id)})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(1) contrast(1.2)', opacity: 0, animation: `xfade ${n * slot}s linear ${i * slot}s infinite` } })),
+      h('div', { style: { position: 'absolute', inset: '-40px', transform: par(-24), transition: 'transform .6s ease-out' } },
+        h('svg', { viewBox: '0 0 1440 1000', preserveAspectRatio: 'xMidYMid slice', style: { position: 'absolute', inset: 0, width: '100%', height: '100%' } },
+          h('defs', null, h('filter', { id: 'glow', x: '-50%', y: '-50%', width: '200%', height: '200%' }, h('feGaussianBlur', { stdDeviation: 4, result: 'b' }), h('feMerge', null, h('feMergeNode', { in: 'b' }), h('feMergeNode', { in: 'SourceGraphic' })))),
+          cables.map((c, k) => [cable(c[0], k), jack(c[1], c[2], k + 'a'), jack(c[3], c[4], k + 'b')]))),
+      this.buildRig(h, par),
+      h('div', { style: { position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 50% 40%, rgba(10,10,10,.2), #0a0a0a 85%)' } })
+    );
+  }
+
+  buildRig(h, par) {
+    const L = (o, op = .35) => ({ position: 'absolute', border: `1px solid rgba(255,255,255,${op})`, ...o });
+    const hero = 'var(--hero, #ff2a1a)';
+    const cdj = (side) => h('div', { key: side, style: { position: 'relative', width: '32%', aspectRatio: '.73' } },
+      h('div', { style: L({ inset: 0, borderRadius: 14 }, .4) }),
+      h('div', { style: L({ left: '8%', right: '8%', top: '4%', height: '19%', borderRadius: 4, overflow: 'hidden' }, .3) },
+        h('div', { style: { position: 'absolute', left: 0, top: '55%', height: '28%', width: '200%', background: 'repeating-linear-gradient(90deg, rgba(255,255,255,.4) 0 1px, transparent 1px 3px, rgba(255,255,255,.18) 3px 4px, transparent 4px 7px)', animation: `mq ${side === 'L' ? 7 : 9}s linear infinite` } }),
+        h('div', { style: { position: 'absolute', left: '50%', top: '45%', width: 1, height: '48%', background: hero } }),
+        h('div', { style: { position: 'absolute', left: '6%', top: '14%', fontFamily: "'Martian Mono', monospace", fontSize: 9, letterSpacing: '.14em', color: 'rgba(255,255,255,.5)' } }, side === 'L' ? 'DECK 1 — 128.00' : 'DECK 2 — 127.96')),
+      h('div', { style: { position: 'absolute', left: '8%', right: '8%', top: '25.5%', height: '3.2%', display: 'flex', gap: '2%' } },
+        Array.from({ length: 8 }, (_, i) => h('div', { key: i, style: { flex: 1, borderRadius: 2, border: `1px solid ${i === 0 || i === 3 ? hero : 'rgba(255,255,255,.3)'}` } }))),
+      h('div', { style: L({ left: '13%', right: '13%', top: '33%', aspectRatio: '1', borderRadius: '50%' }, .5) },
+        h('div', { style: L({ inset: '6%', borderRadius: '50%', background: 'repeating-conic-gradient(rgba(255,255,255,.14) 0 1deg, transparent 1deg 6deg)', animation: `spin ${side === 'L' ? 1.8 : 2.1}s linear infinite` }, .15) }),
+        h('div', { style: L({ inset: '28%', borderRadius: '50%', animation: `spin ${side === 'L' ? 1.8 : 2.1}s linear infinite` }, .4) },
+          h('div', { style: { position: 'absolute', left: '48%', top: '3%', width: '4%', height: '24%', background: hero, boxShadow: `0 0 8px ${hero}` } })),
+        h('div', { style: L({ inset: '42%', borderRadius: '50%' }, .3) })),
+      h('div', { style: L({ left: '7%', bottom: '4.5%', width: '12%', aspectRatio: '1', borderRadius: '50%' }, .45) }),
+      h('div', { style: { position: 'absolute', left: '22%', bottom: '4.5%', width: '12%', aspectRatio: '1', borderRadius: '50%', border: `1px solid ${hero}`, opacity: 'calc(.45 + var(--kick, 0) * .55)' } }),
+      h('div', { style: L({ right: '7%', bottom: '5%', width: '3.5%', height: '24%', borderRadius: 3 }, .3) },
+        h('div', { style: L({ left: '-70%', right: '-70%', top: side === 'L' ? '46%' : '58%', height: '9%', borderRadius: 2 }, .6) })));
+    const strip = (c) => h('div', { key: c, style: { flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4%' } },
+      Array.from({ length: 4 }, (_, k) => h('div', { key: k, style: { width: '62%', aspectRatio: '1', borderRadius: '50%', border: '1px solid rgba(255,255,255,.3)', position: 'relative' } },
+        h('div', { style: { position: 'absolute', left: '46%', top: '6%', width: '8%', height: '36%', background: 'rgba(255,255,255,.5)', transformOrigin: '50% 125%', transform: `rotate(${((c * 37 + k * 71) % 220) - 110}deg)` } }))),
+      h('div', { style: { width: '22%', height: '22%', display: 'flex', flexDirection: 'column-reverse', gap: 2 } },
+        Array.from({ length: 10 }, (_, i) => h('div', { key: i, style: { flex: 1, background: i > 7 ? hero : 'rgba(255,255,255,.75)', opacity: `calc(.06 + var(--kick, 0) * ${Math.max(0, (1 - i / (6 + (c % 3) * 1.5)))})`, transition: 'opacity .12s' } }))),
+      h('div', { style: { width: '6%', height: '20%', background: 'rgba(255,255,255,.2)', position: 'relative', marginTop: '6%' } },
+        h('div', { style: { position: 'absolute', left: '-350%', right: '-350%', top: `${[22, 30, 12, 40, 26, 18][c]}%`, height: '12%', border: '1px solid rgba(255,255,255,.6)', borderRadius: 2 } })));
+    const mixer = h('div', { key: 'M', style: { position: 'relative', width: '30%', aspectRatio: '.86' } },
+      h('div', { style: L({ inset: 0, borderRadius: 12 }, .45) }),
+      h('div', { style: { position: 'absolute', left: '6%', top: '3.5%', fontFamily: "'Martian Mono', monospace", fontSize: 9, letterSpacing: '.2em', color: 'rgba(255,255,255,.5)' } }, 'V10 — 6CH'),
+      h('div', { style: { position: 'absolute', left: '5%', right: '5%', top: '9%', bottom: '17%', display: 'flex', gap: '2%' } }, Array.from({ length: 6 }, (_, c) => strip(c))),
+      h('div', { style: L({ left: '30%', right: '30%', bottom: '7%', height: '1.6%', borderRadius: 2 }, .3) },
+        h('div', { style: L({ left: '44%', width: '12%', top: '-180%', bottom: '-180%', borderRadius: 2 }, .65) })));
+    return h('div', { style: { position: 'absolute', left: '50%', top: '54%', width: 'min(150vmin, 1600px)', transform: `translate(-50%, -50%) ${par(30)}`, transition: 'transform .5s ease-out', perspective: '1400px' } },
+      h('div', { style: { display: 'flex', alignItems: 'flex-end', justifyContent: 'center', gap: '3%', transform: 'rotateX(32deg) scale(calc(1 + var(--kick, 0) * .015))', transformOrigin: '50% 100%', transition: 'transform .15s ease-out' } },
+        cdj('L'), mixer, cdj('R')));
+  }
+
+  buildCarousel() {
+    if (this._car) return this._car;
+    const h = React.createElement;
+    const pics = [[IMG.oxa, 'OXA Beach'], [IMG.sg, 'Soundgarden'], [IMG.studio, 'Studio'], [IMG.mm, 'Money Moon'], [IMG.hallo, 'Halloween'], [IMG.hk, 'Haad Khom Beach'], [IMG.mtn, 'Retro Mountain']];
+    const card = ([id, label], k) => h('figure', { key: k, style: { margin: 0, flex: '0 0 auto', width: 'clamp(240px,26vw,380px)', display: 'flex', flexDirection: 'column', gap: 10 } },
+      h('div', { className: 'car-img', style: { aspectRatio: '4/5', borderRadius: 2, backgroundImage: `url(${TS(id)})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundColor: '#141414', filter: 'grayscale(1) contrast(1.1) brightness(.85)', transition: 'filter .5s, transform .5s cubic-bezier(.2,.8,.2,1)' },
+        onMouseEnter: e => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'scale(1.02)'; },
+        onMouseLeave: e => { e.currentTarget.style.filter = 'grayscale(1) contrast(1.1) brightness(.85)'; e.currentTarget.style.transform = 'none'; } }),
+      h('figcaption', { style: { fontSize: 10, letterSpacing: '.14em', textTransform: 'uppercase', color: '#8a8a8a' } }, label));
+    const run = k => h('div', { key: k, style: { display: 'flex', gap: 'clamp(10px,1.4vw,18px)', paddingRight: 'clamp(10px,1.4vw,18px)' } }, pics.map((p, i) => card(p, k + i)));
+    return this._car = h('div', { style: { display: 'flex', width: 'max-content', animation: 'mq 60s linear infinite' },
+      onMouseEnter: e => { e.currentTarget.style.animationPlayState = 'paused'; }, onMouseLeave: e => { e.currentTarget.style.animationPlayState = 'running'; } }, run('a'), run('b'));
+  }
+
+  buildCursor() {
+    if (this._cursor) return this._cursor;
+    const h = React.createElement, r = this.setRefs();
+    return this._cursor = h('div', { style: { position: 'fixed', inset: 0, zIndex: 100, pointerEvents: 'none' }, className: 'om-cursor' },
+      h('div', { ref: r.img, style: { position: 'fixed', left: 0, top: 0, width: 180, height: 230, margin: '-115px 0 0 34px', backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(1) contrast(1.15)', opacity: 0, transition: 'opacity .25s' } }),
+      h('div', { ref: r.ring, style: { display: 'none', position: 'fixed', left: 0, top: 0, width: 12, height: 12, margin: '-6px 0 0 -6px', borderRadius: '50%', border: '1px solid #fff', mixBlendMode: 'difference', transition: 'width .2s, height .2s, margin .2s' } }, h('span', { ref: r.lab, style: { position: 'absolute', left: 'calc(100% + 8px)', top: '50%', transform: 'translateY(-50%)', whiteSpace: 'nowrap', fontFamily: "'Martian Mono', monospace", fontSize: 9, letterSpacing: '.14em', textTransform: 'uppercase', color: '#fff' } })),
+      h('div', { ref: r.dot, style: { display: 'none', position: 'fixed', left: 0, top: 0, width: 4, height: 4, margin: '-2px 0 0 -2px', borderRadius: '50%', background: '#fff', mixBlendMode: 'difference' } })
+    );
+  }
+
+  buildTicker() {
+    if (this._ticker) return this._ticker;
+    const h = React.createElement;
+    const words = ['House', 'Deep house', 'Dub', 'Techno', 'Live set', 'Glasgow', 'Berlin', 'Koh Phangan', 'NOSLEEP. CLAN', '120—140 BPM'];
+    const run = k => h('span', { key: k, style: { display: 'flex', gap: '3vw', paddingRight: '3vw', alignItems: 'center' } }, words.flatMap((w, i) => [h('span', { key: w }, w), h('span', { key: 'd' + i, style: { width: 10, height: 10, borderRadius: '50%', border: '1px solid #f2f2f2', display: 'inline-block' } })]));
+    return this._ticker = h('div', { style: { display: 'flex', width: 'max-content', whiteSpace: 'nowrap', fontFamily: "'Anybody', sans-serif", fontVariationSettings: "'wdth' 150", fontWeight: 800, fontSize: 'clamp(26px,3.6vw,52px)', lineHeight: 1, letterSpacing: '-.02em', textTransform: 'uppercase', animation: 'mq 40s linear infinite' } }, run(1), run(2));
+  }
+
+  renderVals() {
+    const s = this.state, r = this.setRefs();
+    const heroColor = this.props.heroColor ?? '#ff2a1a';
+    if (typeof document !== 'undefined') document.documentElement.style.setProperty('--hero', heroColor);
+    const _hf = this.props.heroFont ?? 'Dela Gothic';
+    if (_hf !== 'Dela Gothic' && typeof document !== 'undefined' && !document.getElementById('hf-' + _hf)) { const l = document.createElement('link'); l.id = 'hf-' + _hf; l.rel = 'stylesheet'; l.href = 'https://fonts.googleapis.com/css2?family=' + ({ 'Rubik Mono': 'Rubik+Mono+One', 'Bungee': 'Bungee', 'Michroma': 'Michroma' })[_hf] + '&display=swap'; document.head.appendChild(l); }
+    const heroFont = ({ 'Dela Gothic': "'Dela Gothic One',sans-serif", 'Rubik Mono': "'Rubik Mono One',sans-serif", 'Bungee': "'Bungee',sans-serif", 'Michroma': "'Michroma',sans-serif" })[this.props.heroFont ?? 'Dela Gothic'] || "'Dela Gothic One',sans-serif";
+    const _f = this.props.heroFont; if (_f !== this._lastFont) { this._lastFont = _f; setTimeout(() => this.fit && this.fit(), 300); }
+    const mcUrl = (this.props.mixcloudUrl || 'https://www.mixcloud.com/dunnyggw/full-moon-radio-techno/').trim();
+    const mcPath = mcUrl.replace(/^https?:\/\/(www\.)?mixcloud\.com/, '');
+    const hasMixcloud = !!mcUrl && mcPath !== mcUrl;
+
+    const KB = typeof matchMedia === 'function' && matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const rows = ROWS.map(([k, name]) => {
+      const cutOn = !!s.cut[k];
+      return {
+        key: k, name,
+        selBg: KB && s.selRow === k ? 'rgba(61,255,122,.22)' : 'transparent', selOutline: KB && s.selRow === k ? '2px solid #3dff7a' : 'none', selGlow: KB && s.selRow === k ? '0 0 10px rgba(61,255,122,.7)' : 'none', selAria: name + (KB && s.selRow === k ? ', selected. Keys Q to I and A to K switch its steps' : '. Select and play'),
+        preview: () => { if (this.state.selRow !== k) this.setState({ selRow: k }); const ac = this.ensure(); try { ac.resume(); } catch (e) {} if (this.audioEl) this.audioEl.play().catch(() => {}); const go = () => { this.voice(k, ac.currentTime + .02, 0); if (k === 'BD') this.pulse(); }; if (ac.state === 'running') go(); else setTimeout(go, 60); },
+        cutBg: cutOn ? 'linear-gradient(#2a2a2a,#111)' : 'linear-gradient(#f4f4f5,#cfd0d3)', cutFg: cutOn ? '#fff' : '#1a1a1a', cutLed: cutOn ? '#3dff7a' : '#0a0a0a', cutGlow: cutOn ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none',
+        toggleCut: () => this.setState(st => ({ cut: { ...st.cut, [k]: !st.cut[k] } }), () => this.applyLevels()),
+        lvlPos: (s.lvl[k] * .72).toFixed(1), lvlDown: this.down('lvl:' + k), lvlReset: () => this.setV('lvl:' + k, 80),
+        steps: s.grid[k].map((on, i) => {
+          const cur = false, grp = Math.floor(i / 4) % 2;
+          return {
+            kb: KB && s.selRow === k ? 'QWERTYUIASDFGHJK'[i] : '', kbCol: on ? '#0a0a0a' : '#9a9a9a',
+            key: on ? (cutOn ? 'linear-gradient(#1f4a2c,#14301d)' : 'linear-gradient(#5dff95,#22c95a)') : (grp ? 'linear-gradient(#1c1c1c,#0b0b0b)' : 'linear-gradient(#262626,#111)'),
+            led: on ? (cutOn ? '#1f5a33' : '#3dff7a') : (cur ? '#555' : '#0a0a0a'),
+            glow: on && !cutOn ? (cur ? '0 0 6px #3dff7a, 0 0 16px #3dff7a' : '0 0 5px rgba(61,255,122,.85)') : 'none',
+            ksh: (cur ? '0 0 0 2px #fff, ' : '') + (on && !cutOn ? '0 0 12px rgba(61,255,122,.55), inset 0 1px 0 rgba(255,255,255,.4)' : 'inset 0 1px 0 rgba(255,255,255,.08), 0 2px 3px rgba(0,0,0,.35)'),
+            toggle: e => { if (e && e.detail !== 0) return; this.setStep(k, i, !this.state.grid[k][i], true); },
+            paint: e => { e.preventDefault(); try { e.currentTarget.releasePointerCapture(e.pointerId); } catch (_) {} const val = !this.state.grid[k][i]; if (e.pointerType === 'touch') { this.paint = { k, val, done: new Set(), pending: i, x: e.clientX }; return; } this.paint = { k, val, done: new Set([i]) }; this.setStep(k, i, val, true); }
+          };
+        })
+      };
+    });
+    const leds = Array.from({ length: 16 }, (_, i) => ({ n: i + 1, c: '#0a0a0a', g: 'none' }));
+    const presets0 = Object.keys(PRESETS).map(name => ({ name, led: s.preset === name ? '#3dff7a' : '#0a0a0a', glow: s.preset === name ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none', pick: () => { const p = PRESETS[name]; this.lastPreset = name; this.setState(st => ({ kit: 'synth', grid: parse(p), preset: name, bpm: p.bpm, swing: p.swing, decay: p.decay, snd: { root: p.root, chord: p.chord, notes: p.notes, kick: p.kick, acid: p.acid }, sn: { ...p.sn }, cl: { ...p.cl }, pc: { ...p.pc }, key: mdExtra(p).key, kk: { ...p.kk, rumble: mdExtra(p).rumble }, hh: { ...p.hh }, bass: { ...p.bass }, bx: { ...p.bx, acid: mdExtra(p).acid }, stab: { ...p.stab, chord: mdExtra(p).chord }, fx: { ...st.fx, filter: { ...st.fx.filter, amt: 0 }, verb: { on: true, amt: p.verb }, space: { on: p.space > 0, amt: p.space || st.fx.space.amt }, repeat: { ...st.fx.repeat, on: false } } }), () => { this.repStart = null; if (this.ac) { const t = this.ac.currentTime; this.fb.gain.cancelScheduledValues(t); this.fb.gain.setValueAtTime(0, t); } setTimeout(() => this.applyMaster(), 120); if (this.isPlaying) { this.cur = 0; this.nt = null; } else this.togglePlay(); }); } }));
+    const presets = presets0.concat(this.savedList().map(sv => ({ name: sv.name, led: s.preset === sv.name ? '#3dff7a' : '#0a0a0a', glow: s.preset === sv.name ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none', pick: () => this.loadSaved(sv) })));
+    const mx = s.mx, fx = s.fx;
+    const kills = ['LOW', 'MID', 'HI'].map(b => ({ label: b, led: mx.kill[b] ? '#3dff7a' : '#0a0a0a', glow: mx.kill[b] ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none', toggle: () => this.setMx({ kill: { ...mx.kill, [b]: !mx.kill[b] } }) }));
+    const PV = PRESETS[s.preset || this.lastPreset || 'Peak Warehouse'];
+    const pval = key => { if (!PV) return null; if (key === 'bpm' || key === 'swing' || key === 'decay') return PV[key]; if (key === 'cutoff' || key === 'res') return PV.bass[key]; if (key === 'key') return mdExtra(PV).key; if (key === 'kk.rumble') return mdExtra(PV).rumble; if (key === 'bx.acid') return mdExtra(PV).acid; if (key === 'stab.chord') return mdExtra(PV).chord; const m = key.match(/^(kk|hh|bx|stab|sn|cl|pc)\.(\w+)$/); return m ? PV[m[1]][m[2]] : null; };
+    const K = (key, label, fmt, size = 52) => { const [mn, mxx, def0] = this.range(key), pv = pval(key), def = pv == null ? def0 : pv, v = this.getV(key); const on = s.selKnob === key; return { key, label, size, ring: on ? '0 0 0 3px #3dff7a, 0 0 16px rgba(61,255,122,.7)' : 'none', val: fmt ? fmt(v) : String(Math.round(v)), angle: (-135 + 270 * (v - mn) / (mxx - mn)).toFixed(1), down: this.down(key), reset: () => this.setV(key, def) }; };
+    const knobGroups = [
+      { title: 'Master', knobs: [K('vol', 'Volume', null, 60), K('bpm', 'Tempo', v => v + ' BPM', 60), K('swing', 'Swing', v => v + '%', 38), K('key', 'Key', v => MDKEYS[Math.round(v)] || 'E', 38)] },
+      { title: 'Kick', knobs: [K('kk.depth', 'Depth', null, 42), K('kk.attack', 'Attack', null, 42), K('kk.punch', 'Punch', null, 42), K('decay', 'Decay', null, 42), K('kk.rumble', 'Rumble', null, 42)] },
+      { title: 'Snare', knobs: [K('sn.tune', 'Tune', null, 42), K('sn.snap', 'Snap', null, 42), K('sn.decay', 'Decay', null, 42)] },
+      { title: 'Clap', knobs: [K('cl.tone', 'Tone', null, 42), K('cl.decay', 'Decay', null, 42)] },
+      { title: 'Hats', knobs: [K('hh.closed', 'Closed', null, 42), K('hh.open', 'Open', null, 42), K('hh.tone', 'Tone', null, 42)] },
+      { title: 'Bongo', knobs: [K('pc.tune', 'Tune', null, 42), K('pc.decay', 'Decay', null, 42)] },
+      { title: 'Bass', knobs: [K('cutoff', 'Cutoff', null, 42), K('res', 'Reso', null, 42), K('bx.acid', 'Acid', null, 42), K('bx.drive', 'Drive', v => v + '%', 42), K('bx.echo', 'Echo', v => v + '%', 42), K('bx.verb', 'Verb', v => v + '%', 42)] },
+      { title: 'Dub stab', knobs: [K('stab.tone', 'Tone', null, 42), K('stab.decay', 'Decay', null, 42), K('stab.chord', 'Chord', v => (MDCHORDS[Math.round(v)] || MDCHORDS[1])[0], 42), K('stab.echo', 'Echo', v => v + '%', 42), K('stab.verb', 'Verb', v => v + '%', 42)] },
+      { title: 'Effects', knobs: [K('filter', 'Filter', v => Math.abs(v) < 4 ? 'Centre' : v < 0 ? 'LP ' + (-v) : 'HP ' + v), K('verb', 'Reverb', v => v + '%'), K('space', 'Space', v => v + '%'), K('drive', 'Drive', v => v + '%')].map(kn => { const on = s.fx[kn.key].on; return { ...kn, hasSw: true, swToggle: () => { const was = this.state.fx[kn.key].on; this.setFx(kn.key, was ? { on: false, amt: 0 } : { on: true }); }, swTxt: on ? 'On' : 'Off', swAria: kn.label + (on ? ' on' : ' off'), swLed: on ? '#3dff7a' : '#0a0a0a', swGlow: on ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none' }; }) },
+    ];
+    const fxSw = [['repeat', 'Hold repeat']].map(([k, label]) => { const mom = k === 'repeat'; const off = () => { clearTimeout(this.repT); if (this.state.fx.repeat.on) this.setFx('repeat', { on: false }); }; return { label, led: fx[k].on ? '#3dff7a' : '#0a0a0a', glow: fx[k].on ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none', toggle: mom ? undefined : () => this.setFx(k, { on: !fx[k].on }), down: mom ? e => { e.preventDefault(); this.setFx('repeat', { on: true }); clearTimeout(this.repT); this.repT = setTimeout(off, 3000); } : undefined, up: mom ? off : undefined }; });
+    const repeatLens = ['1/4', '1/8', '1/16'].map((label, j) => ({ label, led: fx.repeat.amt === j + 1 ? '#3dff7a' : '#0a0a0a', glow: fx.repeat.amt === j + 1 ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none', pick: () => this.setFx('repeat', { amt: j + 1 }) }));
+    const g = s.g;
+    const KN = (key, label, fmt) => { const [mn, mxx, def] = this.range(key), v = this.getV(key); return { label, wkey: 'knob:' + key, val: fmt ? fmt(v) : String(Math.round(v)), angle: (-135 + 270 * (v - mn) / (mxx - mn)).toFixed(1), down: this.down(key), reset: () => this.setV(key, def) }; };
+    const eqf = v => v <= -100 ? 'KILL' : (v > 0 ? '+' : '') + Math.round(v);
+    const gDecks = ['a', 'b'].map(k => { const d = g[k], m = this.gm[k], on = d.playing;
+      return { key: k.toUpperCase(), order: k === 'a' ? 0 : 2, wPlat: 'plat:' + k, wPitch: 'pitch:' + k, select: () => { if (g.sel !== k) this.setState(st => ({ g: { ...st.g, sel: k } })); }, selSh: g.focus && g.sel === k ? '0 0 0 2px #3dff7a, 0 0 30px rgba(61,255,122,.25)' : 'none', strobe: this.buildStrobe(k), quartzLed: Math.abs(d.pitch) < .025 ? '#3dff7a' : '#0a0a0a', quartzGlow: Math.abs(d.pitch) < .025 ? '0 0 5px #3dff7a' : 'none', tcRef: k === 'a' ? r.tcA : r.tcB, platRef: k === 'a' ? r.platA : r.platB, lampRef: k === 'a' ? r.lampA : r.lampB, platDown: this.platDown(k),
+        label: d.style, labelBg: k === 'a' ? '#f2f2f2' : '#3dff7a',
+        startLed: on ? '#3dff7a' : '#0a0a0a', startGlow: on ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none', toggle: () => this.gToggle(k), cue: () => this.gCue(k),
+        pitchTop: ((d.pitch + 8) / 16 * 86 + 2).toFixed(1), pitchDown: this.down('g:' + k + '.pitch'), pitchReset: () => this.setV('g:' + k + '.pitch', 0), pitchTxt: (d.pitch > 0 ? '+' : '') + (Math.round(d.pitch * 100) / 100).toFixed(2) + '%',
+        nMinus: this.nudge(k, .94), nPlus: this.nudge(k, 1.06), nOff: this.nudge(k, 1),
+        bpmTxt: g.reveal || g.locked ? (m.base * (1 + d.pitch / 100)).toFixed(1) + ' BPM' : '???.? BPM',
+        armDeg: on ? 24 : 6,
+        styles: Object.keys(PRESETS).map(n => ({ name: n, bg: d.style === n ? '#f2f2f2' : 'transparent', fg: d.style === n ? '#0a0a0a' : '#8a8a8a', bd: d.style === n ? '#f2f2f2' : '#333', pick: () => this.setState(st => ({ g: { ...st.g, [k]: { ...st.g[k], style: n } } })) })) }; });
+    const gStrips = ['a', 'b'].map(k => ({ key: k.toUpperCase(), lampRef: k === 'a' ? r.chlA : r.chlB,
+      knobs: [KN('g:' + k + '.gain', 'Gain'), KN('g:' + k + '.hi', 'Hi', eqf), KN('g:' + k + '.mid', 'Mid', eqf), KN('g:' + k + '.lo', 'Low', eqf)],
+      cueToggle: () => this.setState(st => ({ g: { ...st.g, ['cue' + k.toUpperCase()]: !st.g['cue' + k.toUpperCase()] } }), () => this.applyGame()), cueLed: g['cue' + k.toUpperCase()] ? '#3dff7a' : '#0a0a0a', cueGlow: g['cue' + k.toUpperCase()] ? '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)' : 'none',
+      wFader: 'knob:g:' + k + '.fader', faderPos: (g[k].fader * .78).toFixed(1), faderDown: this.down('g:' + k + '.fader'), faderReset: () => this.setV('g:' + k + '.fader', k === 'a' ? 100 : 0) }));
+    const gMaster = KN('g:master', 'Master');
+    const gFxAmt = KN('g:fxamt', 'Amount');
+    const gCueMix = KN('g:cuemix', 'Cue mix');
+    const G = '#3dff7a', GG = '0 0 6px #3dff7a, 0 0 12px rgba(61,255,122,.7)';
+    const gFxKeys = [['filter', 'Filter'], ['echo', 'Echo'], ['reverb', 'Verb']].map(([t, label]) => ({ label, led: g.fxType === t ? G : '#0a0a0a', glow: g.fxType === t ? GG : 'none', pick: () => this.setState(st => ({ g: { ...st.g, fxType: t } }), () => this.applyGame()) }));
+    const gStatus = g.locked ? 'LOCKED IN — ' + g.result : !g.a.playing ? 'Start deck A' : !g.b.playing ? 'Drop deck B on the one' : 'Match B to A by ear';
+    const lcdTop = (s.preset || 'User pattern').toUpperCase();
+
+    const lcdBot = `${s.bpm} BPM  ·  SW ${s.swing}%  `;
+
+    const regions = [['All', 'All'], ['SCO', 'Scotland'], ['BER', 'Berlin'], ['KP', 'Koh Phangan'], ['KT', 'Koh Tao']].map(([k, label]) => ({ label, bg: s.region === k ? '#f2f2f2' : 'transparent', fg: s.region === k ? '#0a0a0a' : '#f2f2f2', pick: () => this.setState({ region: k }) }));
+    const venues = VENUES.map((v, i) => ({ name: v[0], code: v[1], img: v[2] || '', n: String(i + 1).padStart(2, '0') })).filter(v => s.region === 'All' || v.code === s.region);
+
+    const genres = GENRES.map(([fam, name, lo, hi]) => { const on = s.bpmView >= lo && s.bpmView <= hi; return { fam, name, range: `${lo}–${hi}`, op: on ? 1 : .28, dot: on ? '#fff' : '#333' }; });
+
+    const carousel = this.buildCarousel();
+    const drivePosters = [];
+    const extra = Math.max(0, this.props.emptyPosterSlots ?? 7);
+    const posters = [
+      ...drivePosters.map(([id, label], i) => ({ id: 'v4-poster-' + i, src: T(id), ph: label, label, n: String(i + 1).padStart(3, '0') })),
+      ...Array.from({ length: extra }, (_, j) => ({ id: 'v4-poster-x' + j, src: '', ph: 'Drop poster', label: '—', n: String(drivePosters.length + j + 1).padStart(3, '0') }))
+    ];
+    const press = [
+      { id: 'v4-press-m1', name: 'Main 1 — PNG', src: T(IMG.m1), dl: DL(IMG.m1), fit: 'cover' },
+      { id: 'v4-press-m2', name: 'Main 2 — PNG', src: T(IMG.m2), dl: DL(IMG.m2), fit: 'cover' },
+      { id: 'v4-press-studio', name: 'Studio — JPG', src: T(IMG.studio), dl: DL(IMG.studio), fit: 'cover' },
+      { id: 'v4-press-kit', name: 'Press kit — PNG', src: T(IMG.kit), dl: DL(IMG.kit), fit: 'contain' },
+      { id: 'v4-press-logo', name: 'Logo — PNG', src: T(IMG.logo), dl: DL(IMG.logo), fit: 'contain' }
+    ];
+
+    return {
+      bg: this.buildBg(), cursor: this.buildCursor(), ticker: this.buildTicker(), nameRef: r.name, heroRef: r.hero, strobeRef: r.strobe, photoRef: r.photo, lightRef: r.light, light2Ref: r.light2,
+      heroColor, heroFont,
+      heroPhotoFilter: (this.props.heroPhotoStyle ?? 'Photo') !== 'Photo' ? 'url(#toon)' : 'grayscale(1) contrast(1.1)',
+      heroPhotoOpacity: (this.props.heroPhotoStyle ?? 'Photo') !== 'Photo' ? .95 : .9,
+      hasMixcloud, mixcloudEmbed: hasMixcloud ? `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&light=0&feed=${encodeURIComponent(mcPath)}` : '',
+      mixcloudLink: mcUrl || 'https://www.mixcloud.com/search/?q=full%20moon%20radio%20mathew',
+      instagram: this.props.instagramUrl || 'https://www.instagram.com/mathew_dn/',
+      bpmView: s.bpmView, onBpmView: e => this.setState({ bpmView: +e.target.value }), genres,
+      regions, venues, posters, press, carousel,
+      mxSelect: () => { if (g.sel !== 'mx') this.setState(st => ({ g: { ...st.g, sel: 'mx' } })); }, mxSelSh: (g.focus && g.sel === 'mx' ? '0 0 0 2px #3dff7a, 0 0 30px rgba(61,255,122,.25), ' : '') + '0 40px 90px rgba(0,0,0,.8), 0 0 0 1px #000, inset 0 1px 0 rgba(255,255,255,.12)',
+      gameRef: r.game, gOutline: g.focus ? 'rgba(61,255,122,.5)' : 'transparent', gFocusLed: g.focus ? '#3dff7a' : '#0a0a0a', gFocusGlow: g.focus ? '0 0 6px #3dff7a' : 'none', gFocusTxt: g.focus ? 'Keyboard + scroll active — ' + (g.sel === 'mx' ? 'MD-X2 mixer' : 'deck ' + g.sel.toUpperCase()) + ' selected' : 'Click the decks to use keyboard + scroll',
+      gCueMix, gSplit: () => this.setState(st => ({ g: { ...st.g, split: !st.g.split } }), () => this.applyGame()), splitLed: g.split ? '#3dff7a' : '#0a0a0a', splitGlow: g.split ? '0 0 6px #3dff7a' : 'none',
+      cueHint: g.split ? 'Split: cue in left ear, master in right — use headphones' : 'Turn left for master, right for the cue channel. Cue is pre-fader, so you hear B before it is in the mix.',
+      gDecks, gStrips, gMaster, gFxAmt, gFxKeys, gFxOnTxt: g.fxOn ? 'On' : 'Off', gFxOnLed: g.fxOn ? G : '#0a0a0a', gFxOnGlow: g.fxOn ? GG : 'none', gFxToggle: () => this.setState(st => ({ g: { ...st.g, fxOn: !st.g.fxOn } }), () => this.applyGame()), gStatus, gLocked: g.locked, phaseRef: r.phase, lockRef: r.lockBar, timerRef: r.timer,
+      xfPos: ((g.xf + 100) / 200 * 84 + 2).toFixed(1), xfDown: this.down('g:xf'), xfReset: () => this.setV('g:xf', 0),
+      gLocked: !!g.locked,
+      gBoardOpen: !!s.boardOpen, gBoardToggle: () => this.setState(st => ({ boardOpen: !st.boardOpen })), gBoardRot: s.boardOpen ? 180 : 0,
+      gBoardLed: g.locked && !this.posted && !this.synced ? '#3dff7a' : '#0a0a0a', gBoardGlow: g.locked && !this.posted && !this.synced ? '0 0 6px #3dff7a' : 'none',
+      gBoardCount: (this.boardLoad().length + 1) + ' entries', gNameRef: this.nameRefFn || (this.nameRefFn = el => { this.nameEl = el; }),
+      gCanPost: !!g.locked && !this.synced && !this.posted && this.lastTime != null, gLastTxt: 'You: ' + this.lastTime + 's',
+      gName: s.gName ?? (() => { try { return localStorage.getItem('mathew-bm-name') || ''; } catch (e) { return ''; } })(), gNameChange: e => this.setState({ gName: e.target.value }),
+      gBoard: [{ name: 'MATHEW', t: 28, mix: 'Resident', me: true }, ...this.boardLoad()].sort((x, y) => x.t - y.t).slice(0, 10).map((b, i) => ({ n: String(i + 1).padStart(2, '0'), name: b.name, t: (+b.t).toFixed(1) + 's', mix: b.mix, tag: b.me ? 'Record' : '', c: b.me ? '#3dff7a' : '#f2f2f2' })), gBest: (() => { let b = this.bestList; if (!b) { try { b = this.bestList = JSON.parse(localStorage.getItem('mathew-bm-times') || '[]'); } catch (e) { b = []; } } return b.length ? b[0] + 's' : '—'; })(), gShare: this.gShareTime, gShareTxt: s.copied ? 'Copied' : 'Share', gSaveCard: this.gSaveCard,
+      gNew: () => this.gNewRound(), gSync: () => this.gSync(), gReveal: () => this.setState(st => ({ g: { ...st.g, reveal: !st.g.reveal } })), revealTxt: g.reveal ? 'Hide BPM' : 'Reveal BPM',
+      gAssist: () => this.setState(st => ({ g: { ...st.g, assist: !st.g.assist } })), assistLed: g.assist ? '#3dff7a' : '#0a0a0a', assistGlow: g.assist ? '0 0 6px #3dff7a' : 'none',
+      rows, leds, presets, kills, knobGroups, fxSw, repeatLens, lcdTop, lcdBot, meterRef: r.meter,
+      kitNext: () => { this.ensure(); this.setState(st => ({ kit: ({ '909': '808', '808': 'synth', synth: '909' })[st.kit || 'synth'] }), () => this.kitWarm()); }, kitTxt: 'Kit ' + ({ '909': '909', '808': '808', synth: 'Synth' })[s.kit || 'synth'],
+      appHref: (() => { try { return matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 820; } catch (_) { return false; } })() ? '/md442/app/' : '/md442/',
+      savePattern: this.savePattern, saveTxt: s.savedMsg ? 'Saved ✓' : 'Save',
+      mToggle: () => this.setFull(!s.mFull), mTxt: s.mFull ? 'Exit full screen' : 'Full screen', mCur: s.mFull ? 'shrink' : 'expand', mIsFull: !!s.mFull, mFullAttr: s.mFull ? '1' : '0', mNotFull: !s.mFull, mHead: s.mFull ? 'none' : 'flex', mMax: s.mFull ? 'none' : '1180px',
+      mPos: s.mFull ? 'fixed' : 'relative', mZ: s.mFull ? 90 : 2, mOv: s.mFull ? 'auto' : 'visible', mBg: s.mFull ? '#0a0a0a' : 'transparent',
+      mPad: s.mFull ? '14px' : '0 clamp(16px,3vw,40px) clamp(80px,11vw,160px)',
+      ctlOpen: !!s.ctlOpen, ctlOpenFn: this.openCtl, ctlClose: this.closeCtl, ctlCanClose: !this.standalone, canInstall: !!s.canInstall, installApp: this.installApp,
+      ctlPlayBg: s.playing ? '#3dff7a' : '#161616', ctlPlayFg: s.playing ? '#0a0a0a' : '#f2f2f2',
+      ...(() => { const on = { bd: '#3dff7a', bg: '#3dff7a', fg: '#0a0a0a' }, off = { bd: '#333', bg: '#161616', fg: '#e8e8e8' };
+        const rk = s.ctlRow || 'BD', row = rows.find(x => x.key === rk) || rows[0], gi = Math.min(s.ctlGroup || 0, knobGroups.length - 1), cut = !!s.cut[row.key];
+        return {
+          ctlPresets: presets.map(p => ({ name: p.name, pick: p.pick, ...(s.preset === p.name ? on : off) })),
+          ctlRowTabs: rows.map(x => ({ name: x.name, pick: () => this.setState({ ctlRow: x.key }, () => { this.stepEls = null; }), ...(x.key === row.key ? on : off) })),
+          ctlRow: row, ctlMuteTxt: cut ? 'Muted' : 'Mute', ctlMuteBg: cut ? '#3dff7a' : '#161616', ctlMuteFg: cut ? '#0a0a0a' : '#f2f2f2',
+          ctlGroupTabs: knobGroups.map((g, j) => ({ name: g.title, pick: () => this.setState({ ctlGroup: j }), ...(j === gi ? on : off) })),
+          ctlKnobs: knobGroups[gi].knobs
+        }; })(),
+      randomize: () => { const r = md442Gen(); this.setState(st => ({ preset: null, snd: { ...st.snd, notes: r.notes }, grid: Object.fromEntries(ROWS.map(([k]) => [k, r.g[k].split('').map(c => c === 'x')])) }), () => { if (!this.isPlaying) this.togglePlay(); }); },
+      clear: () => this.setState({ preset: null, grid: Object.fromEntries(ROWS.map(([k]) => [k, Array(16).fill(false)])) }),
+      togglePlay: this.togglePlay, playing: s.playing,
+      playIcon: s.playing ? '■' : '▶', playLabel: s.playing ? 'stop' : 'play',
+      playBg: s.playing ? '#f2f2f2' : '#1d1d1d', playFg: s.playing ? '#0a0a0a' : '#f2f2f2', playCol: s.playing ? '#3dff7a' : '#ffffff',
+      bpm: s.bpm, swing: s.swing, decay: s.decay,
+      onBpm: e => this.setState({ bpm: +e.target.value }),
+      onSwing: e => this.setState({ swing: +e.target.value }),
+      onDecay: e => this.setState({ decay: +e.target.value })
+    };
+  }
+}
+</script>
+<script src="mix-autoplay.js" data-enter="1" defer></script>
+</body>
+</html>

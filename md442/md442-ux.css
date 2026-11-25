@@ -1,0 +1,38 @@
+/* MD|442 usability layer (Nov 2026): mute group, connect guide, phone menu, bigger touch targets. Loaded after md442.css and md442-dark.css. */
+/* mute group: drums being picked blink amber; drums in the saved group carry a small amber dot */
+.md .key.inst.arm { box-shadow: 0 0 0 2px #ffb020, 0 0 12px rgba(255,176,32,.7); animation: mdarm .6s steps(2) infinite; }
+@keyframes mdarm { 50% { box-shadow: 0 0 0 2px rgba(255,176,32,.35); } }
+.md .key.inst.ingrp::after { content: ''; position: absolute; left: 5px; bottom: 5px; width: 5px; height: 5px; border-radius: 50%; background: #ffb020; box-shadow: 0 0 5px rgba(255,176,32,.9); }
+.md .key.grp { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.md .key.grp.on { box-shadow: 0 0 0 2px #ffb020, 0 0 12px rgba(255,176,32,.6); border-color: #b87400; }
+.md .key.grp.on::before { background: #ffb020; box-shadow: 0 0 6px #ffb020; }
+.md .key.arm { animation: mdarm .6s steps(2) infinite; box-shadow: 0 0 0 2px #ffb020; }
+.md.desk .tools .key.grp { min-width: 118px; max-width: 190px; }
+@media (prefers-reduced-motion: reduce) { .md .key.inst.arm, .md .key.arm { animation: none; } }
+
+/* connect guide (MIDI panel and MIDI sheet) */
+.md .guide { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--line); }
+.md .gtabs { flex-wrap: wrap; }
+.md .gtabs .key { min-height: 40px; min-width: 0; }
+.md .gsteps { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; max-width: 900px; -webkit-user-select: text; user-select: text; }
+.md .gsteps li { font-size: 11px; line-height: 1.65; color: var(--ink); text-transform: none; letter-spacing: .01em; }
+.md .gsteps a { color: #0a8f3c; font-weight: 600; }
+.md[data-theme="dark"] .gsteps a { color: var(--g); }
+.md.desk .midp .keyb { gap: 10px; }
+
+/* phone: the logo is the menu button; links in the menu look like keys */
+.md.phone .key.menu { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; min-width: 50px; min-height: 44px; padding: 2px 6px; }
+.md.phone .key.menu .mi { font-style: normal; font-size: 15px; line-height: 1; }
+.md.phone .key.menu .logo { display: block; font-size: 10px; line-height: 1; }
+@media (max-width: 340px) { .md.phone .key.menu .logo { display: none; } }
+.md .sheet .keys .navk, .md .sheet .keys .key.next { display: flex; align-items: center; justify-content: center; min-height: 52px; padding: 6px 12px; text-align: center; white-space: normal; line-height: 1.4; text-decoration: none; color: inherit; }
+.md .sheet .keys .navk { border-style: solid; }
+
+/* touch targets: nothing a finger has to hit is smaller than 40 px on the phone */
+.md.phone .key.x, .md .sheet .key.x { min-width: 44px; min-height: 44px; }
+.md .sheet .key.sw { min-height: 40px; min-width: 56px; }
+.md .sheet .mlist .key, .md .sheet .kctl .key { min-height: 44px; }
+.md.phone .pmid { min-height: 200px; }
+.md.phone .pside .key { min-height: 44px; font-size: 8.5px; white-space: normal; line-height: 1.15; }
+@media (max-height: 735px) and (min-height: 600px) { .md.phone .pmid { min-height: 0; } .md.phone .pside .key { font-size: 8px; } }
+@media (max-height: 735px) { .md.phone .pmid { min-height: 0; } }
