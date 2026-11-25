@@ -11,7 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { os: macos-14, cmd: 'dist:mac', file: md442-mac.dmg }
+          - { os: macos-latest, cmd: 'dist:mac', file: md442-mac.dmg }
           - { os: windows-latest, cmd: 'dist:win', file: md442-windows.exe }
     runs-on: ${{ matrix.os }}
     defaults: { run: { working-directory: desktop, shell: bash } }
