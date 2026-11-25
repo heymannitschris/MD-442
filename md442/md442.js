@@ -662,6 +662,71 @@ function loadBeat(j) {
   apply(); refreshKnobs(); drawAll(); persist();
 }
 function delBeat(j) { const b = beats[j]; if (!b) return; beats.splice(j, 1); keepBeats(); drawAll(); toast(b.name + ' deleted'); }
+/* beats in and out: .md442.json is the same file the DAW plugin and the other MD|442 apps read and write; .mid is a clip for Ableton, Maschine or any DAW */
+const fileName = (n, ext) => (String(n || 'MD442 beat').replace(/[^\w\- ]+/g, '').trim().replace(/\s+/g, '-') || 'MD442-beat') + ext;
+function beatFile() { storeMix(); return { format: 'md442-beat', version: 1, name: S.preset || 'MD442 beat', P: Object.assign({}, P), scenes: S.scenes.map(copyScene), last: S.last, trim: trimOf() }; }
+async function saveAs(blob, name, desc, accept) {
+  if (window.showSaveFilePicker && self === top) {
+    try { const fh = await showSaveFilePicker({ suggestedName: name, startIn: 'documents', id: 'md442-beats', types: [{ description: desc, accept }] }); const w = await fh.createWritable(); await w.write(blob); await w.close(); return true; }
+    catch (e) { if (e && e.name === 'AbortError') return false; }
+  }
+  const u = URL.createObjectURL(blob), a = h('a'); a.href = u; a.download = name; document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 4000); return true;
+}
+async function exportBeat() { const b = beatFile(); if (await saveAs(new Blob([JSON.stringify(b, null, 1)], { type: 'application/json' }), fileName(b.name, '.md442.json'), 'MD|442 beat', { 'application/json': ['.json'] })) toast('Exported ' + b.name); }
+function midiBytes() {   // one track, drums on channel 1 (C1 = kick, the plugin's pad map), bass on 2, stab on 3; every scene in order, one bar each
+  storeMix();
+  const PPQ = 96, ST = PPQ / 4, ev = [], keyN = Math.round(P.key), sh = (P.shuffle / 100 - .5) * 2 * ST, L = S.last;
+  S.scenes.forEach((sc, bar) => { for (let i = 0; i < L; i++) {
+    const t = Math.round(bar * L * ST + i * ST + (i % 2 ? sh : 0)), vel = sc.g.AC && sc.g.AC[i] ? 127 : 100;
+    SOUND.forEach((k, ki) => { if (!sc.g[k] || !sc.g[k][i]) return;
+      const [ch, n, len] = k === 'BS' ? [1, clamp(28 + keyN + (sc.n[i] | 0), 0, 127), ST - 2] : k === 'ST' ? [2, clamp(52 + keyN, 0, 127), ST - 2] : [0, 36 + ki, ST / 2];
+      ev.push([t, 1, 0x90 | ch, n, vel], [t + len, 0, 0x80 | ch, n, 0]); });
+  } });
+  ev.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const vlq = v => { const o = [v & 127]; while ((v >>= 7)) o.unshift((v & 127) | 128); return o; };
+  const us = Math.round(60000000 / P.bpm), tr = [0, 0xFF, 0x51, 3, us >> 16 & 255, us >> 8 & 255, us & 255, 0, 0xFF, 0x58, 4, 4, 2, 24, 8];
+  let now = 0; ev.forEach(([t, , s, n, v]) => { tr.push(...vlq(t - now), s, n, v); now = t; });
+  tr.push(...vlq(Math.max(0, S.scenes.length * L * ST - now)), 0xFF, 0x2F, 0);
+  const n32 = v => [v >>> 24 & 255, v >>> 16 & 255, v >>> 8 & 255, v & 255];
+  return new Uint8Array([0x4D, 0x54, 0x68, 0x64, 0, 0, 0, 6, 0, 1, 0, 1, PPQ >> 8, PPQ & 255, 0x4D, 0x54, 0x72, 0x6B, ...n32(tr.length), ...tr]);
+}
+async function exportMidi() { if (await saveAs(new Blob([midiBytes()], { type: 'audio/midi' }), fileName(S.preset, '.mid'), 'MIDI clip', { 'audio/midi': ['.mid'] })) toast('MIDI clip saved: drag it onto a track in your DAW'); }
+function midiDrag(b) {   // desktop Chrome / Edge: drag the key straight onto an Ableton or Maschine track, or the desktop
+  b.draggable = true;
+  b.addEventListener('dragstart', e => { try { const u = URL.createObjectURL(new Blob([midiBytes()], { type: 'audio/midi' })); e.dataTransfer.setData('DownloadURL', 'audio/midi:' + fileName(S.preset, '.mid') + ':' + u); e.dataTransfer.setData('text/uri-list', u); e.dataTransfer.effectAllowed = 'copy'; } catch (_) {} });
+  return b;
+}
+function normBeat(x) {   // a beat from any MD|442: the web app, the phone app, the desktop app or the DAW plugin
+  if (!x || typeof x !== 'object' || !x.P || typeof x.P !== 'object' || !Array.isArray(x.scenes) || !x.scenes.length) return null;
+  const scenes = [];
+  for (const s of x.scenes.slice(0, 8)) {
+    if (!s || !s.g || !Array.isArray(s.n) || s.n.length !== 16) return null;
+    const g = {}; for (const k of KEYS) { const r = s.g[k]; if (r != null && (!Array.isArray(r) || r.length !== 16)) return null; g[k] = r ? r.map(Boolean) : Array(16).fill(false); }
+    const sc = { g, n: s.n.map(v => clamp(Math.round(+v) || 0, -24, 24)) }; if (s.x && typeof s.x === 'object') sc.x = s.x; scenes.push(sc);
+  }
+  const Pn = {}; Object.keys(DEF).forEach(k => { if (typeof x.P[k] === 'number' && isFinite(x.P[k])) Pn[k] = clamp(x.P[k], DEF[k].mn, DEF[k].mx); });
+  return { name: String(x.name || 'Imported beat').slice(0, 40), P: Pn, scenes, last: clamp(Math.round(+x.last) || 16, 1, 16), trim: clamp(+x.trim || 0, -12, 12) };
+}
+function importBeat() {
+  const inp = h('input'); inp.type = 'file'; inp.accept = '.json,application/json'; inp.multiple = true;
+  inp.addEventListener('change', async () => {
+    let added = 0, bad = 0, first = -1;
+    for (const f of [...inp.files]) {
+      let d; try { d = JSON.parse(await f.text()); } catch (_) { bad++; continue; }
+      const list = Array.isArray(d) ? d : Array.isArray(d && d.beats) ? d.beats : [d];
+      for (const x of list) {
+        const b = normBeat(x); if (!b) { bad++; continue; }
+        if (beats.length >= 8) { toast('All 8 slots are full. Delete a beat first.'); break; }
+        let nm = b.name, i = 2; while (beats.some(y => y.name === nm) || PRESETS[nm]) nm = b.name + ' ' + i++;
+        b.name = nm; beats.push(b); added++; if (first < 0) first = beats.length - 1;
+      }
+    }
+    if (added) { keepBeats(); loadBeat(first); toast(added === 1 ? 'Imported ' + beats[first].name : 'Imported ' + added + ' beats'); }
+    else toast(bad ? 'That file is not an MD|442 beat.' : 'Nothing imported.');
+  });
+  inp.click();
+}
+const beatIO = () => { const w = h('span', 'bio'); w.append(key('IMPORT', importBeat, 'io'), key('EXPORT', exportBeat, 'io'), midiDrag(key('MIDI ↓', exportMidi, 'io'))); w.lastChild.title = 'Save the beat as a MIDI clip, or drag this key onto a DAW track'; return w; };
 const fxOn = k => (k === 'fx.filter' ? Math.abs(P[k]) >= 4 : P[k] !== 0);
 function fxToggle(k) {   // off puts the knob at zero (the filter at centre) and empties the reverb or echo tail; turning the knob switches it back on
   if (fxOn(k)) { S.mem[k] = P[k]; set(k, 0); if (E) { if (k === 'fx.verb') E.flushVerb(); if (k === 'fx.space') E.flushEcho(); } }
@@ -839,6 +904,7 @@ function beatKeys(box) {
     box.textContent = '';
     beats.forEach((b, j) => { const w = h('span', 'beat'), a = key(b.name, () => loadBeat(j), 'led' + (S.preset === b.name ? ' on' : '')), x = key('✕', () => delBeat(j), 'x'); x.setAttribute('aria-label', 'Delete ' + b.name); w.append(a, x); box.append(w); });
     if (beats.length < 8) box.append(key('+ SAVE PATTERN', saveBeat, 'next'));
+    box.append(beatIO());
   });
 }
 function sceneKeys(box) {
@@ -926,7 +992,10 @@ const CMDS = [
   ['Drums', 'Clear the selected drum', K('Shift', '⌫'), clearDrum], ['Drums', 'Random beat', K('Shift', 'Z'), randomize],
   ['Mutes', 'Mute a drum (same letters as select)', K('Alt', 'letter'), () => {}], ['Mutes', 'Solo a drum', K('Alt', 'Shift', 'letter'), () => {}], ['Mutes', 'Mute the selected drum', 'M', () => toggleMute()], ['Mutes', 'Solo the selected drum', K('Shift', 'M'), () => toggleSolo()],
   ['Scenes', 'Go to scene 1–8', '1–8  or  ' + K('Alt', '1–8'), () => {}], ['Scenes', 'Save this pattern to a new scene', 'N', addScene], ['Scenes', 'Chain the scenes', 'L', toggleChain], ['Scenes', 'Delete this scene', K('Alt', '⌫'), delScene], ['Scenes', 'Clear the scene', '', clearScene],
-  ['Patterns', 'Save as My beat', K('Ctrl', 'S'), saveBeat]
+  ['Patterns', 'Save as My beat', K('Ctrl', 'S'), saveBeat],
+  ['Patterns', 'Import a beat (.md442.json)', '', importBeat],
+  ['Patterns', 'Export this beat (.md442.json)', '', exportBeat],
+  ['Patterns', 'Export a MIDI clip (.mid)', '', exportMidi]
 ].concat(Object.keys(PRESETS).map(n => ['Patterns', 'Load ' + n, '', () => pickPreset(n)])).concat([
   ['Sound and effects', 'Kill the lows / mids / highs', K('Alt', 'Z') + '  ' + K('Alt', 'X') + '  ' + K('Alt', 'C'), () => {}],
   ['Sound and effects', 'Filter / reverb / echo / drive on or off', K('Alt', 'V') + '  ' + K('Alt', 'B') + '  ' + K('Alt', 'N') + '  ' + K('Alt', 'M'), () => {}],
@@ -1026,7 +1095,7 @@ const SHEETS = {
   keys: ['KEYBOARD · ARP', b => { buildKeys(b, 13); }],
   menu: ['MD|442', b => {
     const k = h('div', 'keys'), go = (t, href) => { const a = h('a', 'key next navk', t); a.href = href; return a; };
-    k.append(key('CONNECT MIDI · ABLETON · MASCHINE · SMK-37', () => { closeSheet(); openSheet('MIDI · DAW · SMK-37', buildMidi); }, 'next'), go('DOWNLOAD · DESKTOP · ANDROID · FIRMWARE', '/md442/download/'), go('MD|442 HOME', '/md442/'), go("MATHEW'S DJ PAGE", '/mathew-dj/'), key('SHORTCUTS AND TIPS', () => { closeSheet(); openSheet('TIPS', tb => { tb.append(h('p', 'note', 'Tap a drum, then tap the steps. Drag a knob up or down; double-tap resets it. Hold a drum key to mute it. MUTE GROUP: hold it, tap several drums, DONE, then FLIP mutes them together on the next bar. Scenes keep their own mutes, filter, FX and mixer.')); }); }));
+    k.append(key('CONNECT MIDI · ABLETON · MASCHINE · SMK-37', () => { closeSheet(); openSheet('MIDI · DAW · SMK-37', buildMidi); }, 'next'), go('DOWNLOAD · DESKTOP · ANDROID · FIRMWARE', '/md442/download/'), go('MD|442 HOME', '/md442/'), go("MATHEW'S DJ PAGE", '/mathew-dj/'), key('SHORTCUTS AND TIPS', () => { closeSheet(); openSheet('TIPS', tb => { tb.append(h('p', 'note', 'Tap a drum, then tap the steps. Drag a knob up or down; double-tap resets it. Hold a drum key to mute it. MUTE GROUP: hold it, tap several drums, DONE, then FLIP mutes them together on the next bar. Scenes keep their own mutes, filter, FX and mixer. IMPORT and EXPORT under My beats move beats between every MD|442 and the DAW plugin; MIDI ↓ saves a clip for your DAW.')); }); }));
     b.append(k, h('p', 'note', 'MD|442 · free · developed by Mathew · 442 is binary for NEST'));
   }],
   clear: ['CLEAR · UNDO', b => { b.append(key('UNDO THE LAST CHANGE', () => { undo(); closeSheet(); }, 'next')); const k = h('div', 'keys'), cd = key('', () => { clearDrum(); closeSheet(); }); live(cd, () => { cd.textContent = 'CLEAR ' + SHORT[S.sel]; }); k.append(cd, key('CLEAR SCENE', () => { clearScene(); closeSheet(); }), key('RANDOM BEAT', () => { randomize(); closeSheet(); })); b.append(k); }]
@@ -1225,7 +1294,8 @@ const GUIDE = [
     'In Live: Settings, Link Tempo MIDI. Under MIDI Ports, set Sync to On for the IAC Driver (or loopMIDI) output.',
     'Press CONNECT here. Press play in Live: MD|442 starts with it and follows its tempo.',
     'To get the sound into Live, press REC here, play, press REC again and drag the WAV onto a track. To record it live, route your computer audio into Live with BlackHole (Mac) or VB-CABLE (Windows).',
-    'Your SMK-37 can play MD|442 and Live together on a Mac. In Live, MIDI Ports: Track On for the SMK-37.']],
+    'Your SMK-37 can play MD|442 and Live together on a Mac. In Live, MIDI Ports: Track On for the SMK-37.',
+    'To get the beat into Live as notes, press MIDI ↓ under MY BEATS and drop the .mid file on a track (in Chrome or Edge you can drag the key straight onto it). Drums are on channel 1 from C1, bass on 2, stab on 3, so it plays the MD|442 plugin or a Drum Rack.']],
   ['MASCHINE', [
     'Turn on the IAC Driver (Mac) or a loopMIDI port (Windows), as in the Ableton steps.',
     'In Maschine: Preferences, MIDI, Output: enable the IAC Driver. Then File, Sync: Send MIDI Clock.',
@@ -1235,7 +1305,14 @@ const GUIDE = [
     'iPhone: the phone app plays with the silent switch on. Turn the volume up. iPhone browsers cannot use MIDI.',
     'Android: Chrome can use a USB keyboard such as the SMK-37 through a USB-C adapter. Plug it in, open MIDI and press CONNECT.',
     'Firefox on Android cannot use MIDI. Use Chrome for controllers; everything else works in Firefox.',
-    ['Install the app on your phone', '/md442/download/#phone']]]
+    ['Install the app on your phone', '/md442/download/#phone']]],
+  ['BEATS', [
+    'Every MD|442 reads the same beat file: this page, the phone app, the desktop app and the DAW plugin.',
+    'EXPORT (under MY BEATS) saves the beat on screen as a .md442.json file, with all its scenes, sounds and each scene\'s mutes and mix.',
+    'IMPORT opens one or more .md442.json files, from the plugin or another device, into MY BEATS and loads the first one. Up to 8 beats fit.',
+    'In the plugin, EXPORT saves to Documents/MD-442/Beats and IMPORT opens from there. On a phone, send the file to yourself (AirDrop, email, Drive) and import it from Files.',
+    'MIDI ↓ saves the beat as a MIDI clip, every scene in order, for Ableton, Maschine or any DAW.',
+    ['Get the plugin', '/md442/download/#plugin']]]
 ];
 function guide() {
   const box = h('div', 'guide'), tabs = h('div', 'seg gtabs'), body = h('ol', 'gsteps'); let on = /iPhone|iPad|Android/.test(navigator.userAgent) ? 3 : 0;

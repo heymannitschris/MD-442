@@ -72,3 +72,12 @@
   .md.phone .pbar { grid-area: bar; position: static; margin-top: 0; }
   .md.phone .pbar .key { min-height: 40px; height: 40px; }
 }
+
+/* beats in and out: IMPORT, EXPORT, MIDI clip (drag it onto a DAW track) */
+.md .bio { display: flex; gap: 6px; }
+.md .bio .key.io { flex: 1 1 0; min-width: 0; }
+.md.desk .beats .bio { margin-left: auto; }
+.md.desk .beats .bio .key.io { flex: none; min-width: 62px; }
+.md .sheet .bio { grid-column: 1 / -1; }
+.md .sheet .bio .key.io { min-height: 44px; }
+.md .key.io[draggable="true"] { cursor: grab; }
