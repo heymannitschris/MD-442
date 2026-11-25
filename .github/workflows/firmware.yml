@@ -19,7 +19,12 @@ jobs:
         run: |
           pip install Pillow
           sh x0x/tools/get_toolchain.sh
-          git clone --depth 1 --branch AC79NN_SDK_V1.2.1_2023-12-13 https://gitee.com/Jieli-Tech/fw-AC79_AIoT_SDK.git "$HOME/fw-AC79_AIoT_SDK"
+          # JieLi's AC79 SDK (Apache-2.0), tag V1.2.1: only 3 files are used. gitee asks for a login from CI, so this
+          # takes the same tag from a GitHub mirror, sparse (the full SDK is ~700 MB).
+          git clone --depth 1 --branch AC79NN_SDK_V1.2.1_2023-12-13 --filter=blob:none --sparse \
+            https://github.com/amitv87/fw-AC79_AIoT_SDK.git "$HOME/fw-AC79_AIoT_SDK"
+          git -C "$HOME/fw-AC79_AIoT_SDK" sparse-checkout set --no-cone /cpu/wl82/tools/
+          ls -la "$HOME/fw-AC79_AIoT_SDK/cpu/wl82/tools/uboot.boot"
       - name: Build Elite and Pro
         run: |
           mkdir -p out
