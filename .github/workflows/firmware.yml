@@ -1,4 +1,4 @@
-name: MD|442 firmware (SMK-37)
+name: MD|442 firmware (SMK-37 + FM-1)
 on:
   push:
     paths: ['firmware/**', '.github/workflows/firmware.yml']
@@ -29,10 +29,12 @@ jobs:
         run: |
           mkdir -p out
           cd x0x
-          BOARD=smk37 MODEL=elite ./build.sh --release md442-1.0
+          BOARD=smk37 MODEL=elite ./build.sh --release 1.0
           cp "$(ls -t build/*.fwsc | head -1)" ../out/md442-smk37-elite.fwsc
-          BOARD=smk37 ./build.sh --release md442-1.0
+          BOARD=smk37 ./build.sh --release 1.0
           cp "$(ls -t build/*.fwsc | head -1)" ../out/md442-smk37-pro.fwsc
+          ./build.sh --release 1.0               # the M-VAVE FM-1 (same chip; X0X's original target)
+          cp "$(ls -t build/*.fwsc | head -1)" ../out/md442-fm1.fwsc
           git diff > ../out/md442-smk37.patch
           cd .. && cp firmware/INSTALL.md out/ && tar czf out/md442-smk37-source.tar.gz --exclude=.git x0x/firmware x0x/tools x0x/build.sh x0x/LICENSE x0x/SMK37.md x0x/BUILDING.md
       - uses: actions/upload-artifact@v4
