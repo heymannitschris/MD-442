@@ -59,7 +59,7 @@
     <h1>Download <span>MD|442</span></h1>
     <p class="tag">A free drum machine, developed by Mathew. No sign-up, nothing to pay. Take it with you as an app on your Mac or PC, on your phone, or as firmware that runs on the keyboard itself.</p>
   </div>
-  <nav class="jump"><a class="pill mono" href="#desktop">Desktop app</a><a class="pill mono" href="#phone">Phone app</a><a class="pill mono" href="#firmware">Firmware</a><a class="pill mono" href="#hardware">Hardware</a><a class="pill mono" href="#guides">Guides</a></nav>
+  <nav class="jump"><a class="pill mono" href="#desktop">Desktop app</a><a class="pill mono" href="#plugin">DAW plugin</a><a class="pill mono" href="#phone">Phone app</a><a class="pill mono" href="#firmware">Firmware</a><a class="pill mono" href="#hardware">Hardware</a><a class="pill mono" href="#guides">Guides</a></nav>
 
   <section class="sec" id="desktop">
     <h2 class="mono">Desktop app</h2>
@@ -69,6 +69,16 @@
       <div class="card"><b class="mono" style="color:var(--g);font-weight:400">Windows 10 / 11</b><strong>Windows</strong><span>Windows 10 and 11, 64-bit. One-click installer: MD|442 appears in the Start menu. 78 MB.</span><a class="pill go mono" href="https://github.com/heymannitschris/MD-442/releases/download/desktop/md442-windows.exe">Download for Windows ↓</a></div>
       <div class="card"><b class="mono" style="color:var(--g);font-weight:400">Any computer</b><strong>Play in the browser</strong><span>No download needed. Play MD|442 in any browser for as long as you like. Chrome and Edge can also install it from the address bar; in Safari on a Mac use File, Add to Dock.</span><a class="pill mono" href="../#machine">Play MD|442 ↗</a></div>
     </div>
+  </section>
+
+  <section class="sec" id="plugin">
+    <h2 class="mono">DAW plugin (VST3 + AU)</h2>
+    <p>MD|442 inside Ableton Live, Maschine, Logic, FL Studio, Bitwig or Reaper. The pattern plays in time with your DAW, pads and keys play the drums from C1, and every knob can be automated or mapped to your controller. Free, same sound as the web version.</p>
+    <div class="cards">
+      <div class="card"><b class="mono" style="color:var(--g);font-weight:400">macOS · VST3 + AU</b><strong>Mac plugin</strong><span>Apple silicon and Intel, macOS 10.13 or later. Installs the Audio Unit and VST3 into /Library/Audio/Plug-Ins, plus a standalone app. 12 MB.</span><a class="pill go mono" href="https://github.com/heymannitschris/MD-442/releases/download/plugin/md442-plugin-mac.pkg">Download plugin for Mac ↓</a></div>
+      <div class="card"><b class="mono" style="color:var(--g);font-weight:400">Windows 10 / 11 · VST3</b><strong>Windows plugin</strong><span>64-bit. Installs MD-442.vst3 into C:\Program Files\Common Files\VST3, plus a standalone app. 5 MB.</span><a class="pill go mono" href="https://github.com/heymannitschris/MD-442/releases/download/plugin/md442-plugin-windows.exe">Download plugin for Windows ↓</a></div>
+    </div>
+    <p class="mono" style="font-size:.85em">Prefer to copy files yourself? <a href="https://github.com/heymannitschris/MD-442/releases/download/plugin/md442-plugin-mac.zip">Mac .zip</a> · <a href="https://github.com/heymannitschris/MD-442/releases/download/plugin/md442-plugin-windows.zip">Windows .zip</a></p>
   </section>
 
   <section class="sec" id="phone">
@@ -96,6 +106,7 @@
       <tr><th>Device</th><th>How MD|442 runs</th><th>Download</th></tr>
       <tr><td><b>Mac</b></td><td>Desktop app, or installed from the browser</td><td><a href="#desktop">Desktop app</a></td></tr>
       <tr><td><b>Windows PC</b></td><td>Desktop app, or installed from the browser</td><td><a href="#desktop">Desktop app</a></td></tr>
+      <tr><td><b>Ableton, Maschine, Logic, any DAW</b></td><td>VST3 plugin (Mac and Windows) and Audio Unit (Mac)</td><td><a href="#plugin">DAW plugin</a></td></tr>
       <tr><td><b>Android</b></td><td>Android app (.apk)</td><td><a href="#phone">Phone app</a></td></tr>
       <tr><td><b>iPhone</b></td><td>Phone app from the home screen</td><td><a href="#phone">Phone app</a></td></tr>
       <tr><td><b>M-VAVE SMK-37 Elite</b></td><td>Firmware on the keyboard, or as a MIDI controller for the app</td><td><a href="#firmware">md442-smk37-elite.fwsc</a></td></tr>
@@ -133,6 +144,26 @@
           <li>Mac: the first time you open it, macOS says it cannot check the app. Go to System Settings, Privacy &amp; Security, click Open Anyway, and confirm.</li>
           <li>Windows: if SmartScreen says "Windows protected your PC", click More info, then Run anyway.</li>
           <li>Plug in an SMK-37 or FM-1 and press CONNECT to play the app from the keyboard. The app works offline.</li>
+        </ul>
+      </section>
+      <section class="box">
+        <h2 class="mono">Install the plugin</h2>
+        <ol>
+          <li><b style="font-weight:400;color:var(--g)">Mac:</b> open md442-plugin-mac.pkg. It isn't signed by Apple yet, so the first time right-click it and choose Open, then Open (on macOS 15: System Settings › Privacy &amp; Security › Open Anyway).</li>
+          <li><b style="font-weight:400;color:var(--g)">Windows:</b> run md442-plugin-windows.exe. If SmartScreen warns, press More info, then Run anyway.</li>
+          <li><b style="font-weight:400;color:var(--g)">Maschine 2:</b> Preferences › Plug-ins › Manager › Rescan. Load MD-442 from Instruments › NEST Group.</li>
+          <li><b style="font-weight:400;color:var(--g)">Ableton Live:</b> Settings › Plug-Ins: turn on Use Audio Units (Mac) or Use VST3 Plug-in System Folders, then Rescan. MD-442 is under Plug-Ins › NEST Group.</li>
+          <li><b style="font-weight:400;color:var(--g)">Logic Pro:</b> instrument slot › AU Instruments › NEST Group › MD-442.</li>
+        </ol>
+      </section>
+      <section class="box">
+        <h2 class="mono">Play the plugin</h2>
+        <ul>
+          <li>The pattern plays with your DAW, at its tempo. Turn PATTERN off to play only from pads, keys or clips.</li>
+          <li>Notes C1–C2 (and C3–C4 for Maschine's keyboard mode): Kick, Snare, Clap, Rim, Low/Mid/Hi tom, Closed/Open hat, Crash, Ride, Bass, Stab. Hit hard for the accent.</li>
+          <li>MIDI channel 2 plays the bass at the note you play; channel 3 plays the dub stab chord.</li>
+          <li>Right-click any knob › MIDI learn, then turn a knob on your SMK-37 or other controller. Maschine's encoders get the knobs in pages of 8.</li>
+          <li>DRAG MIDI drops the beat onto a track as a MIDI clip. IMPORT / EXPORT move beats as .md442.json files. SEND TO KEYBOARD puts the beat on an SMK-37 / FM-1 with firmware 1.1 (patterns 9–16).</li>
         </ul>
       </section>
       <section class="box warn">
