@@ -32,6 +32,13 @@ Peak Warehouse, Berlin Roll, Electro, Acid Jack, Deep House, Breakbeat, Dub Tech
 - Change pattern: hold HOME (on the SMK-37: PATCH) and press white key / pad 1-7.
 - Steps: the white keys on the FM-1, the 16 pads on the SMK-37.
 
+## Send your own beats to the keyboard (firmware 1.1)
+1. Connect the keyboard by USB to the computer running MD|442 (Chrome or the desktop app).
+2. In MD|442 open the MIDI · DAW panel and press SEND TO KEYBOARD (allow MIDI with SysEx the first time).
+3. Your scenes 1-8 land on keyboard patterns 9-16; the screen says FROM MD|442. Patterns 1-7 keep the factory beats.
+4. From then on, every Save beat sends automatically while the keyboard is connected.
+Drums, accents, the bass line, tempo and swing go across; the dub stab, knob settings, scene mixes and mute groups stay in the app.
+
 ## Go back to the stock firmware
 Install M-VAVE's own package for your model with M-VAVE's updater (M-UPGRADE).
 
