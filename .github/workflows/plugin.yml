@@ -1,0 +1,91 @@
+name: MD|442 plugin (VST3 + AU, Mac and Windows)
+on:
+  push:
+    paths: ['plugin/**', '.github/workflows/plugin.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+env:
+  MD442_VERSION: '1.0.${{ github.run_number }}'
+jobs:
+  mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 'Build (universal, Apple Silicon + Intel)'
+        run: |
+          cmake -S plugin -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+          cmake --build build --config Release -j 4 --target MD442_VST3 MD442_AU MD442_Standalone
+      - name: Ad-hoc sign (Apple Silicon will not load an unsigned plugin at all)
+        run: |
+          A=build/MD442_artefacts/Release
+          codesign --force --deep --sign - "$A/VST3/MD-442.vst3" "$A/AU/MD-442.component" "$A/Standalone/MD-442.app"
+      - name: Validate the Audio Unit (auval)
+        run: |
+          mkdir -p ~/Library/Audio/Plug-Ins/Components
+          cp -R build/MD442_artefacts/Release/AU/MD-442.component ~/Library/Audio/Plug-Ins/Components/
+          killall -9 AudioComponentRegistrar 2>/dev/null || true
+          auval -v aumu Md44 Nest
+      - name: Validate the VST3 (pluginval)
+        run: |
+          curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_macOS.zip
+          unzip -q pv.zip
+          ./pluginval.app/Contents/MacOS/pluginval --strictness-level 5 --skip-gui-tests --validate build/MD442_artefacts/Release/VST3/MD-442.vst3
+      - name: Installer (.pkg) and zip
+        run: |
+          A=build/MD442_artefacts/Release; mkdir -p out r/vst3 r/au r/app
+          cp -R "$A/VST3/MD-442.vst3" r/vst3/; cp -R "$A/AU/MD-442.component" r/au/; cp -R "$A/Standalone/MD-442.app" r/app/
+          for p in vst3 au app; do
+            pkgbuild --analyze --root r/$p $p.plist
+            plutil -replace BundleIsRelocatable -bool NO $p.plist   # always install where we say, never "next to an old copy"
+          done
+          pkgbuild --root r/vst3 --component-plist vst3.plist --identifier space.nestgroup.md442.vst3 --version "$MD442_VERSION" --install-location /Library/Audio/Plug-Ins/VST3 vst3.pkg
+          pkgbuild --root r/au --component-plist au.plist --identifier space.nestgroup.md442.au --version "$MD442_VERSION" --install-location /Library/Audio/Plug-Ins/Components au.pkg
+          pkgbuild --root r/app --component-plist app.plist --identifier space.nestgroup.md442.app --version "$MD442_VERSION" --install-location /Applications app.pkg
+          productbuild --package vst3.pkg --package au.pkg --package app.pkg out/md442-plugin-mac.pkg
+          (cd "$A" && zip -qry "$GITHUB_WORKSPACE/out/md442-plugin-mac.zip" VST3/MD-442.vst3 AU/MD-442.component)
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with: { name: mac, path: out/*, if-no-files-found: error }
+
+  windows:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build (64-bit)
+        shell: bash
+        run: |
+          cmake -S plugin -B build -G "Visual Studio 17 2022" -A x64
+          cmake --build build --config Release -j 4 --target MD442_VST3 MD442_Standalone
+      - name: Validate the VST3 (pluginval)
+        shell: bash
+        run: |
+          curl -sSL -o pv.zip https://github.com/Tracktion/pluginval/releases/latest/download/pluginval_Windows.zip
+          unzip -q pv.zip
+          ./pluginval.exe --strictness-level 5 --skip-gui-tests --validate build/MD442_artefacts/Release/VST3/MD-442.vst3
+      - name: Installer (.exe) and zip
+        shell: bash
+        run: |
+          mkdir -p out
+          ISCC="/c/Program Files (x86)/Inno Setup 6/ISCC.exe"
+          if [ ! -f "$ISCC" ]; then choco install innosetup -y --no-progress; fi
+          "$ISCC" plugin/installer/md442.iss
+          (cd build/MD442_artefacts/Release && 7z a -tzip "$GITHUB_WORKSPACE/out/md442-plugin-windows.zip" VST3/MD-442.vst3 >/dev/null)
+          ls -la out
+      - uses: actions/upload-artifact@v4
+        with: { name: windows, path: out/*, if-no-files-found: error }
+
+  release:
+    needs: [mac, windows]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: out, merge-multiple: true }
+      - name: Publish to the "plugin" release (stable download URLs)
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          ls -la out
+          gh release view plugin >/dev/null 2>&1 || gh release create plugin --title "MD|442 plugin (VST3 + AU)" --notes-file plugin/INSTALL.md --latest=false
+          gh release upload plugin out/md442-plugin-mac.pkg out/md442-plugin-mac.zip out/md442-plugin-windows.exe out/md442-plugin-windows.zip --clobber
+          gh release edit plugin --notes-file plugin/INSTALL.md --title "MD|442 plugin $MD442_VERSION (VST3 + AU)"
