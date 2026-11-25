@@ -81,3 +81,10 @@
 .md .sheet .bio { grid-column: 1 / -1; }
 .md .sheet .bio .key.io { min-height: 44px; }
 .md .key.io[draggable="true"] { cursor: grab; }
+
+/* one PLAY / STOP key */
+.md .key.play { font-variant-numeric: tabular-nums; }
+.md.desk .hk .key.play { min-width: 128px; }
+.md.phone .phd { grid-template-columns: 84px minmax(0, 1fr) auto; }
+.md.phone .phd .key.play { font-size: 11px; letter-spacing: .08em; padding: 0 4px; }
+.md .key.play.on { color: var(--g); text-shadow: 0 0 8px rgba(61,255,122,.8); }
