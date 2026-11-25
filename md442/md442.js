@@ -642,7 +642,7 @@ function saveBeat() {
   if (beats.length >= 8) return toast('All 8 slots are full. Delete a beat first.');
   let n = 1; while (beats.some(b => b.name === 'My beat ' + n)) n++;
   const name = 'My beat ' + n; beats.push({ name, P: Object.assign({}, P), scenes: S.scenes.map(copyScene), last: S.last, trim: trimOf() }); keepBeats();
-  S.preset = name; S.dirty = false; presetVals = Object.assign({}, P); drawAll(); persist(); toast('Saved as ' + name);
+  S.preset = name; S.dirty = false; presetVals = Object.assign({}, P); drawAll(); persist(); toast('Saved as ' + name); if (kbx.ok) sendToKeyboard(true);   // a keyboard that answered before gets the saved beat too
 }
 function loadBeat(j) {
   const b = beats[j]; if (!b) return; keep('load ' + b.name);
@@ -919,7 +919,7 @@ const CMDS = [
   ['Recording', 'Record to a WAV file (press again to save)', K('Ctrl', 'Enter'), toggleRec],
   ['Views', 'One drum / whole pattern', 'V', () => nextView()], ['Views', 'Mixer', 'X', toggleMixer], ['Views', 'Keyboard and arp', 'C', toggleKeys], ['Views', 'Play notes (keyboard open)', 'A W S E D F T G Y H U J K', () => { if (!S.keys.open) toggleKeys(); }],
   ['Views', 'Full screen', 'P', fullScreen], ['Views', 'Close a panel', 'Esc', () => {}], ['Views', 'This list', K('Ctrl', 'K') + '  or  ?', () => {}],
-  ['Rarely used', 'Light or dark look', '', toggleTheme], ['Rarely used', 'MIDI controllers', '', toggleMidi], ['Rarely used', 'MIDI learn: tie a hardware control to a knob', '', midiLearn], ['Rarely used', 'Install as a desktop app', '', install]
+  ['Rarely used', 'Light or dark look', '', toggleTheme], ['Rarely used', 'MIDI controllers', '', toggleMidi], ['Rarely used', 'MIDI learn: tie a hardware control to a knob', '', midiLearn], ['Rarely used', 'Send this beat to the keyboard', '', () => sendToKeyboard(false)], ['Rarely used', 'Install as a desktop app', '', install]
 ]);
 const TIPS = ['One idea per modifier: a plain letter is a step, ' + K('Shift') + ' + letter selects a drum, ' + K('Alt') + ' + letter mutes it.', 'Steps 1–8 are Q W E R T Y U I, steps 9–16 are A S D F G H J K, for the drum that is selected.', 'Made a pattern you like? Press the scene key marked + (or N) to save it to the next scene, then change it there. Keys 1–8 pick a scene; while it plays, the change waits for the bar line. Chain plays them in order.',
   'Hold a lit bass step to change its note.', 'With the keyboard open, A W S E D F T G Y H U J K play notes (the step letters come back when you close it). ARP plays the notes you hold in time with the tempo; HOLD keeps them going; REC writes what you play into the bass line.', 'Hold a drum key to mute it.', 'Drag a knob up or right. Shift = fine. Double-click = back to the pattern’s value. The wheel and the arrow keys step.', 'Shortcuts work once you have clicked the machine; Space works anywhere.'];
@@ -1159,6 +1159,10 @@ const actName = a => a === 'grp' ? 'Mute group' : a.startsWith('sc:') ? 'Scene '
 function doAct(a) { if (a === 'grp') { if (mq.size) fireGroup(); else toast('Make a mute group first: hold MUTE GROUP and tap the drums.'); } else if (a.startsWith('sc:')) setScene(+a.slice(3)); else if (a.startsWith('m:') && KEYS.includes(a.slice(2))) toggleMute(a.slice(2)); }
 function learnAct(a) { if (!midi.learn) return false; midi.armA = a; midi.armP = midi.armD = null; drawAll(); toast('LEARN: now press the pad or button for ' + actName(a)); return true; }
 function clockTick(t) { const c = midi.ck; c.push(t); if (c.length > 25) c.shift(); if (c.length < 25 || (midi.ckN = (midi.ckN || 0) + 1) % 24) return; const bpm = 60000 / ((c[24] - c[0]) / 24 * 24); if (bpm >= DEF.bpm.mn && bpm <= DEF.bpm.mx) { if (!midi.synced) { midi.synced = true; drawAll(); } if (Math.abs(bpm - P.bpm) > .6) set('bpm', Math.round(bpm), true); } }
+// built-in map for Mathew's M-VAVE SMK-37 Elite: knobs on channel 1, two pads for the bass and the stab. Used only while nothing has been learned.
+const MIDI_DEF = { cc: { '1:20': 'bd.decay', '1:21': 'sd.snappy', '1:22': 'ch.decay', '1:23': 'hh.tone', '1:24': 'bs.cutoff', '1:25': 'bs.reso', '1:26': 'bs.acid', '1:27': 'st.tone', '1:28': 'fx.filter', '1:29': 'fx.verb', '1:30': 'fx.efb', '1:31': 'vol',
+  '1:40': 'lvl.BD', '1:41': 'lvl.SD', '1:42': 'lvl.CP', '1:43': 'lvl.CH', '1:44': 'lvl.OH', '1:45': 'lvl.BS', '1:46': 'lvl.ST', '1:47': 'fx.drive', '1:48': 'shuffle', '1:49': 'fx.space', '1:50': 'accent', '1:51': 'fx.etime' }, note: { '10:62': 'BS', '10:63': 'ST' } };
+const midiMap = () => (Object.keys(midi.cc).length || Object.keys(midi.note).length ? midi : MIDI_DEF);
 try { const m = JSON.parse(localStorage.getItem(MIDI_LS) || '{}'); if (m && m.cc) midi.cc = m.cc; if (m && m.note) midi.note = m.note; } catch (_) {}
 const midiKeep = () => { try { localStorage.setItem(MIDI_LS, JSON.stringify({ cc: midi.cc, note: midi.note })); } catch (_) {} };
 function midiHit(k, v) { if (!SOUND.includes(k) || off(k)) return; boot(); const g = .35 + .65 * (v / 127), go = () => voice(E, k, ac.currentTime + .005, 0, g); if (ac.state === 'running') go(); else ac.resume().then(go).catch(() => {}); flashKey(k); }
@@ -1171,14 +1175,14 @@ function onMidi(e) {
     const id = ch + ':' + a; midi.last = 'note ' + a + ' ch ' + ch;
     if (midi.learn && midi.armA) { midi.note[id] = midi.armA; midiKeep(); toast('Pad (note ' + a + ') now does: ' + actName(midi.armA)); midi.armA = null; drawAll(); return; }
     if (midi.learn && midi.armD) { midi.note[id] = midi.armD; midiKeep(); toast('Pad (note ' + a + ') now plays ' + NAME[midi.armD]); midi.armD = null; drawAll(); return; }
-    const k = midi.note[id] || (ch === 10 ? GM[a] : null);
+    const k = midiMap().note[id] || (ch === 10 ? GM[a] : null);
     if (isAct(k)) doAct(k); else if (k) midiHit(k, b); else { boot(); noteOn(clamp(a - 40, 0, 36)); }        // everything else is the keyboard: E below middle C's octave is the root
   } else if (type === 0x80 || (type === 0x90 && b === 0)) { noteOff(clamp(a - 40, 0, 36)); }
   else if (type === 0xB0) {
     const id = ch + ':' + a; midi.last = 'CC ' + a + ' ch ' + ch;
     if (midi.learn && midi.armA && b > 63) { midi.cc[id] = midi.armA; midiKeep(); toast('Button (CC ' + a + ') now does: ' + actName(midi.armA)); midi.armA = null; drawAll(); return; }
     if (midi.learn && midi.armP) { midi.cc[id] = midi.armP; midiKeep(); toast('Control ' + a + ' now turns ' + DEF[midi.armP].lb); midi.armP = null; drawAll(); return; }
-    const k = midi.cc[id]; if (isAct(k)) { const hi = b > 63; if (hi && !midi.ccHi[id]) doAct(k); midi.ccHi[id] = hi; return; } if (k && DEF[k]) { midi.busy = true; set(k, toVal(k, b / 127)); midi.busy = false; }
+    const k = midiMap().cc[id]; if (isAct(k)) { const hi = b > 63; if (hi && !midi.ccHi[id]) doAct(k); midi.ccHi[id] = hi; return; } if (k && DEF[k]) { midi.busy = true; set(k, toVal(k, b / 127)); midi.busy = false; }
   }
 }
 function midiScan() { const acc = midi.access; if (!acc) return; midi.names = []; acc.inputs.forEach(inp => { inp.onmidimessage = onMidi; midi.names.push(inp.name || 'MIDI device'); }); midi.on = true; drawAll(); }
@@ -1197,6 +1201,7 @@ const GUIDE = [
     'Plug the SMK-37 in with USB, press CONNECT above and allow MIDI. Chrome or Edge work best.',
     'Keys play the bass, or the stab (choose in KEYS). Pads play the drums when they send on MIDI channel 10: 36 kick, 38 snare, 39 clap, 42 and 46 hats.',
     'To set the pads that way, open the M-VAVE editor, set the pads to channel 10 and notes 36 to 51, send it to the keyboard, then close the editor.',
+    'Running MD|442 firmware 1.1 on the keyboard? Press SEND TO KEYBOARD to copy this beat\'s scenes onto it (patterns 9 to 16). Saving a beat sends it again automatically.',
     'Or press LEARN, touch anything here (a knob, a drum, a scene, MUTE or MUTE GROUP) and press the pad or turn the knob. Mappings stay on this device.',
     'Windows lets only one app use the keyboard at a time. Close the M-VAVE editor and your DAW first, or the SMK-37 will not appear here.',
     ['Want MD|442 inside the keyboard itself? Get the firmware', '/md442/download/#firmware']]],
@@ -1223,9 +1228,47 @@ function guide() {
   GUIDE.forEach(([t], j) => tabs.append(key(t, () => { on = j; show(); })));
   box.append(h('span', 'cap', 'HOW TO CONNECT'), tabs, body); show(); return box;
 }
+// SEND TO KEYBOARD: MD|442 → keyboard
+// Sends this beat's scenes to an SMK-37 / FM-1 running MD|442 firmware 1.1+, over USB-MIDI SysEx, no reflash.
+// Scene 1..8 → keyboard patterns 9..16 (patterns 1-7 keep Mathew's factory beats). Firmware cmd 50 (see firmware/src/app/editor.c).
+// Saving a beat (saveBeat) sends it automatically when an MD|442 keyboard has answered once this session.
+const KB_ROWS = ['BD', 'SD', 'LT', 'MT', 'HT', 'RS', 'CP', 'CH', 'OH', 'CR', 'RD', 'AC', 'BS'];   // firmware drum909.h order, then accent, bass
+const kbx = { sx: null, outs: [], ok: false, wait: null };
+const kbBits = row => { let m = 0; row.forEach((on, i) => { if (on) m |= 1 << i; }); return [m & 127, (m >> 7) & 127, (m >> 14) & 3]; };
+function kbFrame(slot, sc) {
+  const bpm = Math.round(P.bpm), sw = clamp(Math.round((P.shuffle - 50) / 25 * 100), 0, 100), root = 40 + Math.round(P.key), acid = Math.round(P['bs.acid'] || 0);
+  const f = [0xF0, 0x7D, 0x46, 0x4C, 50, slot, bpm & 127, bpm >> 7, sw, root, acid];
+  KB_ROWS.forEach(k => f.push(...kbBits(sc.g[k] || Array(16).fill(false))));
+  sc.n.forEach(n => f.push(clamp(Math.round(n) + 64, 0, 127)));
+  f.push(0xF7); return f;
+}
+function kbIn(e) {
+  const d = e.data; if (!d || d[0] !== 0xF0 || d[1] !== 0x7D || d[2] !== 0x46 || d[3] !== 0x4C) return;
+  if (d[4] === 50 && kbx.wait) { const w = kbx.wait; kbx.wait = null; w(d[6] === 0); }
+}
+async function kbAccess() {
+  if (kbx.sx) return true;
+  if (!navigator.requestMIDIAccess) { toast('Sending to the keyboard needs Chrome or Edge.'); return false; }
+  try { kbx.sx = await navigator.requestMIDIAccess({ sysex: true }); } catch (_) { toast('Allow MIDI (with SysEx) in the browser to send beats to the keyboard.'); return false; }
+  const scan = () => { kbx.outs = []; kbx.sx.outputs.forEach(o => kbx.outs.push(o)); kbx.sx.inputs.forEach(i => i.addEventListener('midimessage', kbIn)); };
+  kbx.sx.onstatechange = scan; scan(); return true;
+}
+const kbAsk = (out, f) => new Promise(res => { kbx.wait = res; try { out.send(f); } catch (_) { kbx.wait = null; res(false); } setTimeout(() => { if (kbx.wait === res) { kbx.wait = null; res(false); } }, 1500); });
+async function sendToKeyboard(quiet) {
+  if (!(await kbAccess())) return;
+  const scenes = S.scenes.slice(0, 8);
+  for (const out of kbx.outs) {                     // the first output that answers is the keyboard
+    if (!(await kbAsk(out, kbFrame(8, scenes[0])))) continue;
+    for (let i = 1; i < scenes.length; i++) await kbAsk(out, kbFrame(8 + i, scenes[i]));
+    kbx.ok = true;
+    toast('Sent to ' + (out.name || 'the keyboard') + ': ' + scenes.length + (scenes.length > 1 ? ' scenes on patterns 9–' + (8 + scenes.length) : ' scene on pattern 9') + '. The dub stab stays on the computer.');
+    return;
+  }
+  if (!quiet) toast('No MD|442 keyboard answered. Connect it by USB and check it runs MD|442 firmware 1.1 or newer.');
+}
 function buildMidi(box) {
-  const stat = h('p', 'mstat'), row = h('div', 'kctl'), list = h('div', 'mlist'), lk = key('LEARN', midiLearn, 'led'), ck = key('CLEAR MAPPINGS', () => { midi.cc = {}; midi.note = {}; midiKeep(); drawAll(); toast('MIDI mappings cleared'); }), con = key('CONNECT', midiConnect);
-  row.append(con, lk, ck); box.append(stat, row, list, guide(), h('p', 'note', 'Pads on MIDI channel 10 play the drums with the standard drum notes (36 kick, 38 snare, 39 clap, 42 and 46 hats…). Keys play the bass or the stab, whichever the keyboard panel is set to. LEARN ties any hardware knob, fader or pad to anything on screen. Start, stop, continue and the tempo (MIDI clock) from a controller or a DAW are followed.'));
+  const stat = h('p', 'mstat'), row = h('div', 'kctl'), list = h('div', 'mlist'), lk = key('LEARN', midiLearn, 'led'), ck = key('CLEAR MAPPINGS', () => { midi.cc = {}; midi.note = {}; midiKeep(); drawAll(); toast('MIDI mappings cleared'); }), con = key('CONNECT', midiConnect), sk = key('SEND TO KEYBOARD', () => sendToKeyboard(false));
+  row.append(con, lk, ck, sk); box.append(stat, row, list, guide(), h('p', 'note', 'Pads on MIDI channel 10 play the drums with the standard drum notes (36 kick, 38 snare, 39 clap, 42 and 46 hats…). Keys play the bass or the stab, whichever the keyboard panel is set to. LEARN ties any hardware knob, fader or pad to anything on screen. Start, stop, continue and the tempo (MIDI clock) from a controller or a DAW are followed.'));
   live(lk, () => { lk.classList.toggle('on', midi.learn); lk.setAttribute('aria-pressed', midi.learn); });
   live(stat, () => {
     stat.textContent = !navigator.requestMIDIAccess ? NOMIDI : !midi.access ? 'Press CONNECT and allow MIDI.' : (midi.names.length ? 'Connected: ' + midi.names.join(', ') : 'MIDI is on. No controller found yet.') + (midi.learn ? (midi.armP ? ' · LEARN: now move a hardware control for ' + DEF[midi.armP].lb : midi.armD ? ' · LEARN: now hit a pad for ' + NAME[midi.armD] : midi.armA ? ' · LEARN: now press a pad for ' + actName(midi.armA) : ' · LEARN: touch a knob, drum, scene or MUTE on screen') + (midi.synced ? ' · following MIDI clock' : '') : '') + (midi.last ? ' · last: ' + midi.last : '');
