@@ -1,3 +1,82 @@
+diff --git a/firmware/src/app/editor.c b/firmware/src/app/editor.c
+index 93744b8..640d3f1 100644
+--- a/firmware/src/app/editor.c
++++ b/firmware/src/app/editor.c
+@@ -10,6 +10,14 @@
+ #define ED_HDR1 0x46
+ #define ED_HDR2 0x4C
+ enum { ED_INFO = 1, ED_SMP_BEGIN = 11, ED_SMP_WRITE, ED_SMP_END, ED_SMP_ERASE, ED_SMP_INFO, ED_SMP_READ, ED_PING = 25 };
++/* MD|442: a pattern sent from MD|442 (browser, desktop app) into a pattern slot, no reflash.
++ *   F0 7D 46 4C 50 slot bpm_lo bpm_hi swing root acid  rows[13 x 3]  notes[16]  F7
++ * slot 0..31; bpm 0 = keep, else 30..300 (7 + 7 bits); swing 0..100 (X0X's); root: MIDI note of the bass's 0;
++ * acid 0..100; rows: 11 drums in drum909.h order (BD SD LT MT HT RS CP CH OH CR RD), the accent, the bass gates,
++ * each 16 steps as 3 x 7 bits (bit i = step i + 1, LSB first); notes: the bass's offsets + 64.
++ * Reply: 50 slot rc (0 ok, 1 arguments). The pattern is saved with the project (autosave). */
++#define ED_MD442_PUT 50
++#define MD442_PUT_LEN (6u + 13u * 3u + 16u)
+ #define ED_READ_MAX 224u                     /* X0X: SMP_READ's bytes a frame (the break page draws the slots) */
+ 
+ static uint8_t ed_out[288];
+@@ -175,6 +183,50 @@ static void ed_handle(const uint8_t *f, uint32_t n)
+     case ED_PING:
+         ed_b(0);
+         break;
++    case ED_MD442_PUT: {
++        pattern_t *pt;
++        uint32_t r, bpm, st;
++        if (na < MD442_PUT_LEN || a[0] >= NPAT) {
++            ed_b(a[0]);
++            ed_b(1);
++            break;
++        }
++        pt = &proj.pat[a[0]];
++        for (r = 0; r < NDRUM; r++)
++            pt->drum[0].hit[r][0] = pt->drum[0].hit[r][1] = 0;
++        pt->drum[0].accent[0] = pt->drum[0].accent[1] = 0;
++        pt->drum[0].len = 16;
++        pt->bass[0].len = 16;
++        for (r = 0; r < 13u; r++) {
++            const uint8_t *q = a + 6u + 3u * r;
++            uint32_t m = (uint32_t)q[0] | (uint32_t)q[1] << 7 | (uint32_t)(q[2] & 3u) << 14;
++            if (r < NDRUM)
++                pt->drum[0].hit[r][0] = m;
++            else if (r == NDRUM)
++                pt->drum[0].accent[0] = m;
++            else
++                for (st = 0; st < 16u; st++) {
++                    bstep_t *b = &pt->bass[0].step[st];
++                    uint32_t off = a[6u + 39u + st];
++                    int nn = (int)a[4] + (int)off - 64;
++                    b->note = (uint8_t)(nn < 0 ? 0 : nn > 127 ? 127 : nn);
++                    b->flags = ((m >> st) & 1u) ? G_NOTE : G_REST;
++                    if (b->flags && a[5] >= 50u && off != 64u)
++                        b->flags |= BS_ACCENT;
++                }
++        }
++        pt->swing = (uint8_t)(a[3] > 100u ? 100u : a[3]);
++        bpm = (uint32_t)a[1] | (uint32_t)a[2] << 7;
++        if (bpm >= 30u && bpm <= 300u) {
++            seq.bpm = (float)bpm;
++            proj.set.bpm_x10 = (uint16_t)(bpm * 10u);
++        }
++        mark_dirty();
++        say("FROM MD|442", 0);
++        ed_b(a[0]);
++        ed_b(0);
++        break;
++    }
+     case ED_SMP_BEGIN:
+     case ED_SMP_ERASE:
+         if (na < 1u || a[0] >= SMP_USER_SLOTS || !flash_ok)
+@@ -281,7 +333,7 @@ static void ed_service(void)
+         return;
+     }
+     {
+-        static uint8_t f[64];
++        static uint8_t f[80];                     /* MD|442: room for ED_MD442_PUT (65 bytes) */
+         uint32_t k = n > sizeof f ? sizeof f : n, i;
+         for (i = 0; i < k; i++)
+             f[i] = p[i];
 diff --git a/firmware/src/app/engine.c b/firmware/src/app/engine.c
 index c895b7e..baf5e5d 100644
 --- a/firmware/src/app/engine.c
