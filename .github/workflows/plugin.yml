@@ -9,7 +9,7 @@ env:
   MD442_VERSION: '1.0.${{ github.run_number }}'
 jobs:
   mac:
-    runs-on: macos-14
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - name: 'Build (universal, Apple Silicon + Intel)'
@@ -56,7 +56,7 @@ jobs:
         shell: bash
         run: |
           cmake -S plugin -B build -G "Visual Studio 17 2022" -A x64
-          cmake --build build --config Release --target MD442_VST3 MD442_Standalone -- /m
+          cmake --build build --config Release -j 4 --target MD442_VST3 MD442_Standalone
       - name: Validate the VST3 (pluginval)
         shell: bash
         run: |
