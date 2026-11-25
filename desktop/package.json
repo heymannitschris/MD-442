@@ -1,0 +1,70 @@
+{
+  "name": "md442",
+  "productName": "MD-442",
+  "version": "1.0.0",
+  "description": "MD|442 drum machine by Mathew, NEST Group",
+  "author": "NEST Group LLC",
+  "main": "main.js",
+  "scripts": {
+    "fetch-web": "node fetch-web.js",
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac --publish never",
+    "dist:win": "electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "space.nestgroup.md442",
+    "productName": "MD-442",
+    "copyright": "\u00a9 NEST Group LLC",
+    "files": [
+      "main.js",
+      "preload.js",
+      "web/**/*"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ],
+      "category": "public.app-category.music",
+      "identity": null,
+      "icon": "build/icon.png",
+      "extendInfo": {
+        "NSBluetoothAlwaysUsageDescription": "MD-442 uses Bluetooth MIDI controllers."
+      },
+      "artifactName": "md442-mac.${ext}"
+    },
+    "dmg": {
+      "title": "MD-442"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "artifactName": "md442-windows.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "shortcutName": "MD-442"
+    },
+    "afterPack": "./afterPack.js"
+  }
+}
