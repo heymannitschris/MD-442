@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <title>MD|442 · MATHEW</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+// Opened as an installed app on a phone: go straight to the phone console (the desk console needs a wide screen).
+(() => { const app = /[?&]app=1/.test(location.search) || matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || navigator.standalone === true;
+  if (app && matchMedia('(max-width: 760px), (pointer: coarse) and (max-width: 1024px)').matches) location.replace('/md442/app/'); })();
+</script>
 <meta name="description" content="MD|442, a free drum machine developed by Mathew. Analogue-style drums, an acid bass, dub chords and a row of effects. Play in your browser or download it for Mac, Windows and Android.">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="icon" href="app/icon-192.png">
