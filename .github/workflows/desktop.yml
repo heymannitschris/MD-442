@@ -1,0 +1,45 @@
+name: MD|442 desktop apps (Mac and Windows)
+on:
+  push:
+    paths: ['desktop/**', '.github/workflows/desktop.yml']
+  workflow_dispatch:     # run by hand to pick up the latest web app from the site
+permissions:
+  contents: write
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: macos-14, cmd: 'dist:mac', file: md442-mac.dmg }
+          - { os: windows-latest, cmd: 'dist:win', file: md442-windows.exe }
+    runs-on: ${{ matrix.os }}
+    defaults: { run: { working-directory: desktop, shell: bash } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm install --no-audit --no-fund
+      - name: Bundle the live web app
+        run: |
+          node fetch-web.js
+          cp web/app/icon-512.png build/icon.png
+      - run: npm run ${{ matrix.cmd }}
+        env: { CSC_IDENTITY_AUTO_DISCOVERY: 'false' }
+      - uses: actions/upload-artifact@v4
+        with: { name: '${{ matrix.file }}', path: 'desktop/dist/${{ matrix.file }}', if-no-files-found: error }
+  release:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: out, merge-multiple: true }
+      - name: Publish to the "desktop" release (stable download URLs)
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          ls -la out
+          gh release view desktop >/dev/null 2>&1 || gh release create desktop --title "MD|442 desktop apps" --notes-file desktop/INSTALL.md --latest=false
+          gh release upload desktop out/md442-mac.dmg out/md442-windows.exe --clobber
+          gh release edit desktop --notes-file desktop/INSTALL.md --title "MD|442 desktop apps (build ${GITHUB_RUN_NUMBER})"
