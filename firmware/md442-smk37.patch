@@ -12,7 +12,7 @@ index c895b7e..baf5e5d 100644
      s->v[T_909][DR_BD][6] = 30;                      /* stays 9W9's 13: at 50 its tick was 12 dB louder, a click on every kick */
      s->v[T_909][DR_OH][1] = 60;
 diff --git a/firmware/src/app/main_fm1.c b/firmware/src/app/main_fm1.c
-index e0a3705..d61c9c8 100644
+index e0a3705..0e44bf0 100644
 --- a/firmware/src/app/main_fm1.c
 +++ b/firmware/src/app/main_fm1.c
 @@ -442,7 +442,7 @@ static void safe_main(void)
@@ -24,7 +24,7 @@ index e0a3705..d61c9c8 100644
              usb_detach();
              fm1_delay_ms(30);
              fm1_reboot();
-@@ -478,9 +478,10 @@ static void fm1_main(void)
+@@ -478,9 +478,12 @@ static void fm1_main(void)
          }
      }
      lcd_init();
@@ -34,13 +34,15 @@ index e0a3705..d61c9c8 100644
 +    palette_set(0);
 +    draw_text_box(0, 96, 240, &FONT_B, "MD|442", C_HI, 1);
 +    draw_text_box(0, 134, 240, &FONT_S, "BY MATHEW  NEST GROUP", C_GRAY, 1);
++#if BOARD_SMK37
 +    draw_text_box(0, 154, 240, &FONT_XS, "ON X0X (GPL-3.0)", C_DIM, 1);
++#endif
      if (x0x_dbg.magic != DBG_MAGIC) {
          memset(&x0x_dbg, 0, sizeof x0x_dbg);
          x0x_dbg.magic = DBG_MAGIC;
 diff --git a/firmware/src/app/md442_presets.h b/firmware/src/app/md442_presets.h
 new file mode 100644
-index 0000000..ba7ae5d
+index 0000000..9bbe9f6
 --- /dev/null
 +++ b/firmware/src/app/md442_presets.h
 @@ -0,0 +1,56 @@
@@ -54,21 +56,21 @@ index 0000000..ba7ae5d
 +#include "../dsp/drum909.h"
 +
 +typedef struct {
-+    uint8_t bpm, swing, root_midi, acid;   /* acid 0..100: MD|442's acid amount -> accents */
-+    const char *g[7];
++    uint8_t bpm, swing, root_midi, acid;    /* bpm: MD|442's own (the project runs one tempo) */   /* acid 0..100: MD|442's acid amount -> accents */
++    uint16_t g[7];                         /* rows, bit i = step i + 1 */
 +    int8_t notes[16];
 +} md442_preset_t;
 +
 +/* root_midi: MD|442's root in Hz as a MIDI note (41.2 = E1 28, 43.65 = F1 29, 46.25 = F#1 30,
 + * 49 = G1 31, 55 = A1 33), one octave up for the 303 (its range starts at C1) */
 +static const md442_preset_t MD442_PRESETS[] = {
-+    {142, 0, 40, 55, {"x...x...x...x...", "................", "....x.......x...", "xxxxxxxxxxxxxxxx", "..x...x...x...x.", "...........x..x.", ".xx..xx..xx..xx."}, {0, 0, 12, 0, 0, 0, 12, 0, 0, 0, 15, 0, 0, 12, 0, 7}},   /* Peak Warehouse */
-+    {133, 4, 41, 25, {"x...x...x...x...", "............x...", "................", "x.xxx.xxx.xxx.xx", "..x...x...x...x.", "..x.....x.x.....", ".x.x.x.x.x.x.x.x"}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0}},    /* Berlin Roll */
-+    {124, 6, 43, 50, {"x...x...x...x...", "....x.......x...", "....x.......x...", "..xx..xx..xx..xx", "..x...x...x...x.", "................", "x.xx.x..x.xx.xx."}, {0, 0, 0, 12, 0, 10, 0, 0, 0, 0, 0, 12, 0, 7, 10, 0}},  /* Electro */
-+    {126, 8, 45, 90, {"x...x...x...x...", "................", "....x.......x...", "x.x.x.x.x.x.x.xx", "..x...x...x...x.", "................", "x.xxx.xx.xx.xxx."}, {0, 0, 12, 0, 3, 0, 0, 12, 0, 7, 0, 0, 10, 12, 0, 0}},  /* Acid Jack */
-+    {122, 18, 41, 0, {"x...x...x...x...", "................", "....x.......x...", "x..xx..xx..xx..x", "..x...x...x...x.", "......x......x..", "x..x...x..x....."}, {0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 7, 0, 0, 0, 0, 0}},     /* Deep House */
-+    {134, 24, 41, 0, {"x......x..x.....", ".........x.....x", "....x.......x...", "x.x.x.xxx.x.x.x.", "..x.......x.....", "...x.....x..x...", "x..x......x..x.."}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 7, 0, 0}},      /* Breakbeat */
-+    {118, 12, 42, 0, {"x...x...x...x...", "................", "................", "..x..xx...x..xx.", "......x.........", "....x.......x..x", "x.....x...x....."}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},      /* Dub Techno */
++    {142, 0, 40, 55, {0x1111, 0x0000, 0x1010, 0xFFFF, 0x4444, 0x4800, 0x6666}, {0, 0, 12, 0, 0, 0, 12, 0, 0, 0, 15, 0, 0, 12, 0, 7}},   /* Peak Warehouse */
++    {133, 4, 41, 25, {0x1111, 0x1000, 0x0000, 0xDDDD, 0x4444, 0x0504, 0xAAAA}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0}},    /* Berlin Roll */
++    {124, 6, 43, 50, {0x1111, 0x1010, 0x1010, 0xCCCC, 0x4444, 0x0000, 0x6D2D}, {0, 0, 0, 12, 0, 10, 0, 0, 0, 0, 0, 12, 0, 7, 10, 0}},  /* Electro */
++    {126, 8, 45, 90, {0x1111, 0x0000, 0x1010, 0xD555, 0x4444, 0x0000, 0x76DD}, {0, 0, 12, 0, 3, 0, 0, 12, 0, 7, 0, 0, 10, 12, 0, 0}},  /* Acid Jack */
++    {122, 18, 41, 0, {0x1111, 0x0000, 0x1010, 0x9999, 0x4444, 0x2040, 0x0489}, {0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 7, 0, 0, 0, 0, 0}},     /* Deep House */
++    {134, 24, 41, 0, {0x0481, 0x8200, 0x1010, 0x55D5, 0x0404, 0x1208, 0x2409}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 7, 0, 0}},      /* Breakbeat */
++    {118, 12, 42, 0, {0x1111, 0x0000, 0x0000, 0x6464, 0x0040, 0x9010, 0x0441}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}},      /* Dub Techno */
 +};
 +#define MD442_NPRESETS ((int)(sizeof MD442_PRESETS / sizeof MD442_PRESETS[0]))
 +
@@ -82,19 +84,19 @@ index 0000000..ba7ae5d
 +    int r, i;
 +    for (r = 0; r < 5; r++)
 +        for (i = 0; i < 16; i++)
-+            if (m->g[r][i] == 'x')
++            if ((m->g[r] >> i) & 1u)
 +                sm_set(d->hit[ROW[r]], i);
 +    for (i = 0; i < 16; i++)
-+        if (m->g[5][i] == 'x')
++        if ((m->g[5] >> i) & 1u)
 +            sm_set(d->hit[md442_bongo_hi(i) ? DR_HT : DR_MT], i);
 +    for (i = 0; i < 16; i++) {
 +        b->step[i].note = (uint8_t)(m->root_midi + m->notes[i]);
 +        b->step[i].flags = G_REST;
-+        if (m->g[6][i] == 'x') {
++        if ((m->g[6] >> i) & 1u) {
 +            b->step[i].flags = G_NOTE;
 +            if (m->acid >= 50 && m->notes[i] != 0)        /* MD|442's acid: the moving notes bite */
 +                b->step[i].flags |= BS_ACCENT;
-+            if (m->acid >= 85 && i + 1 < 16 && m->g[6][i + 1] == 'x' && m->notes[i + 1] != m->notes[i])
++            if (m->acid >= 85 && i + 1 < 16 && (m->g[6] >> (i + 1)) & 1u && m->notes[i + 1] != m->notes[i])
 +                b->step[i].flags |= BS_SLIDE;
 +        }
 +    }
